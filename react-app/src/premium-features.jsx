@@ -1,4 +1,4 @@
-import React,{useState,useRef} from 'react';
+import React,{useState,useRef,useEffect} from 'react';
 const topics=[
 {key:'ligaments',label:'Ligamentos',subtitle:'Estabilidade do movimento',explain:'Lesões ligamentares podem provocar instabilidade. A necessidade de reconstrução depende do exame físico, da lesão e dos objetivos de cada pessoa.',link:'/especialidades/reconstrucao-ligamentar',spot:[59,29]},
 {key:'meniscus',label:'Menisco',subtitle:'Amortecimento e proteção articular',explain:'Nem toda lesão meniscal precisa de cirurgia. A localização, os sintomas e a preservação do tecido orientam a conduta.',link:'/especialidades/cirurgia-menisco',spot:[39,60]},
@@ -7,17 +7,19 @@ const topics=[
 const Arrow=()=> <span className="px-arr" aria-hidden="true">↗</span>;
 const reviews='https://www.google.com/maps/search/?api=1&query=Ortho+Alpha+Ortopedia+Av+Copacabana+112+Barueri';
 export function KneeAtlas({img}){
- const [sel,setSel]=useState(0),[tilt,setTilt]=useState({x:0,y:0}),ref=useRef(null);const item=topics[sel];
+ const [sel,setSel]=useState(0),ref=useRef(null),tiltRef=useRef(null),frame=useRef(0);const item=topics[sel];
+ useEffect(()=>()=>cancelAnimationFrame(frame.current),[]);
  const move=e=>{
   if(window.matchMedia('(prefers-reduced-motion:reduce)').matches||window.matchMedia('(pointer:coarse)').matches)return;
-  const r=ref.current?.getBoundingClientRect();if(!r)return;const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;setTilt({x:-y*5,y:x*7});
+  const r=ref.current?.getBoundingClientRect();if(!r||frame.current)return;const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  frame.current=requestAnimationFrame(()=>{if(tiltRef.current)tiltRef.current.style.transform='perspective(1150px) rotateX('+(-y*5)+'deg) rotateY('+(x*7)+'deg)';frame.current=0});
  };
  return <section className="px-knee" aria-labelledby="px-knee-title"><div className="px-container">
   <div className="px-head"><span className="px-eyebrow">EXPERIÊNCIA INTERATIVA · ORTHO ALPHA</span><h2 id="px-knee-title">Entender o joelho é o primeiro passo para <em>cuidar dele.</em></h2><p>Explore estruturas importantes para compreender melhor queixas comuns e possibilidades de tratamento.</p></div>
   <div className="px-knee-grid">
-   <div className="px-visual" ref={ref} onPointerMove={move} onPointerLeave={()=>setTilt({x:0,y:0})}>
+   <div className="px-visual" ref={ref} onPointerMove={move} onPointerLeave={()=>{cancelAnimationFrame(frame.current);frame.current=0;if(tiltRef.current)tiltRef.current.style.transform='none'}}>
     <div className="px-knee-orbits" aria-hidden="true"/>
-    <div className="px-tilt" style={{transform:'perspective(1150px) rotateX('+tilt.x+'deg) rotateY('+tilt.y+'deg)'}}>
+    <div className="px-tilt" ref={tiltRef}>
       <img src={img('knee-anatomy-premium.svg')} alt="Representação ilustrativa de um joelho" loading="lazy"/>
       {topics.map((t,i)=><button type="button" key={t.key} className={'px-hotspot'+(sel===i?' active':'')} style={{left:t.spot[0]+'%',top:t.spot[1]+'%'}} aria-label={'Explorar '+t.label} aria-pressed={sel===i} onClick={()=>setSel(i)}>{String(i+1).padStart(2,'0')}</button>)}
     </div>

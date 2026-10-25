@@ -1,31 +1,33 @@
-# Ortho Alpha — prévia integrada revisada
+# Ortho Alpha — novo site (prévia para aprovação)
 
-Site estático de prévia para revisão do projeto antes da publicação no domínio oficial. Esta revisão aproxima **a home HTML** do layout visual aprovado: hero de clínica em tela ampla, sequência branco / azul-marinho, anatomia do joelho, ambientes originais, retratos oficiais, grade de seis especialidades, FAQ e footer.
+Protótipo navegável do novo site da Ortho Alpha, em português, com 16 páginas HTML (home, Sobre, Médicos, 6 especialidades individuais, Blog, Contato, Convênios e Privacidade), imagens, animações e CSS responsivo.
 
-## Ver localmente
+## Publicar a prévia em GitHub Pages
 
-Abra `index.html` e utilize os links do menu. A página inicial carrega com as fotos no primeiro paint; páginas internas, páginas dos médicos, especialidades e blog estão integradas. Para testes mais confiáveis de navegação entre páginas e comportamento de scripts, hospede a pasta em um servidor estático (por exemplo, GitHub Pages).
+1. Acesse [Settings → Pages](https://github.com/Lizveigab/ortho-alpha-site/settings/pages).
+2. Em **Build and deployment**, escolha **Deploy from a branch**.
+3. Selecione branch **main**, pasta **/(root)** e clique em **Save**.
+4. A prévia deverá ficar em: https://lizveigab.github.io/ortho-alpha-site/
 
-## GitHub Pages
+Este procedimento não altera o domínio oficial https://www.orthoalpha.com.br/.
 
-1. Crie um repositório novo e exclusivo, por exemplo `ortho-alpha-site`.
-2. Faça upload do **conteúdo** do ZIP na raiz do repositório (`index.html` precisa ficar na raiz).
-3. Acesse **Settings → Pages**, selecione **Deploy from a branch**, branch `main`, pasta `/(root)` e salve.
-4. Confira o endereço de prévia exibido pelo GitHub. **O domínio oficial não precisa ser alterado para testar.**
+## Estrutura
 
-## Arquitetura
+- `index.html` — Home editorial com seções claras/escuras.
+- `sobre.html` — A clínica.
+- `medicos/` — Perfis do Dr. Gabriel e Dr. Ricardo.
+- `especialidades/` — Procedimentos e páginas individuais.
+- `blog/index.html` — Blog editorial e galeria ilustrativa do Instagram.
+- `contato.html`, `convenios.html`, `politica-privacidade.html`.
+- `assets/` — Fotografias reais disponibilizadas para o projeto, logo circular original, ilustrações esquemáticas, CSS e JavaScript.
 
-- Home `index.html` (nova versão visual fiel) e CSS adicional `assets/premium.css`.
-- Sobre `sobre.html`, perfis em `medicos/`, serviços em `especialidades/`, blog em `blog/`, contato em `contato.html`, convênios em `convenios.html`.
-- Fotografia da clínica e retratos dos dois médicos: **imagens originais**, sem alteração de rostos ou criação de novas instalações.
-- Ilustração anatômica e imagem de corrida: **arte ilustrativa extraída dos conceitos visuais**, não foto real da clínica ou registro médico.
-- Símbolo circular Ortho Alpha original em menu e elementos gráficos, sem redesenhar o logo.
+## Antes da publicação oficial
 
-## Limites da prévia
+- Conferir textos médicos, CRM/RQE e informações de atendimento com os profissionais.
+- As ilustrações anatômicas são esquemáticas, não laudos nem fotos de procedimentos.
+- A galeria do Instagram **não é um feed sincronizado**; depende de integração autorizada.
+- A página de privacidade ainda exige revisão jurídica.
+- A prévia possui meta `noindex,nofollow`, mas o repositório público pode ser acessado por qualquer pessoa com o endereço.
+- Ajustes visuais finais devem ser revisados no desktop e no celular.
 
-- Os mockups iniciais eram **imagens conceituais**, com consultórios e elementos gráficos em parte imaginados; o HTML preserva as proporções e a linguagem, substituindo esses ambientes pelas fotografias verdadeiras. Por isso a equivalência não é pixel a pixel.
-- Este protótipo **não** foi publicado em GitHub nem no site existente. Precisa de um repositório novo para uma URL online.
-- Instagram: **galeria editorial**, não um feed automático. Uma integração autorizada é necessária para puxar novos posts.
-- Conteúdos clínicos, currículos, RQE e dados de atendimento precisam de conferência pela clínica; política de privacidade é provisória.
-- Avaliações reais devem ser inseridas somente após verificação e autorização. Nenhum depoimento foi inventado.
-- Site sinalizado com `noindex,nofollow`, mas **GitHub Pages público não restringe acesso** a quem tiver o link.
+Última organização: outubro de 2026.

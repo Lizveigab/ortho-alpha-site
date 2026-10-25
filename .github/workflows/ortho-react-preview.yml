@@ -30,7 +30,7 @@ jobs:
           mkdir -p react
           find react -mindepth 1 -maxdepth 1 -exec rm -rf {} +
           cp -R react-app/dist/. react/
-          cp -R assets react/assets
+          cp -R assets/. react/assets/
           touch react/.nojekyll
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

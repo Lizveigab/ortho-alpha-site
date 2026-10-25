@@ -1,0 +1,82 @@
+/* Ortho Alpha — premium evolution / progressive, accessible interactions */
+.oa3 .px-container{width:min(1320px,calc(100% - 112px));margin-inline:auto}
+.oa3 .px-eyebrow{display:block;margin-bottom:24px;font-size:10px;letter-spacing:.19em;font-weight:800;line-height:1.5;color:#58b7dc;text-transform:uppercase}
+.oa3 .px-knee,.oa3 .px-trust{padding:clamp(88px,8.7vw,140px) 0;position:relative;overflow:hidden}
+.oa3 .px-head{max-width:1120px}
+.oa3 .px-head h2,.oa3 .px-physician-cta h2{font-size:clamp(43px,4.4vw,72px);line-height:1.06;letter-spacing:-.07em;font-weight:500;margin:0;max-width:920px}
+.oa3 .px-head h2 em,.oa3 .px-physician-cta h2 em{font-style:normal;color:#0791c2;font-weight:550}
+.oa3 .px-head p{max-width:570px;margin:22px 0 0;line-height:1.65;color:#607b8e;font-size:15px}
+.oa3 .px-arr{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;border:1px solid #7fb7d2;transition:transform .3s,background .3s;flex:none;font-style:normal;font-size:18px}
+.oa3 a:hover>.px-arr,.oa3 button:hover>.px-arr{transform:rotate(-35deg);background:#b8edff1c}
+.oa3 .px-knee{background:radial-gradient(ellipse at 80% 35%,#0d4f77,#062e4d 45%,#02172b);color:#fff}
+.oa3 .px-knee:before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(540px circle at var(--oa-light-x,76%) var(--oa-light-y,48%),rgba(81,207,244,.14),transparent 75%)}
+.oa3 .px-knee>.px-container{position:relative}
+.oa3 .px-knee h2{color:#fff}.oa3 .px-knee h2 em{color:#67d8f8}
+.oa3 .px-knee .px-head p{color:#bfd7e5}
+.oa3 .px-knee-grid{display:grid;grid-template-columns:1.13fr .87fr;gap:clamp(35px,6vw,95px);align-items:center;margin-top:47px}
+.oa3 .px-visual{position:relative;min-height:clamp(480px,46vw,660px);overflow:hidden;isolation:isolate;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 42%,#0a537b53,#0526411a 56%,transparent 80%);touch-action:pan-y}
+.oa3 .px-knee-orbits{position:absolute;inset:10% 10%;border:1px solid #a0dbed29;border-radius:50%;box-shadow:0 0 0 54px #45c9ee08,0 0 0 119px #45c9ee06;pointer-events:none}
+.oa3 .px-tilt{position:relative;width:min(100%,500px);height:min(600px,45vw);min-height:440px;transition:transform .28s cubic-bezier(.22,1,.36,1);transform-style:preserve-3d;will-change:transform}
+.oa3 .px-tilt img{height:100%;width:100%;object-fit:contain;filter:drop-shadow(0 25px 43px #0014268c) saturate(1.07)}
+.oa3 .px-hotspot{position:absolute;z-index:2;transform:translate(-50%,-50%);height:40px;width:40px;display:grid;place-items:center;border-radius:100%;border:1px solid #d5f7ff;box-shadow:0 0 0 8px #75d3f92c,0 0 24px #44c8f35c;color:#fff;background:#07658dce;font-size:11px;font-weight:800;transition:background .25s,box-shadow .25s,scale .25s}
+.oa3 .px-hotspot:hover,.oa3 .px-hotspot.active{background:#f3fbff;color:#07628a;scale:1.1;box-shadow:0 0 0 10px #75d3f94a,0 0 30px #44c8f38c}
+.oa3 .px-axis{position:absolute;bottom:20px;left:20px;letter-spacing:.18em;font-size:9px;color:#87d4e9}
+.oa3 .px-atlas-side{min-width:0}
+.oa3 .px-atlas-tabs{display:grid;gap:6px}
+.oa3 .px-atlas-tabs button{display:grid;grid-template-columns:36px 1fr 32px;align-items:center;gap:10px;min-height:77px;width:100%;text-align:left;background:#ffffff08;border:1px solid #94d6ee32;border-radius:10px;padding:14px 18px;color:#d9eef5;font-size:17px;font-weight:680;transition:background .25s,border-color .25s}
+.oa3 .px-atlas-tabs button.active,.oa3 .px-atlas-tabs button:hover{background:#1694bf2f;border-color:#80d9f78a;color:#fff}
+.oa3 .px-atlas-tabs small{font-size:11px;color:#7cceec}
+.oa3 .px-atlas-tabs button .px-arr{width:29px;height:29px}
+.oa3 .px-atlas-detail{margin-top:26px;border-top:1px solid #9bd8e957;padding-top:24px;animation:px-reveal .45s ease both}
+.oa3 .px-atlas-detail>span{font-size:10px;letter-spacing:.15em;color:#8adbf6;font-weight:800}
+.oa3 .px-atlas-detail h3{font-size:clamp(29px,2.5vw,41px);font-weight:520;letter-spacing:-.06em;line-height:1.1;margin:12px 0}
+.oa3 .px-atlas-detail p{color:#c5dbe5;font-size:14px;line-height:1.65;max-width:440px}
+.oa3 .px-atlas-detail a{display:inline-flex;align-items:center;gap:17px;border-bottom:1px solid #bce6f485;font-size:13px;font-weight:700;margin-top:18px;padding-bottom:6px;color:#e9faff}
+.oa3 .px-atlas-detail a .px-arr{width:26px;height:26px;font-size:15px}
+.oa3 .px-disclaimer{font-size:11px!important;color:#91afc2!important;margin-top:28px;line-height:1.5!important}
+@keyframes px-reveal{from{opacity:.5;translate:0 12px}to{opacity:1;translate:0 0}}
+/* Transparency and real ratings */
+.oa3 .px-trust{background:#f7fbfd}
+.oa3 .px-trust-heading{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:end}
+.oa3 .px-trust-heading>p{font-size:15px;margin:0 0 5px}
+.oa3 .px-trust-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(27px,5vw,76px);margin-top:50px}
+.oa3 .px-doctor-list{display:grid;gap:15px;align-content:start}
+.oa3 .px-doctor-item{display:grid;grid-template-columns:94px 1fr 37px;align-items:center;gap:20px;padding:13px 15px;background:white;border:1px solid #d8e8f0;border-radius:13px;box-shadow:0 12px 28px #0427440b;transition:transform .3s,box-shadow .3s}
+.oa3 .px-doctor-item:hover{transform:translateY(-5px);box-shadow:0 18px 40px #072d461c}
+.oa3 .px-doctor-item img{height:102px;width:94px;object-fit:cover;object-position:center 18%;border-radius:9px}
+.oa3 .px-doctor-item strong{display:block;font-size:17px;font-weight:700;letter-spacing:-.03em}
+.oa3 .px-doctor-item small{font-size:12px;color:#567990;display:block;margin-top:7px}
+.oa3 .px-trust-panels{display:grid;gap:14px}
+.oa3 .px-trust-card{background:linear-gradient(135deg,#07395b,#061d35);padding:38px;border-radius:15px;color:white}
+.oa3 .px-trust-card h3{font-size:clamp(25px,2.6vw,38px);font-weight:550;letter-spacing:-.058em;line-height:1.14}
+.oa3 .px-trust-card p{font-size:14px;color:#c3d9e6;line-height:1.65;margin:17px 0}
+.oa3 .px-trust-card a{font-size:13px;font-weight:720;display:inline-flex;align-items:center;gap:16px;border-bottom:1px solid #7dd2ed;padding-bottom:7px}
+.oa3 .px-trust-address{padding:23px 30px;border:1px solid #d5e8f1;border-radius:12px;background:#fff}
+.oa3 .px-trust-address .px-eyebrow{margin-bottom:8px}
+.oa3 .px-trust-address p{font-size:13px;margin:0 0 11px}
+.oa3 .px-trust-address a{font-size:12px;font-weight:720;color:#077ead;border-bottom:1px solid #7bc1dc;padding-bottom:4px}
+/* Premium medical biographies */
+.oa3 .px-profile{background:#f7fafb;isolation:isolate;position:relative;overflow:hidden;min-height:clamp(670px,93svh,930px);display:flex;align-items:center}
+.oa3 .px-profile-grid{display:grid;grid-template-columns:1fr .91fr;gap:clamp(35px,5vw,90px);align-items:center;padding:110px 0 70px;position:relative}
+.oa3 .px-profile-copy{z-index:3;padding:25px 0}
+.oa3 .px-profile-index{font-size:10px;letter-spacing:.13em;color:#5f8fa9;font-weight:750}
+.oa3 .px-profile h1{font-size:clamp(51px,5.1vw,78px);letter-spacing:-.074em;font-weight:500;line-height:1.06;margin:18px 0 16px;max-width:740px}
+.oa3 .px-profile-crm{color:#0789b6;font-size:13px;font-weight:700}
+.oa3 .px-profile-bio{color:#527389;font-size:16px;max-width:580px;line-height:1.67;margin-top:22px}
+.oa3 .px-profile-actions{display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:32px}
+.oa3 .px-primary{display:inline-flex;align-items:center;gap:25px;border-radius:60px;background:linear-gradient(120deg,#05283f,#0b86b4);color:white;min-height:54px;padding:7px 8px 7px 20px;font-size:13px;font-weight:760;white-space:nowrap;transition:transform .32s,box-shadow .32s;box-shadow:0 11px 30px #003c601d}
+.oa3 .px-primary:hover{transform:translateY(-3px);box-shadow:0 18px 39px #0338553f}
+.oa3 .px-primary .px-arr{background:#f2fbff;color:#07577e;border-color:transparent;height:36px;width:36px}
+.oa3 .px-profile-link{font-size:13px;color:#0b537b;font-weight:750;border-bottom:1px solid #8bbdd4;padding-bottom:8px}
+.oa3 .px-profile-photo{height:clamp(540px,66vw,775px);align-self:end;position:relative;border-radius:14px 14px 0 0;overflow:hidden;background:#d5e6ed;box-shadow:0 24px 54px #0a315b20}
+.oa3 .px-profile-photo:after{content:'';position:absolute;inset:72% 0 0;background:linear-gradient(transparent,#031b30b8)}
+.oa3 .px-profile-photo img{height:100%;width:100%;object-fit:cover;object-position:center 18%;filter:saturate(.93);transition:transform .7s}
+.oa3 .px-profile-photo:hover img{transform:scale(1.025)}
+.oa3 .px-profile-photo>span{position:absolute;z-index:2;bottom:25px;left:27px;color:#e0f3fb;font-weight:770;letter-spacing:.14em;font-size:11px}
+.oa3 .px-physician-cta{background:#e9f5fe;padding:clamp(63px,6.5vw,100px) 0}
+.oa3 .px-physician-cta>.px-container{display:flex;align-items:center;justify-content:space-between;gap:45px}
+.oa3 .px-physician-cta h2{max-width:750px}
+@media(max-width:1050px){.oa3 .px-container{width:calc(100% - 70px)}.oa3 .px-knee-grid{gap:25px}.oa3 .px-visual{min-height:460px}.oa3 .px-tilt{min-height:410px}.oa3 .px-trust-grid{gap:28px}}
+@media(max-width:850px){.oa3 .px-container{width:calc(100% - 44px)}.oa3 .px-knee-grid,.oa3 .px-trust-grid{grid-template-columns:1fr}.oa3 .px-visual{min-height:440px}.oa3 .px-tilt{height:420px;min-height:0}.oa3 .px-knee-orbits{inset:14% 24%}.oa3 .px-atlas-tabs{grid-template-columns:repeat(3,1fr)}.oa3 .px-atlas-tabs button{grid-template-columns:1fr;gap:7px;font-size:14px;min-height:97px}.oa3 .px-atlas-tabs .px-arr{display:none}.oa3 .px-profile-grid{grid-template-columns:1fr;gap:0;padding:115px 0 0}.oa3 .px-profile h1{font-size:clamp(48px,7vw,70px)}.oa3 .px-profile-photo{width:min(590px,100%);height:500px;margin:25px auto 0}.oa3 .px-trust-heading{grid-template-columns:1fr}.oa3 .px-physician-cta>.px-container{flex-direction:column;align-items:flex-start}}
+@media(max-width:580px){.oa3 .px-container{width:calc(100% - 36px)}.oa3 .px-knee,.oa3 .px-trust{padding:73px 0}.oa3 .px-head h2,.oa3 .px-physician-cta h2{font-size:clamp(38px,8.8vw,53px)}.oa3 .px-head p{font-size:14px}.oa3 .px-visual{min-height:350px}.oa3 .px-tilt{width:100%;height:330px}.oa3 .px-hotspot{height:31px;width:31px;font-size:10px;box-shadow:0 0 0 6px #75d3f925}.oa3 .px-axis{font-size:8px}.oa3 .px-atlas-tabs button{min-height:89px;padding:11px;font-size:12px}.oa3 .px-atlas-detail h3{font-size:28px}.oa3 .px-doctor-item{grid-template-columns:64px 1fr 29px;gap:11px;padding:10px}.oa3 .px-doctor-item img{width:64px;height:76px}.oa3 .px-doctor-item strong{font-size:14px}.oa3 .px-doctor-item small{font-size:10px}.oa3 .px-doctor-item .px-arr{width:26px;height:26px}.oa3 .px-trust-card{padding:27px 23px}.oa3 .px-trust-heading>p{font-size:14px}.oa3 .px-profile-grid{padding-top:108px}.oa3 .px-profile h1{font-size:clamp(43px,10vw,56px)}.oa3 .px-profile-bio{font-size:14px}.oa3 .px-profile-actions{gap:18px}.oa3 .px-profile-photo{height:435px}.oa3 .px-profile-photo>span{font-size:9px}.oa3 .px-primary{font-size:12px;gap:8px;padding-left:14px}.oa3 .px-physician-cta{padding:65px 0}}
+@media(prefers-reduced-motion:reduce){.oa3 .px-tilt,.oa3 .px-profile-photo img,.oa3 .px-doctor-item:hover,.oa3 .px-atlas-detail{transition:none!important;animation:none!important;transform:none!important}}

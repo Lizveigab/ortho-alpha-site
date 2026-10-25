@@ -49,14 +49,20 @@ document.querySelectorAll(".oa-nav a[data-oa-path],.oa-nav button[data-oa-path],
  const dest=el.dataset.oaPath;
  if(dest==="sobre"&&path.endsWith("/sobre.html")||dest==="especialidades"&&path.includes("/especialidades")||dest==="convenios"&&path.endsWith("/convenios.html")||dest==="blog"&&path.includes("/blog")||dest==="contato"&&path.endsWith("/contato.html"))el.setAttribute("aria-current","page");
 });
+let oaPrevScroll=window.scrollY;
 function onScroll(){
  frame=0;
  const y=window.scrollY, max=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+ // Mostra ao subir e no topo. Esconde ao descer, mas nunca durante menu aberto.
+ const locked=document.body.classList.contains("oa-menu-open") || mega?.classList.contains("is-open") || header.matches(":focus-within");
+ if(y<56){header.classList.remove("oa6-hidden");oaPrevScroll=y}
+ else if(!locked&&Math.abs(y-oaPrevScroll)>7){header.classList.toggle("oa6-hidden",y>145&&y>oaPrevScroll);oaPrevScroll=y}
+ else if(locked)header.classList.remove("oa6-hidden");
  header.classList.toggle("is-scrolled",y>24);
  if(progress)progress.style.transform="scaleX("+Math.min(1,y/max)+")";
  if(!reduce&&desktop.matches){
-  const pic=document.querySelector(".home-premium .p-hero-image img");
-  if(pic&&y<1200)pic.style.transform="translate3d(0,"+Math.min(27,y*.08).toFixed(1)+"px,0) scale(1.06)";
+  const pic=document.querySelector(".home-premium .oa6-photo img");
+  if(pic&&y<1200)pic.style.transform="translate3d(0,"+Math.min(22,y*.055).toFixed(1)+"px,0) scale(1.045)";
  }
 }
 window.addEventListener("scroll",()=>{if(!frame)frame=requestAnimationFrame(onScroll)},{passive:true});
@@ -68,7 +74,7 @@ if("IntersectionObserver"in window&&!reduce){
  document.body.classList.add("oa-motion-ready");
 }
 if(fine&&!reduce){
- const magnet=[...document.querySelectorAll(".oa-header-cta,main a.btn,main button.btn,main .p-primary")];
+ const magnet=[...document.querySelectorAll("main a.btn,main button.btn,main .p-primary")];
  magnet.forEach(el=>{
   let raf=0;
   el.addEventListener("pointermove",ev=>{

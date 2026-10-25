@@ -48,7 +48,11 @@ const cssHref=prefix+"assets/oa-experience-v5.css?v=5";
 if(!document.querySelector('link[data-oa-experience]')){
  const style=document.createElement("link");style.rel="stylesheet";style.href=cssHref;style.dataset.oaExperience="v5";document.head.appendChild(style);
 }
+const finalCss=prefix+"assets/oa-final-v6.css?v=6";
+if(!document.querySelector('link[data-oa-final]')){
+ const f=document.createElement("link");f.rel="stylesheet";f.href=finalCss;f.dataset.oaFinal="v6";document.head.appendChild(f);
+}
 const js=document.createElement("script");
-js.src=prefix+"assets/oa-interactions-v5.js?v=5";js.async=false;
+js.src=prefix+"assets/oa-interactions-v5.js?v=6";js.async=false;
 document.body.appendChild(js);
 })();

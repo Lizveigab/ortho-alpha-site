@@ -119,3 +119,30 @@ body.oa-experience.oa-motion-ready [data-oa-reveal].oa-revealed{animation:oa5-re
  .oa-mobile-panel{position:absolute;top:100%;bottom:auto;left:0;right:0;inset:auto 0 auto;height:calc(100dvh - var(--oa-head-h));max-height:calc(100dvh - var(--oa-head-h));overscroll-behavior:contain}
 }
 .oa-header-cta{transform:translate3d(var(--oa-move-x,0px),var(--oa-move-y,0px),0)}
+
+/* Ajustes finais da versão mobile e footer institucional */
+@media(max-width:920px){
+ .oa-mobile-panel{inset:var(--oa-head-h) 0 auto 0;top:var(--oa-head-h);right:0;bottom:auto;left:0}
+}
+body.oa-experience .footer{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 86% 30%,#0a4265,#062640 47%,#03172a 90%);padding-top:76px}
+body.oa-experience .footer:before{content:"";position:absolute;pointer-events:none;right:-130px;bottom:-220px;width:600px;height:600px;background:url("logo-alpha-original.png") center/contain no-repeat;filter:brightness(0) invert(1);opacity:.035;z-index:-1}
+body.oa-experience .footergrid{grid-template-columns:1.23fr .75fr 1fr 1.18fr;gap:45px}
+body.oa-experience .footergrid>div{position:relative}
+body.oa-experience .footergrid>div:not(:first-child):before{content:"";position:absolute;left:-21px;top:0;bottom:15px;width:1px;background:linear-gradient(#ffffff08,#6db6d722,#ffffff04)}
+body.oa-experience .footer .brand{margin-bottom:22px}
+body.oa-experience .footer p,body.oa-experience .footer-address{color:#b4ccdd;line-height:1.85;font-size:14px}
+body.oa-experience .footer strong{font-size:14px;font-weight:650;letter-spacing:.02em;color:#effaff}
+body.oa-experience .footer ul{gap:13px}
+body.oa-experience .footer li a{color:#c0d1df;transition:color .25s}
+body.oa-experience .footer li a:hover{color:#66d9ff}
+body.oa-experience .footer .legal{border-top:1px solid #92cdeb24;margin-top:64px;padding-top:27px}
+@media(max-width:850px){
+ body.oa-experience .footergrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:34px}
+ body.oa-experience .footergrid>div:before{display:none}
+}
+@media(max-width:540px){
+ body.oa-experience .footer{padding-top:56px}
+ body.oa-experience .footergrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:31px}
+ body.oa-experience .footergrid>:first-child,body.oa-experience .footergrid>:last-child{grid-column:1/-1}
+ body.oa-experience .footer .legal{margin-top:39px}
+}

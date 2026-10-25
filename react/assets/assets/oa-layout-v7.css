@@ -1,0 +1,87 @@
+/* Ortho Alpha v7 — correção estrutural aprovada: hero, menu e FAQ */
+/* Container único: menu, primeira dobra, conteúdo e footer alinhados */
+:root{--oa7-max:1300px;--oa7-pad:clamp(20px,5vw,76px);--oa7-white:#f8fafb;--oa7-navy:#092b49}
+html{scroll-padding-top:80px}
+body{overflow-x:clip}
+body.oa-home{background:var(--oa7-white)}
+body.oa-home .oa-header{position:fixed!important;inset:0 0 auto 0;width:100%;height:83px;z-index:9999;background:transparent!important;border-bottom:1px solid transparent!important;box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;transition:background .3s ease,box-shadow .3s ease,transform .4s cubic-bezier(.22,1,.36,1)}
+body.oa-home .oa-header:not(.is-scrolled) .oa-nav>a,
+body.oa-home .oa-header:not(.is-scrolled) .oa-nav-subject{color:#0c304e;text-shadow:0 1px 8px rgba(255,255,255,.6)}
+body.oa-home .oa-header.is-scrolled{background:rgba(250,252,253,.94)!important;border-bottom:1px solid rgba(26,81,115,.08)!important;box-shadow:0 12px 29px rgba(7,44,71,.055)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important}
+body.oa-home .oa-header.oa6-hidden{transform:translate3d(0,-105%,0)!important}
+body.oa-home .oa-header:focus-within{transform:translateY(0)!important}
+body.oa-home .oa-header-inner{width:min(var(--oa7-max),calc(100% - 2 * var(--oa7-pad)));height:100%;padding:0;margin:auto;max-width:none}
+body.oa-home .home-premium{position:relative;width:100%;margin:0;overflow:hidden}
+body.oa-home .oa6-hero{min-height:clamp(710px,100svh,950px)!important;display:flex;align-items:center;padding:0;margin:0;background:#f8fafb;isolation:isolate}
+body.oa-home .oa6-photo{position:absolute;inset:0;z-index:-3}
+body.oa-home .oa6-photo img{width:100%;height:100%;object-fit:cover;object-position:70% 50%;filter:saturate(1.01) contrast(1.045) brightness(1.015);transform:scale(1.016);animation:none;will-change:auto}
+body.oa-home .oa6-shade{position:absolute;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(90deg,
+ #f8fafb 0%,#f8fafb 14%,rgba(248,250,251,.995) 26%,
+ rgba(248,250,251,.94) 34%,rgba(248,250,251,.77) 42%,
+ rgba(248,250,251,.39) 54%,rgba(248,250,251,.08) 68%,transparent 81%
+ ),linear-gradient(0deg,rgba(7,38,60,.075),transparent 20%)}
+body.oa-home .oa6-glow{z-index:-1;pointer-events:none;opacity:.35}
+body.oa-home .oa6-content{width:min(var(--oa7-max),calc(100% - 2 * var(--oa7-pad)));margin:auto;padding:125px 0 105px;max-width:none;position:relative;z-index:1}
+body.oa-home .oa6-copy{max-width:625px}
+body.oa-home .oa6-title{font-size:clamp(51px,4.85vw,76px)!important;line-height:1.09!important;letter-spacing:-.068em!important;font-weight:510!important;max-width:620px!important}
+body.oa-home .oa6-description{max-width:420px;font-size:clamp(15px,1.05vw,17px);line-height:1.65}
+body.oa-home .oa6-proofrail{min-height:64px;padding:13px var(--oa7-pad)}
+body.oa-home .oa6-proofrail span{font-size:12px}
+body.oa-home .oa6-actions{display:flex;align-items:center;gap:12px;margin-top:28px}
+body.oa-home a.oa6-action{min-height:52px;height:52px;padding:7px 8px 7px 21px;border-radius:100px;display:inline-flex;align-items:center;justify-content:space-between;gap:15px;font-size:13px;white-space:nowrap;transform:none!important}
+body.oa-home .oa6-action .oa6-action-icon{flex:none;width:35px;height:35px;display:grid;place-items:center}
+body.oa-home .oa6-action .oa6-action-icon svg{width:16px;height:16px}
+body.oa-home .oa6-rating{margin-top:28px}
+body.oa-home .pband{width:100%}
+body.oa-home .home-premium .container{width:min(var(--oa7-max),calc(100% - 2 * var(--oa7-pad)));margin-inline:auto;max-width:none}
+
+/* FAQ: avaliação passa a ser terceira linha da PRÓPRIA grade, não irmã flex */
+body.oa-home .home-premium .p-faq{display:block!important;min-height:0!important;padding:86px 0 78px!important;background:#fff;overflow:visible}
+body.oa-home .home-premium .p-faq-grid{width:min(var(--oa7-max),calc(100% - 2 * var(--oa7-pad)))!important;max-width:none!important;margin:0 auto!important;display:grid!important;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr)!important;gap:30px clamp(46px,6vw,92px)!important;align-items:start}
+body.oa-home .home-premium .p-faq-grid>.p-copy{min-width:0}
+body.oa-home .home-premium .p-faq-grid>.p-copy h2{font-size:clamp(42px,4vw,62px);line-height:1.08;max-width:450px}
+body.oa-home .home-premium .p-faq-list{min-width:0}
+body.oa-home .home-premium .p-faq-list details{border-radius:11px;padding:17px 19px;box-shadow:0 9px 23px rgba(18,57,79,.045)}
+body.oa-home .home-premium .oa6-review-block{
+grid-column:1/-1!important;width:100%!important;min-width:0;max-width:none!important;
+display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;
+align-items:center;gap:18px 35px;margin:30px 0 0!important;padding:27px 0 0;
+border-top:1px solid #e2ebf1;background:transparent}
+body.oa-home .home-premium .oa6-review-block>div{min-width:0}
+body.oa-home .home-premium .oa6-review-block blockquote{font-size:clamp(21px,2.1vw,30px);line-height:1.24;white-space:normal}
+body.oa-home .home-premium .oa6-review-source{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;align-items:center;min-width:0;font-size:12px;text-align:right}
+body.oa-home .home-premium .oa6-review-source a{white-space:nowrap;font-size:12px}
+body.oa-home .home-premium .p-final .container{width:min(var(--oa7-max),calc(100% - 2 * var(--oa7-pad)))}
+body.oa-home .footer>.container{width:min(var(--oa7-max),calc(100% - 2 * var(--oa7-pad)));margin-inline:auto}
+body.oa-home .footergrid{width:100%!important;max-width:none!important;margin:0!important}
+body.oa-home .footer .legal{width:100%}
+@media(max-width:990px){
+ body.oa-home .oa6-hero{min-height:790px!important}
+ body.oa-home .oa6-shade{background:linear-gradient(90deg,#f8fafb 0%,rgba(248,250,251,.99) 27%,rgba(248,250,251,.78) 51%,rgba(248,250,251,.1) 85%)}
+ body.oa-home .home-premium .p-faq-grid{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr)!important;column-gap:35px!important}
+}
+@media(max-width:760px){
+ body.oa-home .oa-header{height:74px}
+ body.oa-home .oa6-hero{min-height:0!important;display:block}
+ body.oa-home .oa6-photo{inset:auto 0 59px;height:340px}
+ body.oa-home .oa6-photo img{object-position:62% 48%;transform:none}
+ body.oa-home .oa6-shade{background:linear-gradient(180deg,#f8fafb 0%,#f8fafb 42%,rgba(248,250,251,.97) 52%,rgba(248,250,251,.61) 65%,transparent 83%)}
+ body.oa-home .oa6-content{padding:125px 0 375px}
+ body.oa-home .oa6-title{font-size:clamp(44px,8.8vw,60px)!important}
+ body.oa-home .oa6-proofrail{min-height:59px}
+ body.oa-home .home-premium .p-faq{padding:72px 0 64px!important}
+ body.oa-home .home-premium .p-faq-grid{grid-template-columns:minmax(0,1fr)!important;gap:25px!important}
+ body.oa-home .home-premium .oa6-review-block{grid-template-columns:1fr!important;gap:13px;margin-top:10px!important}
+ body.oa-home .home-premium .oa6-review-source{justify-content:flex-start;text-align:left}
+}
+@media(max-width:500px){
+ body.oa-home .oa-header-inner{gap:14px}
+ body.oa-home .oa6-content{padding:120px 0 320px}
+ body.oa-home .oa6-title{font-size:clamp(40px,10vw,52px)!important}
+ body.oa-home .oa6-photo{height:300px;bottom:58px}
+ body.oa-home .oa6-actions{gap:9px}
+ body.oa-home a.oa6-action{font-size:11px;padding:6px 6px 6px 12px;gap:6px;min-height:48px;height:48px}
+ body.oa-home .oa6-action .oa6-action-icon{width:33px;height:33px}
+ body.oa-home .oa6-proofrail span{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){body.oa-home .oa6-photo img{transform:none!important}}

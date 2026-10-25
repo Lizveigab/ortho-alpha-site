@@ -1,4 +1,5 @@
 import React,{useEffect,useRef,useState} from 'react';
+import {KneeAtlas,TrustProof} from './premium-features.jsx';
 
 function Reveal({children,className='',delay=0}){
  const ref=useRef(null);
@@ -21,11 +22,11 @@ function Intro({img,wa}){
    <div className="wrap at-intro-inner">
     <Reveal className="at-intro-copy">
       <Tag number="01 / 07">ORTOPEDIA ESPECIALIZADA EM JOELHO</Tag>
-      <h1 id="at-intro-head">A confiança para <em>seguir em frente.</em></h1>
-      <p>Do diagnóstico ao cuidado contínuo. Uma experiência especializada para quem quer voltar a se movimentar.</p>
+      <h1 id="at-intro-head">Precisão no cuidado. <em>Confiança em cada passo.</em></h1>
+      <p>Cirurgia do joelho, diagnóstico cuidadoso e decisões individualizadas. Em Alphaville, perto de você.</p>
       <div className="at-actions"><Button href={wa}>Agendar uma avaliação</Button><Button href="#/sobre" quiet>Conhecer a clínica</Button></div>
     </Reveal>
-    <div className="at-intro-mark" aria-hidden="true">α<span>®</span></div>
+    <div className="at-intro-brandmark" aria-hidden="true"><img src={img("logo-alpha-original.png")} alt=""/></div>
    </div>
    <div className="at-intro-bottom"><div className="wrap">
      <span><b>01</b> Especialistas em joelho</span><span><b>02</b> Avaliação individualizada</span><span><b>03</b> Alphaville · Barueri</span>
@@ -123,11 +124,13 @@ export default function AtelierHome({img,wa,docs,treatments,clinic}){
  return <div className="at-home">
   <Intro img={img} wa={wa}/>
   <Philosophy img={img} wa={wa}/>
+  <KneeAtlas img={img}/>
   <People docs={docs} img={img}/>
   <Procedures treatments={treatments} img={img}/>
   <SecondOpinion img={img} wa={wa}/>
   <Spaces img={img} clinic={clinic}/>
   <Journey wa={wa}/>
+  <TrustProof docs={docs} img={img} wa={wa}/>
   <SignatureClose img={img} wa={wa}/>
  </div>;
 }

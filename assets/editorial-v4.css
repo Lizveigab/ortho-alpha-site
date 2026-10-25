@@ -228,3 +228,11 @@ body.oa-v4 .instagram img{filter:saturate(.92)}
 .footer li a,.footer-address{font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+/* Efeitos premium sem apagar conteúdo nem prejudicar acessibilidade */
+body.oa-v4 main .btn,body.oa-v4 main .hubitem{transform:translate(var(--shiftX,0px),var(--shiftY,0px));will-change:transform}
+body.oa-v4 main .btn:hover{transform:translate(var(--shiftX,0px),calc(var(--shiftY,0px) - 3px))}
+body.oa-v4 main .panel.oa-reached h1,body.oa-v4 main .panel.oa-reached h2,body.oa-v4 main .section.oa-reached h1,body.oa-v4 main .section.oa-reached h2{animation:oa-type-reveal .7s cubic-bezier(.2,.85,.3,1) both}
+body.oa-v4 main .panel.oa-reached .gallery,body.oa-v4 main .panel.oa-reached .doctor-cards,body.oa-v4 main .panel.oa-reached .hubgrid{animation:oa-type-reveal .9s cubic-bezier(.2,.85,.3,1) both}
+@keyframes oa-type-reveal{from{transform:translateY(13px);filter:opacity(.88)}to{transform:translateY(0);filter:opacity(1)}}
+@media(prefers-reduced-motion:reduce){body.oa-v4 main .panel.oa-reached *,body.oa-v4 main .section.oa-reached *{animation:none!important}}

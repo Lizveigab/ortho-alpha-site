@@ -2,6 +2,7 @@ import React,{useState,useEffect,useRef} from 'react';
 import{createRoot}from'react-dom/client';
 import './reference.css';
 import './atelier-home.css';
+import './atelier-pages.css';
 import AtelierHome from './atelier-home.jsx';
 import MotionFX from './motion.jsx';
 const img=n=>import.meta.env.BASE_URL+'assets/'+n;

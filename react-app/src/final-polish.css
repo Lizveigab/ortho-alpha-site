@@ -32,3 +32,14 @@
  .oa3 .at-intro-inner{padding-top:115px}
 }
 @media(prefers-reduced-motion:reduce){.oa3 .header .brand img,.oa3 .at-people-photo img{transition:none!important;transform:none!important}}
+
+/* Original physician portraits integrated into first fold, not generated stock */
+.oa3 .at-intro-physicians{position:absolute;right:0;bottom:147px;z-index:4;display:grid;width:263px;gap:8px}
+.oa3 .at-intro-physicians>span{font-size:9px;letter-spacing:.18em;font-weight:790;color:#245d77;margin-bottom:2px;padding-left:3px}
+.oa3 .at-intro-physicians>a{display:grid;grid-template-columns:52px 1fr 24px;gap:10px;align-items:center;min-height:64px;padding:7px 8px 7px 7px;border:1px solid #ffffffcc;background:#f7fcfff0;backdrop-filter:blur(16px);border-radius:10px;color:#0a3652;box-shadow:0 12px 28px #0b2d4c20;transition:transform .3s,background .3s}
+.oa3 .at-intro-physicians>a:hover{transform:translateX(-5px);background:#fff}
+.oa3 .at-intro-physicians img{width:52px;height:50px;object-fit:cover;object-position:center 15%;border-radius:7px}
+.oa3 .at-intro-physicians strong{font-size:11px;font-weight:740;line-height:1.4}
+.oa3 .at-intro-physicians b{font-size:16px;font-weight:500;color:#077aa9}
+.oa3 .at-intro-brandmark{bottom:340px}
+@media(max-width:1200px){.oa3 .at-intro-physicians{display:none}.oa3 .at-intro-brandmark{bottom:140px}}

@@ -1,0 +1,69 @@
+/* Ortho Alpha Atelier — supporting pages share the same premium language */
+.oa3{--oa-rhythm:clamp(75px,8vw,132px)}
+.oa3 .page-hero{min-height:clamp(700px,93svh,930px);background:#f8fafb;position:relative;isolation:isolate}
+.oa3 .page-hero>.wrap{padding-top:138px;padding-bottom:112px}
+.oa3 .page-hero .reveal{max-width:680px}
+.oa3 .page-hero .ey{font-size:10px;letter-spacing:.19em;margin-bottom:33px}
+.oa3 .page-hero h1{letter-spacing:-.07em!important;font-size:clamp(58px,5.5vw,90px)!important;line-height:1.05!important}
+.oa3 .page-hero h1 em{font-weight:550}
+.oa3 .page-hero p{max-width:475px;font-size:clamp(15px,1.12vw,18px);line-height:1.62;margin:25px 0 31px}
+.oa3 .page-hero .page-photo img{object-position:70% center;filter:saturate(.93) contrast(1.025)}
+.oa3 .page-hero .page-photo:after{background:linear-gradient(90deg,#f8fafb 0%,#f8fafb 21%,#f8fafbeb 37%,#f8fafbc4 47%,#f8fafb53 62%,transparent 81%)}
+.oa3 .page-hero.portrait .page-photo img{object-position:79% 24%}
+.oa3 .page-hero.portrait .page-photo:after{background:linear-gradient(90deg,#f8fafb 0%,#f8fafb 31%,#f8fafbe8 47%,#f8fafb85 63%,transparent 83%)}
+.oa3 main>.section{padding:var(--oa-rhythm) 0}
+.oa3 .section .wrap>.ey{margin-bottom:26px}
+.oa3 .section h2{font-size:clamp(43px,4.35vw,69px);line-height:1.07;letter-spacing:-.067em}
+.oa3 .section h2 em{font-weight:550}
+.oa3 .section.dark{position:relative;isolation:isolate;background:radial-gradient(ellipse at 88% 26%,#0c507c,#06304f 52%,#03182e 100%)}
+.oa3 .section.dark:after{content:'';position:absolute;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(540px circle at var(--oa-light-x,78%) var(--oa-light-y,40%),#58c5ed1b,transparent 70%)}
+.oa3 .halves{grid-template-columns:1.06fr .94fr;gap:clamp(42px,6.7vw,110px)}
+.oa3 .halves .reveal{min-width:0}
+.oa3 .halves .featured{height:clamp(420px,42vw,610px);width:100%;object-fit:cover;border-radius:14px;box-shadow:0 26px 55px #001b323d;transition:transform .8s cubic-bezier(.22,1,.36,1)}
+.oa3 .halves .featured:hover{transform:scale(1.018)}
+.oa3 .section.dark .featured[src*="knee"]{mix-blend-mode:screen;filter:saturate(1.2);mask-image:radial-gradient(ellipse at 50% 50%,#000 27%,#000b 52%,transparent 79%);box-shadow:none}
+.oa3 .training{gap:16px;margin-top:52px}
+.oa3 .training>.reveal{background:#ffffff0d;border:1px solid #90d5ec42;padding:30px 32px;border-radius:12px;min-height:165px;transition:transform .3s,border-color .3s,background .3s}
+.oa3 .training>.reveal:hover{transform:translateY(-5px);border-color:#73d2ed9c;background:#ffffff15}
+.oa3 .training b{font-size:31px;font-weight:500;color:#7adcf8}
+.oa3 .training p{font-size:14px;max-width:420px}
+.oa3 .listlinks a{min-height:69px;padding:16px 20px;transition:background .27s,transform .27s}
+.oa3 .listlinks a:hover{transform:translateX(5px);background:#e7f5fc}
+.oa3 .listlinks a span{font-size:20px}
+.oa3 .section .team-layout{grid-template-columns:.78fr 1.22fr;gap:clamp(45px,6vw,100px)}
+.oa3 .section .doctor{box-shadow:0 24px 42px #02152b42;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s}
+.oa3 .section .doctor:hover{transform:translateY(-7px);box-shadow:0 34px 54px #02152b55}
+.oa3 .section .doctor img{height:clamp(300px,28vw,420px)}
+.oa3 .section .doctors.compact .doctor img{height:clamp(280px,24vw,365px)}
+.oa3 .section .doctor>div{padding:21px 20px 24px}
+.oa3 .section .doctor h3{font-size:clamp(18px,1.8vw,26px)}
+.oa3 .section .gallery{margin-top:50px;height:clamp(465px,49vw,625px)}
+.oa3 .section .gallery-big{box-shadow:0 24px 43px #092d461c}
+.oa3 .section .gallery .gallery-smalls button{border-radius:12px}
+.oa3 .section .explorer{margin-top:51px;grid-template-columns:.82fr 1.18fr;gap:clamp(22px,5vw,80px);min-height:560px}
+.oa3 .section .explorer button{transition:background .3s,transform .3s}
+.oa3 .section .explorer button:hover{transform:translateX(3px)}
+.oa3 .section .explorer-image{min-height:560px;box-shadow:0 24px 45px #09344920}
+.oa3 .section .explorer-image h3{font-size:clamp(33px,3.3vw,50px)}
+.oa3 .section .steps{gap:36px;margin-top:49px}
+.oa3 .section .steps h3{font-size:23px;margin:0}
+.oa3 .section .steps article{min-width:0}
+.oa3 .section .steps article p{font-size:13px}
+.oa3 .blogcards article{transition:transform .4s,box-shadow .4s;overflow:hidden;box-shadow:0 10px 24px #092e4813}
+.oa3 .blogcards article:hover{transform:translateY(-6px);box-shadow:0 21px 46px #092e4823}
+.oa3 .blogcards img{height:235px;transition:transform .6s}
+.oa3 .blogcards article:hover img{transform:scale(1.045)}
+.oa3 .contactcards article{transition:transform .35s,border-color .35s}
+.oa3 .contactcards article:hover{transform:translateY(-5px);border-color:#95ddf8}
+.oa3 .footer{background:radial-gradient(ellipse at 80% 20%,#0b3c60,#051e35 61%,#031627);border-top:1px solid #83bdd71e}
+.oa3 .footer-grid>div{min-width:0}.oa3 .footer-grid a:hover{color:#87dbf4}
+.oa3 .footer-base{letter-spacing:.01em}
+.oa3 .final-cta{min-height:clamp(350px,42svh,500px)}
+.oa3 .final-cta .wrap{position:relative;z-index:3}
+.oa3 .final-cta:before{background:linear-gradient(90deg,#e5f3ff 0%,#e5f3ff 26%,#e5f3fff0 40%,#e5f3ff9e 59%,transparent 82%)}
+.oa3 .final-cta .reveal{max-width:650px}
+.oa3 .final-cta p{font-size:15px}
+@media(max-width:1050px){.oa3 .section .team-layout{gap:32px}.oa3 .section .explorer{gap:22px}.oa3 .page-hero h1{font-size:clamp(48px,6vw,74px)!important}}
+@media(max-width:850px){.oa3 .page-hero{min-height:740px}.oa3 .page-hero>.wrap{padding:121px 0 332px}.oa3 .page-hero .page-photo:after{background:linear-gradient(180deg,#f8fafb 0%,#f8fafb 39%,#f8fafbc9 57%,transparent 84%)}.oa3 .page-hero.portrait .page-photo:after{background:linear-gradient(180deg,#f8fafb 0%,#f8fafbe6 35%,transparent 81%)}.oa3 .section .team-layout,.oa3 .halves{grid-template-columns:1fr}.oa3 .section .explorer{grid-template-columns:1fr}.oa3 .section .gallery{height:auto}.oa3 .section .gallery-big{height:380px}.oa3 .section .gallery-smalls{height:380px}}
+@media(max-width:600px){.oa3 .page-hero{min-height:0}.oa3 .page-hero h1{font-size:clamp(43px,9.6vw,56px)!important}.oa3 .page-hero .page-photo{inset:auto 0 0;height:330px}.oa3 .page-hero>.wrap{padding:111px 0 342px}.oa3 main>.section{padding:72px 0}.oa3 .section h2{font-size:clamp(38px,9vw,53px)}.oa3 .section .steps{gap:19px}.oa3 .section .doctor img,.oa3 .section .doctors.compact .doctor img{height:220px}.oa3 .section .doctor>div{padding:13px}.oa3 .section .doctor h3{font-size:15px}.oa3 .section .gallery-big{height:320px}.oa3 .section .gallery-smalls{height:auto}.oa3 .section .explorer-image{min-height:440px}.oa3 .training{grid-template-columns:1fr}.oa3 .section .halves .featured{height:330px}}
+@media(prefers-reduced-motion:reduce){.oa3 .section .doctor:hover,.oa3 .section .doctor:hover img,.oa3 .section .explorer button:hover,.oa3 .section .gallery button:hover img{transform:none!important}}

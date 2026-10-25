@@ -7,7 +7,7 @@ useEffect(()=>{
  const bar=document.createElement('div');bar.className='oa3-read-progress';bar.setAttribute('aria-hidden','true');
  const inner=document.createElement('span');bar.appendChild(inner);document.querySelector('.oa3 .header')?.appendChild(bar);
  let raf=0;
- const media=document.querySelector('.oa3 .home-bg img,.oa3 .page-photo img');
+ const media=document.querySelector('.oa3 .at-intro-photo img,.oa3 .home-bg img,.oa3 .page-photo img');
  function scroll(){
   if(raf)return;
   raf=requestAnimationFrame(()=>{
@@ -20,7 +20,7 @@ useEffect(()=>{
  addEventListener('scroll',scroll,{passive:true});scroll();
  const disposers=[];
  if(!reduced&&desktop){
-  document.querySelectorAll('.oa3 .dark').forEach(el=>{
+  document.querySelectorAll('.oa3 .dark,.oa3 .at-philosophy,.oa3 .at-procedures,.oa3 .at-spaces,.oa3 .at-close').forEach(el=>{
    let pending=0;
    function move(ev){
     if(pending)return;

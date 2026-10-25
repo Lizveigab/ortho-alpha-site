@@ -188,3 +188,10 @@ body{font-family:Inter,"Helvetica Neue",Arial,sans-serif;color:var(--oa-ink)}
 .footergrid{gap:29px}
 }
 @media (prefers-reduced-motion:reduce){.home-premium *{animation:none!important;transition:none!important}}
+
+/* Microinterações editoriais: movimento discreto, sem ocultar conteúdo */
+.home-premium .p-primary,.home-premium .p-textlink{transform:translate(var(--oa-mx,0px),var(--oa-my,0px));transition:transform .27s cubic-bezier(.18,.83,.28,1),box-shadow .3s}
+.home-premium .pband.oa-inview .p-copy{animation:oa-enter .65s cubic-bezier(.2,.78,.18,1) both}
+.home-premium .pband.oa-inview .p-image-mosaic,.home-premium .pband.oa-inview .p-people{animation:oa-enter .8s cubic-bezier(.2,.78,.18,1) both}
+@keyframes oa-enter{from{transform:translateY(14px);filter:opacity(.88)}to{transform:translateY(0);filter:opacity(1)}}
+@media (prefers-reduced-motion:reduce){.home-premium .pband.oa-inview .p-copy,.home-premium .pband.oa-inview .p-image-mosaic,.home-premium .pband.oa-inview .p-people{animation:none}}

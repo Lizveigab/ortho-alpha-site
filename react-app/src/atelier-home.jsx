@@ -106,6 +106,19 @@ function Journey({wa}){
   </div>
  </div></section>
 }
+function SignatureClose({img,wa}){
+ return <section className="at-close">
+  <div className="at-close-photo"><img src={img('clinica-sala.webp')} alt="" loading="lazy"/></div>
+  <div className="wrap at-close-content"><Reveal>
+    <Tag number="ORTHO ALPHA">SEU PRÓXIMO PASSO</Tag>
+    <h2>O movimento continua. <em>Com o cuidado certo.</em></h2>
+    <p>Uma decisão mais tranquila começa com uma conversa.</p>
+    <Button href={wa} light>Agendar minha avaliação</Button>
+   </Reveal>
+   <div className="at-close-watermark" aria-hidden="true">α</div>
+  </div>
+ </section>;
+}
 export default function AtelierHome({img,wa,docs,treatments,clinic}){
  return <div className="at-home">
   <Intro img={img} wa={wa}/>
@@ -115,5 +128,6 @@ export default function AtelierHome({img,wa,docs,treatments,clinic}){
   <SecondOpinion img={img} wa={wa}/>
   <Spaces img={img} clinic={clinic}/>
   <Journey wa={wa}/>
+  <SignatureClose img={img} wa={wa}/>
  </div>;
 }

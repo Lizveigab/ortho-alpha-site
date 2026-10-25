@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 850" role="img" aria-label="Ilustração conceitual anatômica do joelho em azul"><defs>
+<radialGradient id="a"><stop stop-color="#1680bd" stop-opacity=".26"/><stop offset="1" stop-color="#041c33" stop-opacity="0"/></radialGradient>
+<linearGradient id="bone" x1="0" y1="0" x2="1" y2=".1"><stop stop-color="#06385e" stop-opacity=".38"/><stop offset=".16" stop-color="#70d9ff" stop-opacity=".86"/><stop offset=".4" stop-color="#0b76ba" stop-opacity=".35"/><stop offset=".72" stop-color="#9de7ff" stop-opacity=".78"/><stop offset="1" stop-color="#01385e" stop-opacity=".5"/></linearGradient>
+<linearGradient id="outer" x1="0" x2="1"><stop stop-color="#54d9ff" stop-opacity=".05"/><stop offset=".45" stop-color="#53b5ee" stop-opacity=".12"/><stop offset=".83" stop-color="#c8f5ff" stop-opacity=".65"/><stop offset="1" stop-color="#54d9ff" stop-opacity=".07"/></linearGradient>
+<linearGradient id="edge" x1="0" x2="1"><stop stop-color="#1e81ba"/><stop offset=".5" stop-color="#c5faff"/><stop offset="1" stop-color="#4ea8df"/></linearGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="16"/></filter><filter id="micro"><feTurbulence baseFrequency=".021 .12" numOctaves="3" seed="3" type="fractalNoise" result="n"/><feColorMatrix in="n" type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".15"/></feComponentTransfer></filter>
+</defs>
+<ellipse cx="555" cy="440" rx="390" ry="420" fill="url(#a)"/>
+<g stroke="#239ed6" stroke-opacity=".14" fill="none"><circle cx="560" cy="440" r="190"/><circle cx="560" cy="440" r="260"/><circle cx="560" cy="440" r="330"/><path d="M60 670Q570 30 1050 300M70 740Q570 100 1080 360" /></g>
+<g opacity=".42" filter="url(#glow)" fill="none" stroke="#19c5ff" stroke-width="32"><path d="M453-50c-4 186 2 258-23 320-28 52-71 80-40 140 18 35 75 46 154 22"/><path d="M648-50c-10 183 3 266 27 320 19 48 54 103 26 143-31 47-108 55-151 15"/><path d="M400 486c-6 150-28 247-20 410"/><path d="M650 474c30 154 42 267 36 415"/></g>
+<path d="M442-70c-18 153-16 251-34 292-28 61-72 80-49 134 20 54 70 80 131 77 46-2 80-39 80-87 1-41-33-57-30-121 1-56 16-134 17-295Z" fill="url(#bone)" stroke="url(#edge)" stroke-width="4"/>
+<path d="M560-70c0 142-5 230 10 289 10 49 3 76-7 106 5 74 52 122 121 103 54-14 72-65 49-125-30-79-39-104-40-159-2-63 11-132 10-214Z" fill="url(#bone)" stroke="url(#edge)" stroke-width="4"/>
+<path d="M379 479c54 34 123 43 167 38 56-9 101-37 160-49l20 68-18 67c-16 109-3 205 11 314H356c-1-160 8-273-6-328l-25-72z" fill="url(#bone)" stroke="url(#edge)" stroke-width="4"/>
+<path d="M737 524c30-8 54 0 62 25 7 23-10 50-18 93-13 87-15 177-12 278h-41c3-122 1-231-14-311z" fill="url(#outer)" stroke="#70d5ff" stroke-opacity=".8" stroke-width="4"/>
+<path d="M390 458c98 36 235 42 319-1" fill="none" stroke="#c3f8ff" stroke-width="11" stroke-linecap="round"/>
+<path d="M383 479c113 48 218 40 327-1" fill="none" stroke="#24b5ef" stroke-width="13" stroke-opacity=".75"/>
+<path d="M406 501c115 25 188 24 286-7" fill="none" stroke="#9ceaff" stroke-width="5"/>
+<path d="M596 339c49-29 91-5 96 47 8 55-6 116-43 131-27 11-62-21-69-64-7-37-8-93 16-114Z" fill="url(#outer)" stroke="#abf2ff" stroke-width="5" opacity=".86"/>
+<g fill="none" stroke="#e6fcff" stroke-width="1.6" stroke-opacity=".32"><path d="M451 70c43 111 26 174 3 218"/><path d="M480 28c19 80 24 165 0 267"/><path d="M638 39c-26 116-10 195 33 266"/><path d="M618 18c-11 150-8 200 15 277"/><path d="M420 560c17 125 4 207-13 280"/><path d="M450 562c-7 94-9 182-8 271"/><path d="M600 555c-10 106 6 204 13 280"/><path d="M632 570c19 126 16 189 12 270"/></g>
+<g stroke="#46cfff" stroke-opacity=".33" fill="none"><path d="M370 325c85-70 155-49 204-25"/><path d="M556 306c95-59 146-27 178 38"/><path d="M366 564c122 36 231 36 349-4"/></g>
+<g fill="#bdf7ff" opacity=".38"><circle cx="388" cy="471" r="4"/><circle cx="703" cy="462" r="4"/><circle cx="576" cy="520" r="4"/></g></svg>

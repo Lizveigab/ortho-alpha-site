@@ -12,7 +12,7 @@ import MotionFX from './motion.jsx';
 const img=n=>import.meta.env.BASE_URL+'assets/'+n;
 const wa='https://wa.me/5511922966734?text='+encodeURIComponent('Olá, gostaria de agendar uma avaliação na Ortho Alpha.');
 const u=p=>'#'+p;
-const clinic=['clinica-sala.webp','clinica-estrutura-premium.webp','clinica-consultorio-premium.webp','clinica-detalhes-premium.webp'];
+const clinic=['clinica-estrutura-premium.webp','clinica-consultorio-premium.webp','clinica-detalhes-premium.webp','clinica-exame-premium.webp'];
 const docs=[
 {slug:'gabriel-abib',name:'Dr. Gabriel Lins Abib',short:'Dr. Gabriel Abib',photo:'dr-gabriel.webp',crm:'CRM-SP 208621 · RQE 112944',bio:'Médico ortopedista especializado em cirurgia do joelho, com atuação em lesões ligamentares, menisco, artroplastia e medicina regenerativa. Prioriza a avaliação detalhada e o planejamento individualizado.',formation:['Graduação em Medicina — UNICID (2019)','Residência em Ortopedia — Hospital Mário Gatti (2020–2023)','Fellowship em Artroscopia e Cirurgia do Joelho — Clínica Cidade Jardim (2023–2024)','Treinamento internacional em artroplastia do joelho — Eslovênia (2025)']},
 {slug:'ricardo-queiroz',name:'Dr. Ricardo Gomes da Silva Queiroz',short:'Dr. Ricardo Queiroz',photo:'dr-ricardo.webp',crm:'CRM-SP 196887',bio:'Ortopedista com atuação em reconstruções ligamentares complexas, cirurgia de menisco e prótese de joelho. Sua abordagem busca o diagnóstico cuidadoso e a menor intervenção capaz de atender cada paciente.',formation:['Graduação em Medicina — Centro Universitário São Camilo (2018)','Residência em Ortopedia e Traumatologia — Hospital Geral de Carapicuíba','Fellowship em Cirurgia do Joelho — Clínica Cidade Jardim']}];

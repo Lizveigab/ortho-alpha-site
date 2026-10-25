@@ -222,3 +222,11 @@ body{background:#fff}
 .page-body,.reveal.entered>*,.clinic-gallery .gallery-feature img,.treatment-scene>img,.hero-scrollhint i{animation:none!important}
 .doctor:hover,.doctor:hover img,.card:hover,.fold .visual:hover img,.movement-panel:hover .movement-photo img{transform:none!important}
 }
+
+/* Finishing fixes: no default browser button box in the hero */
+.hero-scrollhint{appearance:none;background:transparent;border:0;cursor:pointer;padding:0}
+.hero-scrollhint:focus-visible{outline:3px solid #4cc9e8;outline-offset:5px;border-radius:100px}
+.treatment-scene>img.scene-watermark{position:absolute;inset:auto -12px auto auto;top:-50px;width:330px;max-width:65%;height:auto;object-fit:contain;opacity:.11;filter:brightness(0) invert(1);z-index:1;pointer-events:none;animation:none}
+.nav .btn:hover .btnarrow,.actions .btn:hover .btnarrow,.scene-text .btn:hover .btnarrow{transform:translateX(2px);transition:transform .28s}
+.clinic-gallery .gallery-feature:focus-visible,.clinic-gallery .gallery-thumbs button:focus-visible,.treatment-option:focus-visible{outline:3px solid #35bdea;outline-offset:4px}
+@media(max-width:870px){.hero-scrollhint{display:none}.hero.home-hero .hero-note{display:none}}

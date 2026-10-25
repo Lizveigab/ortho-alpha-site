@@ -61,3 +61,11 @@
 .oa3 .at-close-watermark{font-size:clamp(200px,27vw,440px);position:absolute;right:4%;top:5%;opacity:.09;color:#c2effb;line-height:1;pointer-events:none;font-style:italic}
 @media(max-width:850px){.oa3 .at-close-photo{inset:0}.oa3 .at-close:after{background:linear-gradient(90deg,#03172def 0%,#03172db8 75%,#03172d82)}}
 @media(max-width:600px){.oa3 .at-close{min-height:540px}.oa3 .at-close-content{padding:75px 0}.oa3 .at-close h2{font-size:clamp(43px,10vw,58px)}.oa3 .at-close p{max-width:320px}.oa3 .at-close-watermark{right:-20%;top:9%;font-size:280px}}
+
+/* Ambient pointer light — progressive enhancement tied to React motion engine */
+.oa3 .at-philosophy:before,.oa3 .at-procedures:before,.oa3 .at-spaces:before,.oa3 .at-close:before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.8;background:radial-gradient(480px circle at var(--oa-light-x,80%) var(--oa-light-y,45%),#63cffa1c,transparent 72%)}
+.oa3 .at-philosophy>.wrap,.oa3 .at-procedures>.wrap,.oa3 .at-spaces>.wrap,.oa3 .at-close>.wrap{position:relative;z-index:2}
+.oa3 .at-intro-photo img{transform-origin:70% 50%;transform:scale(1.045);will-change:transform}
+.oa3 .at-space-main:focus-visible,.oa3 .at-space-stack button:focus-visible,.oa3 .at-proc-row:focus-visible{outline:3px solid #76dafa;outline-offset:4px}
+@media(max-width:850px){.oa3 .at-intro-photo img{transform:none;will-change:auto}.oa3 .at-philosophy:before,.oa3 .at-procedures:before,.oa3 .at-spaces:before,.oa3 .at-close:before{display:none}}
+@media(prefers-reduced-motion:reduce){.oa3 .at-intro-photo img{transform:none;will-change:auto}}

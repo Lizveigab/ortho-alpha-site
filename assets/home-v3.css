@@ -96,7 +96,7 @@ body{font-family:Inter,"Helvetica Neue",Arial,sans-serif;color:var(--oa-ink)}
 .home-premium .p-treatment>span{bottom:14px;right:2px;width:26px;height:26px}
 /* Movimento: substituir boneco vetorial por fotografia real licenciada */
 .home-premium .p-movement{min-height:clamp(470px,37vw,600px);background:#051a32}
-.home-premium .p-movement-img{inset:0 0 0 32%;background-image:url("https://images.unsplash.com/photo-1634085398114-5091e0d9ed9e?auto=format&fit=crop&w=1700&q=85");background-size:cover;background-position:center 50%;transform:scale(1.02)}
+.home-premium .p-movement-img{inset:0 0 0 32%;background-image:url("https://images.pexels.com/photos/33284135/pexels-photo-33284135.jpeg?auto=compress&cs=tinysrgb&w=1600&q=80");background-size:cover;background-position:center 50%;transform:scale(1.02)}
 .home-premium .p-movement:after{background:linear-gradient(90deg,#051b35 0%,#051b35 21%,rgba(5,27,53,.92) 36%,rgba(5,27,53,.48) 59%,rgba(5,27,53,.09) 95%),linear-gradient(0deg,rgba(6,31,56,.28),transparent 70%)}
 .home-premium .p-movement-inner{padding:90px 0}
 .home-premium .p-movement .p-copy{max-width:475px}

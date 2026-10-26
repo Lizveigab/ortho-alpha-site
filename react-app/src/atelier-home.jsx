@@ -27,7 +27,7 @@ function Intro({img,wa,docs}){
       <div className="at-actions"><Button href={wa}>Agendar uma avaliação</Button><Button href="#/sobre" quiet>Conhecer a clínica</Button></div>
     </Reveal>
     <div className="at-intro-brandmark" aria-hidden="true"><img src={img("logo-alpha-original.png")} alt=""/></div>
-    <div className="at-intro-physicians"><span>CONHEÇA NOSSA EQUIPE</span>{docs.map(d=><a key={d.slug} href={"#/medicos/"+d.slug}><img src={img(d.photo)} alt={d.short} loading="eager"/><strong>{d.short}</strong><b aria-hidden="true">↗</b></a>)}</div>
+    <div className="at-intro-physicians"><span>CONHEÇA NOSSA EQUIPE</span>{docs.map(d=><a key={d.slug} href={"#/medicos/"+d.slug}><img src={img(d.photo)} alt={d.short} loading="eager"/><div className="at-physician-copy"><strong>{d.short}</strong><span className="at-physician-crm">{d.slug==="gabriel-abib"?"CRM-SP 208621 · RQE 112944":"CRM-SP 196887"}</span><span className="at-physician-area">{d.slug==="gabriel-abib"?"Cirurgia do joelho":"Reconstruções ligamentares e prótese de joelho"}</span></div><b aria-hidden="true">↗</b></a>)}</div>
    </div>
    <div className="at-intro-bottom"><div className="wrap">
      <span><b>01</b> Especialistas em joelho</span><span><b>02</b> Avaliação individualizada</span><span><b>03</b> Alphaville · Barueri</span>

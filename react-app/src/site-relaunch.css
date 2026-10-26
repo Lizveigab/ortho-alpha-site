@@ -155,3 +155,17 @@
  .oa3 .footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.oa3 .footer-grid>div:first-child,.oa3 .footer-grid>div:last-child{grid-column:1/-1}
 }
 @media(prefers-reduced-motion:reduce){.oa3 :is(.at-proc-stage img,.oa-mega-panel){animation:none!important}.oa3 .oa-specialty-card:hover{transform:none}}
+
+/* Brand identity correction: exact original 778x173 SVGs, never retyped logo. */
+.oa3 .oa-brand{width:clamp(186px,18vw,240px);min-width:0;display:inline-flex;align-items:center}
+.oa3 .header .oa-brand .oa-logo-full{width:100%!important;height:auto!important;max-height:55px;object-fit:contain;object-position:left center;filter:none}
+.oa3 .oa-footer-logo{display:inline-block;width:min(255px,100%)}
+.oa3 .footer .oa-footer-logo img{width:100%!important;height:auto!important;max-height:63px;object-fit:contain;object-position:left center;filter:none!important;opacity:1}
+.oa3 .oa-brand:hover .oa-logo-full{transform:none}
+.oa3 .brand.oa-footer-logo:hover img{transform:none}
+.oa3 .at-intro-brandmark{opacity:.045}
+.oa3 .footer .brand.oa-footer-logo{white-space:normal}
+.oa3 .header .oa-logo-full,.oa3 .footer .oa-footer-logo img{image-rendering:auto}
+.oa3 .footer-grid a{word-break:normal;overflow-wrap:break-word}
+@media(max-width:1250px){.oa3 .oa-brand{width:205px}}
+@media(max-width:600px){.oa3 .oa-brand{width:min(205px,67vw)}.oa3 .header .oa-brand .oa-logo-full{max-height:50px}.oa3 .oa-footer-logo{width:225px}}

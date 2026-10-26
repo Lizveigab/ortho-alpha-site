@@ -308,3 +308,6 @@
   .oa3 .at-faq .at-button{width:100%;min-width:0}
 }
 @media(prefers-reduced-motion:reduce){.oa3 .at-faq .at-faq-plus{transition:none}}
+
+/* Keep the FAQ question index static when its answer opens; rotate only the plus icon. */
+.oa3 .at-faq .at-journey-faq details[open] summary .at-faq-index{transform:none!important}

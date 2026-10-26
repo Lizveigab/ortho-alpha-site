@@ -169,3 +169,142 @@
 .oa3 .footer-grid a{word-break:normal;overflow-wrap:break-word}
 @media(max-width:1250px){.oa3 .oa-brand{width:205px}}
 @media(max-width:600px){.oa3 .oa-brand{width:min(205px,67vw)}.oa3 .header .oa-brand .oa-logo-full{max-height:50px}.oa3 .oa-footer-logo{width:225px}}
+
+
+/* 2026-10-26 QA: legible CTA variants and independently paced patient-journey / FAQ sections */
+.oa3 .at-home a.at-button:not(.at-button-light):not(.at-button-quiet),
+.oa3 a.btn:not(.white),
+.oa3 a.px-primary {
+  color:#fff!important;
+  background:linear-gradient(112deg,#052a46 0%,#087da9 100%);
+  border-color:transparent;
+  font-weight:750;
+}
+.oa3 .at-home a.at-button.at-button-light,
+.oa3 a.btn.white {
+  background:#f3fbff!important;
+  color:#072f4c!important;
+  border:1px solid #c4e5f2;
+  box-shadow:0 10px 25px #001d331a;
+  font-weight:750;
+}
+.oa3 .at-home a.at-button.at-button-quiet {
+  background:rgba(255,255,255,.95)!important;
+  color:#082f4b!important;
+  border:1px solid #9ccce0;
+}
+.oa3 .at-home a.at-button:not(.at-button-light):not(.at-button-quiet)>span {
+  background:#e8f9ff;color:#064b70;
+}
+.oa3 .at-home a.at-button.at-button-light>span,
+.oa3 .at-home a.at-button.at-button-quiet>span {
+  background:#075780;color:#fff;
+}
+.oa3 .at-home a.at-button,
+.oa3 a.btn,
+.oa3 a.px-primary {
+  opacity:1;
+  text-decoration:none;
+  font-size:14px!important;
+  line-height:1.35;
+}
+.oa3 .at-home a.at-button:hover,
+.oa3 a.btn:hover,
+.oa3 a.px-primary:hover {filter:brightness(1.06)}
+.oa3 .at-home a.at-button:focus-visible,
+.oa3 a.btn:focus-visible,
+.oa3 a.px-primary:focus-visible {
+  outline:3px solid #57c5ee;outline-offset:4px;
+}
+/* Editorial labels: show content category, never x/10 page numbering */
+.oa3 .at-home .at-tag {
+  display:flex;align-items:center;gap:13px;
+  font-size:14px!important;line-height:1.5;letter-spacing:.115em;
+  font-weight:800;
+}
+.oa3 .at-home .at-tag i{order:-1;width:30px;height:1px;flex:none;background:currentColor;opacity:.58}
+.oa3 .at-home .at-tag>span{display:none}
+.oa3 .at-home .at-intro-bottom b{display:none}
+.oa3 .at-home .at-intro-bottom span{font-weight:700;gap:0}
+/* Section 1: process / approach — full-width midnight navy, three-column editorial journey */
+.oa3 .at-home .at-journey.at-process {
+  padding:clamp(86px,9vw,142px) 0;
+  min-height:clamp(610px,79svh,830px);
+  display:flex;align-items:center;
+  color:#f6fbff;
+  background:radial-gradient(ellipse at 75% 25%,#104b71 0%,#062c4a 48%,#041a30 100%);
+}
+.oa3 .at-process .at-tag{color:#83d3f0}
+.oa3 .at-process-heading{max-width:1160px}
+.oa3 .at-process-intro{display:grid;grid-template-columns:1.15fr .65fr;gap:clamp(30px,6.4vw,115px);align-items:end}
+.oa3 .at-process h2{max-width:760px;color:#fff;font-size:clamp(42px,4.7vw,75px);font-weight:540;line-height:1.08}
+.oa3 .at-process h2 em{color:#70d7f5}
+.oa3 .at-process-intro>p{font-size:16px!important;line-height:1.68;color:#d3e4ee;max-width:410px;margin:0 0 3px}
+.oa3 .at-process-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,47px);margin-top:clamp(48px,6vw,92px)}
+.oa3 .at-process-step{min-width:0}
+.oa3 .at-process-step-no{font-size:clamp(35px,3.5vw,54px);font-weight:520;line-height:1;letter-spacing:-.06em;color:#81d8f6}
+.oa3 .at-process-step-rule{height:1px;background:linear-gradient(90deg,#92dff7b8,#92dff74a);margin:17px 0 28px;position:relative}
+.oa3 .at-process-step-rule i{position:absolute;left:0;top:-4px;height:9px;width:9px;border-radius:50%;background:#91e5fc;box-shadow:0 0 0 5px #91e5fc23}
+.oa3 .at-process-step h3{font-size:clamp(23px,2.1vw,33px);font-weight:600;letter-spacing:-.04em;color:#fff;margin:0 0 13px}
+.oa3 .at-process-step p{font-size:15px!important;line-height:1.65;color:#c6dce7;margin:0;max-width:360px}
+.oa3 .at-process-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-top:clamp(40px,5vw,75px);padding-top:22px;border-top:1px solid #86c9e25a}
+.oa3 .at-process-bottom>span{font-size:14px;letter-spacing:.08em;font-weight:650;color:#a9d5e8}
+.oa3 .at-process-bottom>a{display:inline-flex;align-items:center;gap:18px;color:#f3fbff;font-size:14px;font-weight:750;padding-bottom:6px;border-bottom:1px solid #86d9f4}
+.oa3 .at-process-bottom>a span{font-size:20px;color:#7ed7f6}
+/* Section 2: dedicated FAQ — light gallery-like whitespace with accessible accordion */
+.oa3 .at-home .at-faq{
+  background:linear-gradient(135deg,#fff 0%,#f3f8fb 100%);
+  min-height:clamp(590px,78svh,790px);
+  display:flex;align-items:center;
+  padding:clamp(84px,9vw,145px) 0;
+  color:#0b2e4b;
+}
+.oa3 .at-faq-layout{display:grid;grid-template-columns:.86fr 1.14fr;align-items:start;gap:clamp(48px,8.5vw,150px)}
+.oa3 .at-faq-heading h2{font-size:clamp(43px,4.8vw,76px);line-height:1.08;letter-spacing:-.068em;font-weight:530;max-width:580px}
+.oa3 .at-faq-heading h2 em{color:#0789bb}
+.oa3 .at-faq-heading>p{max-width:390px;font-size:16px!important;line-height:1.7;margin-top:28px;color:#567b92}
+.oa3 .at-faq .at-tag{color:#1b7fa9}
+.oa3 .at-faq-aside{display:flex;align-items:center;gap:13px;margin-top:47px;font-size:14px;font-weight:700;color:#527a92}
+.oa3 .at-faq-aside span{width:43px;height:43px;flex:none;display:grid;place-items:center;border:1px solid #91c5de;border-radius:50%;font-size:24px;color:#1289b8}
+.oa3 .at-faq-content{padding-top:35px}
+.oa3 .at-faq .at-journey-faq{margin:0 0 34px}
+.oa3 .at-faq .at-journey-faq details{border-bottom:1px solid #cddfe9;padding:18px 0}
+.oa3 .at-faq .at-journey-faq details:first-child{border-top:1px solid #cddfe9}
+.oa3 .at-faq .at-journey-faq summary{list-style:none;display:flex;align-items:center;gap:19px;cursor:pointer;min-height:48px;font-weight:700;font-size:15px!important;color:#0b3452}
+.oa3 .at-faq .at-journey-faq summary::-webkit-details-marker{display:none}
+.oa3 .at-faq .at-journey-faq summary strong{flex:1;font-size:15px;font-weight:700;line-height:1.5}
+.oa3 .at-faq .at-faq-index{font-size:14px!important;color:#2098c5;letter-spacing:.04em;line-height:1.1;flex:none}
+.oa3 .at-faq .at-faq-plus{height:30px;width:30px;flex:none;display:grid;place-items:center;background:#eef8fd;border:1px solid #c8e4f0;border-radius:50%;font-size:22px!important;color:#0a80aa;transition:transform .25s ease}
+.oa3 .at-faq .at-journey-faq details[open] .at-faq-plus{transform:rotate(45deg)}
+.oa3 .at-faq .at-journey-faq details>p{font-size:15px!important;color:#476c85;line-height:1.65;margin:8px 40px 12px 46px}
+.oa3 .at-faq .at-button{min-width:245px}
+@media(max-width:950px){
+  .oa3 .at-process-intro{grid-template-columns:1fr;gap:19px}
+  .oa3 .at-process-intro>p{max-width:580px}
+  .oa3 .at-faq-layout{grid-template-columns:1fr;gap:20px}
+  .oa3 .at-faq-content{padding-top:5px}
+  .oa3 .at-faq-aside{margin-top:24px}
+  .oa3 .at-home .at-faq{min-height:0}
+}
+@media(max-width:600px){
+  .oa3 .at-home .at-journey.at-process{min-height:0;padding:76px 0}
+  .oa3 .at-process h2,.oa3 .at-faq-heading h2{font-size:clamp(38px,9vw,56px)}
+  .oa3 .at-process-steps{grid-template-columns:1fr;gap:23px;margin-top:44px}
+  .oa3 .at-process-step{display:grid;grid-template-columns:52px 1fr;gap:2px 17px;align-items:start}
+  .oa3 .at-process-step-no{grid-row:1/3;font-size:39px}
+  .oa3 .at-process-step-rule{display:none}
+  .oa3 .at-process-step h3{font-size:23px;margin:0}
+  .oa3 .at-process-step p{grid-column:2;font-size:14px!important}
+  .oa3 .at-process-bottom{margin-top:34px;padding-top:24px}
+  .oa3 .at-process-bottom>span{font-size:14px!important}
+  .oa3 .at-home .at-faq{padding:77px 0}
+  .oa3 .at-faq-heading>p{margin-top:19px}
+  .oa3 .at-faq-aside{display:none}
+  .oa3 .at-faq-layout{gap:18px}
+  .oa3 .at-faq .at-journey-faq details{padding:12px 0}
+  .oa3 .at-faq .at-journey-faq summary{gap:13px;font-size:14px!important}
+  .oa3 .at-faq .at-journey-faq summary strong{font-size:14px}
+  .oa3 .at-faq .at-journey-faq details>p{font-size:14px!important;margin:10px 4px 12px 34px}
+  .oa3 .at-faq .at-button{width:100%;min-width:0}
+}
+@media(prefers-reduced-motion:reduce){.oa3 .at-faq .at-faq-plus{transition:none}}

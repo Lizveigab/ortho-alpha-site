@@ -42,7 +42,7 @@ function Header({route}){
     <nav className="desktop-nav" aria-label="Navegação principal">
       <a className={route==='/sobre'?'current':''} href="#/sobre">A clínica</a>
       <div className={'oa-mega-anchor'+(mega?' expanded':'')} onMouseEnter={()=>setMega(true)} onMouseLeave={()=>setMega(false)}>
-       <button className={route.startsWith('/especialidades')?'current':''} type="button" aria-haspopup="true" aria-expanded={mega} aria-controls="oa-specialty-menu" onClick={()=>setMega(v=>!v)}>Especialidades <span className="oa-chevron" aria-hidden="true"></span></button>
+       <button className={route.startsWith('/especialidades')?'current':''} type="button" aria-haspopup="true" aria-expanded={mega} aria-controls="oa-specialty-menu" onClick={()=>setMega(v=>!v)}>Especialidades <svg className="oa-chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
        {mega&&<div className="oa-mega-panel" id="oa-specialty-menu">
          <div className="oa-mega-intro"><span>ORTHO ALPHA / JOELHO</span><h3>Especialização para cada etapa.</h3><p>Conheça as opções de cuidado e descubra o que merece uma avaliação individualizada.</p><a href="#/especialidades" onClick={()=>setMega(false)}>Explorar todas as especialidades ↗</a></div>
          <div className="oa-mega-grid">{treatments.map(t=><a key={t.slug} href={u('/especialidades/'+t.slug)} onClick={()=>setMega(false)}><img src={img(t.visual)} alt="" loading="lazy"/><span>{t.name}</span><b aria-hidden="true">↗</b></a>)}</div>

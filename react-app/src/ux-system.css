@@ -213,3 +213,48 @@
 @media(prefers-reduced-motion:reduce){
  .oa3 :is(.at-button,.btn,.px-primary,.at-reveal,.reveal,.oa-page-faq-list summary b){animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* HERO EDITORIAL v2 — conteúdo institucional aprovado */
+.oa3 .at-intro{min-height:clamp(790px,96svh,920px)!important;align-items:center}
+.oa3 .at-intro-inner{padding-top:155px!important;padding-bottom:145px!important}
+.oa3 .at-intro-copy{max-width:650px!important;width:56%;position:relative;z-index:4}
+.oa3 .at-intro .at-tag{font-size:14px!important;letter-spacing:.12em!important;margin-bottom:23px!important;color:#047ca9}
+.oa3 .at-intro h1{max-width:660px!important;font-size:clamp(47px,4.1vw,72px)!important;line-height:1.075!important;letter-spacing:-.065em!important;font-weight:500}
+.oa3 .at-intro h1 em{display:inline!important;color:#048ebd!important;font-weight:550}
+.oa3 .at-intro-copy>p{font-size:18px!important;line-height:1.65!important;max-width:540px!important;margin:26px 0 0!important}
+.oa3 .at-intro .at-actions{margin-top:32px!important;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.oa3 .at-intro .at-button{font-size:16px!important;min-height:56px!important}
+.oa3 .at-intro-photo img{object-position:74% 63%!important}
+.oa3 .at-intro-wash{background:linear-gradient(90deg,rgba(249,252,253,.99) 0%,rgba(249,252,253,.94) 21%,rgba(249,252,253,.8) 34%,rgba(249,252,253,.37) 47%,rgba(249,252,253,.08) 61%,transparent 75%)!important}
+.oa3 .at-intro-physicians{bottom:145px!important;right:0!important;max-width:345px}
+.oa3 .at-intro-physicians>a{background:rgba(236,246,253,.38)!important;border:0!important;backdrop-filter:blur(20px) saturate(140%)!important;-webkit-backdrop-filter:blur(20px) saturate(140%)!important}
+.oa3 .at-intro-brandmark{opacity:.035!important}
+@media(min-width:851px) and (max-width:1350px){
+ .oa3 .at-intro-copy{width:55%;max-width:570px!important}
+ .oa3 .at-intro h1{font-size:clamp(43px,4.2vw,59px)!important}
+ .oa3 .at-intro-copy>p{font-size:16px!important}
+ .oa3 .at-intro-photo img{object-position:78% 60%!important}
+ .oa3 .at-intro-physicians{max-width:300px;bottom:115px!important}
+}
+@media(max-width:850px){
+ .oa3 .at-intro{min-height:0!important;display:block!important}
+ .oa3 .at-intro-inner{padding:133px 0 420px!important}
+ .oa3 .at-intro-copy{width:100%!important;max-width:680px!important}
+ .oa3 .at-intro h1{font-size:clamp(40px,6.5vw,59px)!important;max-width:100%!important;line-height:1.07!important}
+ .oa3 .at-intro h1 em{display:inline!important}
+ .oa3 .at-intro-photo{inset:auto 0 64px!important;height:480px!important}
+ .oa3 .at-intro-photo img{object-position:73% 57%!important}
+ .oa3 .at-intro-wash{background:linear-gradient(180deg,#f8fbfd 0%,rgba(248,251,253,.91) 17%,rgba(248,251,253,.36) 44%,transparent 78%)!important}
+}
+@media(max-width:600px){
+ .oa3 .at-intro-inner{padding:116px 0 355px!important}
+ .oa3 .at-intro .at-tag{font-size:14px!important;line-height:1.45!important;margin-bottom:20px!important}
+ .oa3 .at-intro h1{font-size:clamp(36px,9.5vw,45px)!important;letter-spacing:-.06em!important;line-height:1.075!important}
+ .oa3 .at-intro-copy>p{font-size:16px!important;line-height:1.6!important;margin:20px 0 0!important}
+ .oa3 .at-intro .at-actions{margin-top:23px!important;gap:10px;flex-direction:column;align-items:flex-start}
+ .oa3 .at-intro .at-button{font-size:16px!important;min-height:54px!important}
+ .oa3 .at-intro-photo{inset:auto 0 63px!important;height:365px!important}
+ .oa3 .at-intro-photo img{object-position:72% 60%!important}
+ .oa3 .at-intro-wash{background:linear-gradient(180deg,#f8fbfd 0%,rgba(248,251,253,.96) 8%,rgba(248,251,253,.42) 39%,transparent 73%)!important}
+ .oa3 .at-intro-bottom>.wrap{gap:13px}
+}

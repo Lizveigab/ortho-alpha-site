@@ -21,10 +21,10 @@ function Intro({img,wa,docs}){
    <div className="at-intro-photo"><img src={img('lifestyle-corrida.webp')} fetchPriority="high" decoding="async" alt="Pessoa praticando corrida ao ar livre, imagem ilustrativa de estilo de vida ativo"/><div className="at-intro-wash"/></div>
    <div className="wrap at-intro-inner">
     <Reveal className="at-intro-copy">
-      <Tag>ORTOPEDIA ESPECIALIZADA EM JOELHO</Tag>
-      <h1 id="at-intro-head">Precisão no cuidado. <em>Confiança em cada passo.</em></h1>
-      <p>Cirurgia do joelho, diagnóstico cuidadoso e decisões individualizadas. Em Alphaville, perto de você.</p>
-      <div className="at-actions"><Button href={wa}>Agendar uma avaliação</Button><Button href="#/sobre" quiet>Conhecer a clínica</Button></div>
+      <Tag>ALPHAVILLE · BARUERI</Tag>
+      <h1 id="at-intro-head">Clínica Ortopédica especializada, <em>com a técnica e o cuidado que você merece.</em></h1>
+      <p>Atendimento especializado em joelho, com avaliação individualizada, precisão técnica e cuidado em cada etapa do tratamento.</p>
+      <div className="at-actions"><Button href={wa}>Agendar avaliação</Button><Button href="#/sobre" quiet>Conhecer a clínica</Button></div>
     </Reveal>
     <div className="at-intro-brandmark" aria-hidden="true"><img src={img("logo-alpha-original.png")} alt=""/></div>
     <div className="at-intro-physicians"><span>CONHEÇA NOSSA EQUIPE</span>{docs.map(d=><a key={d.slug} href={"#/medicos/"+d.slug}><img src={img(d.photo)} alt={d.short} loading="eager"/><div className="at-physician-copy"><strong>{d.short}</strong><span className="at-physician-crm">{d.slug==="gabriel-abib"?"CRM-SP 208621 · RQE 112944":"CRM-SP 196887"}</span><span className="at-physician-area">{d.slug==="gabriel-abib"?"Cirurgia do joelho":"Reconstruções ligamentares e prótese de joelho"}</span></div><b aria-hidden="true">↗</b></a>)}</div>

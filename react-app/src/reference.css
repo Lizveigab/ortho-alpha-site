@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+/* Fonte carregada via link no HTML para reduzir bloqueio de renderização. */
 :root{font-family:'Plus Jakarta Sans',Arial,sans-serif;color:#082440;background:#fff;font-synthesis:none}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;overflow-x:clip}button,input{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}img{display:block;max-width:100%}
 a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #42bdea;outline-offset:3px}

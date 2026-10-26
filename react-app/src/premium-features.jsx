@@ -15,7 +15,7 @@ export function KneeAtlas({img}){
   frame.current=requestAnimationFrame(()=>{if(tiltRef.current)tiltRef.current.style.transform='perspective(1150px) rotateX('+(-y*5)+'deg) rotateY('+(x*7)+'deg)';frame.current=0});
  };
  return <section className="px-knee" aria-labelledby="px-knee-title"><div className="px-container">
-  <div className="px-head"><span className="px-eyebrow">EXPERIÊNCIA INTERATIVA · ORTHO ALPHA</span><h2 id="px-knee-title">Entender o joelho é o primeiro passo para <em>cuidar dele.</em></h2><p>Explore estruturas importantes para compreender melhor queixas comuns e possibilidades de tratamento.</p></div>
+  <div className="px-head"><span className="px-eyebrow">04 / 10 · ATLAS INTERATIVO</span><h2 id="px-knee-title">Entender o joelho é o primeiro passo para <em>cuidar dele.</em></h2><p>Explore estruturas importantes para compreender melhor queixas comuns e possibilidades de tratamento.</p></div>
   <div className="px-knee-grid">
    <div className="px-visual" ref={ref} onPointerMove={move} onPointerLeave={()=>{cancelAnimationFrame(frame.current);frame.current=0;if(tiltRef.current)tiltRef.current.style.transform='none'}}>
     <div className="px-knee-orbits" aria-hidden="true"/>
@@ -35,7 +35,7 @@ export function KneeAtlas({img}){
 }
 export function TrustProof({docs,wa,img}){
  return <section className="px-trust" aria-labelledby="px-trust-title"><div className="px-container">
-  <div className="px-head px-trust-heading"><div><span className="px-eyebrow">CONFIANÇA COMEÇA COM TRANSPARÊNCIA</span><h2 id="px-trust-title">Conheça quem cuida. <em>Decida com clareza.</em></h2></div><p>Credenciais profissionais e referências públicas para conhecer a clínica antes de agendar.</p></div>
+  <div className="px-head px-trust-heading"><div><span className="px-eyebrow">05 / 10 · CONFIANÇA</span><h2 id="px-trust-title">Conheça quem cuida. <em>Decida com clareza.</em></h2></div><p>Credenciais profissionais e referências públicas para conhecer a clínica antes de agendar.</p></div>
   <div className="px-trust-grid"><div className="px-doctor-list">{docs.map(d=><a className="px-doctor-item" href={'#/medicos/'+d.slug} key={d.slug}><img src={img(d.photo)} alt={'Retrato de '+d.name} loading="lazy"/><span><strong>{d.name}</strong><small>{d.crm}</small></span><Arrow/></a>)}</div>
   <div className="px-trust-panels"><div className="px-trust-card"><span className="px-eyebrow">AVALIAÇÕES E LOCALIZAÇÃO</span><h3>Consulte informações da clínica em fontes públicas.</h3><p>Confira avaliações disponíveis no Google Maps. Elas podem mudar e não exibimos nota ou quantidade sem verificação.</p><a href={reviews} target="_blank" rel="noopener noreferrer">Pesquisar Ortho Alpha no Google <Arrow/></a></div>
   <div className="px-trust-address"><span className="px-eyebrow">NOSSA LOCALIZAÇÃO</span><p>Av. Copacabana, 112, sala 1507 · Alphaville, Barueri/SP.</p><a href={wa} rel="noopener noreferrer" target="_blank">Conversar sobre uma avaliação ↗</a></div></div></div>

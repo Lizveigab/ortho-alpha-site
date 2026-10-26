@@ -7,6 +7,7 @@ const DESCRIPTIONS={
  '/especialidades':'Artroscopia, reconstrução ligamentar, menisco, prótese de joelho e opções não cirúrgicas em Alphaville.',
  '/cirurgias':'Conheça as cirurgias do joelho realizadas pelos médicos da Ortho Alpha. A indicação depende de avaliação.',
  '/blog':'Informações e conteúdos educativos sobre saúde e cirurgia do joelho.',
+ '/orientacoes':'Orientações gerais para preparo, avaliação e acompanhamento em tratamentos do joelho.',
  '/contato':'Contato, localização e WhatsApp da Ortho Alpha em Alphaville, Barueri.'
 };
 const LABELS={
@@ -16,6 +17,7 @@ const LABELS={
  '/especialidades':'Especialidades',
  '/cirurgias':'Cirurgias do joelho',
  '/blog':'Blog de ortopedia',
+ '/orientacoes':'Orientações ao paciente',
  '/contato':'Agende sua avaliação'
 };
 const SPECIAL={
@@ -24,7 +26,8 @@ const SPECIAL={
  'cirurgia-menisco':'Cirurgia de menisco',
  'artroscopia':'Artroscopia de joelho',
  'medicina-regenerativa':'Medicina regenerativa',
- 'bloqueios-infiltracoes':'Bloqueios e infiltrações'
+ 'bloqueios-infiltracoes':'Bloqueios e infiltrações',
+ 'prp':'PRP no joelho'
 };
 const ensure=(selector,tag,attributes)=>{
  let el=document.head.querySelector(selector);

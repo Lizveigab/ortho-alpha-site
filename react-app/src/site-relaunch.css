@@ -340,3 +340,20 @@
  }
  .oa3 .at-intro-photo img{object-position:62% center}
 }
+
+/* Chevron limpo e alinhado do menu Especialidades */
+.oa3 .oa-mega-anchor>button .oa-chevron{
+ display:inline-block!important;
+ width:7px!important;height:7px!important;
+ flex:0 0 7px;
+ border-right:1.8px solid currentColor;
+ border-bottom:1.8px solid currentColor;
+ transform:translateY(-2px) rotate(45deg);
+ font-size:0!important;
+ line-height:0!important;
+ margin-left:2px;
+ transition:transform .22s ease;
+}
+.oa3 .oa-mega-anchor.expanded>button .oa-chevron{
+ transform:translateY(2px) rotate(225deg);
+}

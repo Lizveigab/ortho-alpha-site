@@ -1,0 +1,78 @@
+name: Import Ortho Alpha visuals (one time)
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import-ortho-visuals.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image processor
+        run: python -m pip install --quiet 'Pillow>=10,<12'
+      - name: Import seven individually generated lifestyle images
+        run: |
+          python - <<'PY'
+          import io, os, time, urllib.request
+          from PIL import Image, ImageOps
+          sources = {
+    "lifestyle-corrida.webp": "https://pikaso.cdnpk.net/private/production/5839132269/render.png?token=exp=1793404800~hmac=4beac545a683d2e0aac858c4c3871d4e81ea0caf44a779fb27cccc02a751bf71",
+    "lifestyle-trilha.webp": "https://pikaso.cdnpk.net/private/production/5839133161/render.png?token=exp=1793404800~hmac=b4c4657c23aae2917da11475e6e3494a22f9957ab1170415b70655798bb3fdad",
+    "lifestyle-tenis.webp": "https://pikaso.cdnpk.net/private/production/5839134066/render.png?token=exp=1793404800~hmac=c35a469f987d25ae82018ca8090f2527da024b27692119cd1d82d9fdb193bbb3",
+    "lifestyle-caminhada.webp": "https://pikaso.cdnpk.net/private/production/5839134005/render.png?token=exp=1793404800~hmac=5628bf985fe62bb81ea73cb5cb54b65f9e5bf6e4c6f0bbfb887282a8576c20a0",
+    "lifestyle-dor.webp": "https://pikaso.cdnpk.net/private/production/5839171363/render.png?token=exp=1793404800~hmac=e54b9404cb0c2425ee0116c2b78ea810b805ad3c4e35d6ef35b51daa0759b565",
+    "lifestyle-alongamento.webp": "https://pikaso.cdnpk.net/private/production/5839172041/render.png?token=exp=1793404800~hmac=8235c66801fadb61254c723a0a5604c54dd8705704598f4fba36bb565598b1c3",
+    "lifestyle-escadas.webp": "https://pikaso.cdnpk.net/private/production/5839172490/render.png?token=exp=1793404800~hmac=2f385deacd298a6317448dcb4830a0c031ad9a8be1be1dd4acfc447fcb634d1f",
+          }
+          os.makedirs('assets',exist_ok=True)
+          for name, url in sources.items():
+              data=None
+              for attempt in range(3):
+                  try:
+                      req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'})
+                      with urllib.request.urlopen(req,timeout=65) as resp:
+                          data=resp.read()
+                      break
+                  except Exception:
+                      if attempt == 2: raise
+                      time.sleep(3*(attempt+1))
+              if not data or len(data)<10000: raise RuntimeError('Empty file: '+name)
+              with Image.open(io.BytesIO(data)) as incoming:
+                  im=ImageOps.exif_transpose(incoming).convert('RGB')
+                  if im.width < 1000: raise RuntimeError('Low resolution source: '+name)
+                  im.save('assets/'+name,format='WEBP',quality=89,method=6)
+                  print(name,im.width,im.height,os.path.getsize('assets/'+name),'bytes')
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build React preview with the new photos
+        run: |
+          cd react-app
+          npm install --no-audit --no-fund
+          npm run build
+      - name: Save stable image assets and publish preview
+        run: |
+          mkdir -p react
+          find react -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+          cp -R react-app/dist/. react/
+          cp -R assets/. react/assets/
+          touch react/.nojekyll
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/lifestyle-*.webp react
+          if ! git diff --cached --quiet; then
+            git commit -m "Add 7 lifestyle images and publish premium Ortho Alpha React preview [skip ci]"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

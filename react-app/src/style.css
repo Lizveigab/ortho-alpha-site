@@ -24,3 +24,29 @@ h1,h2,h3{font-weight:500;letter-spacing:-.065em;line-height:1.11;margin:0;text-w
 @media(max-width:870px){.container{width:calc(100% - 42px)}.nav{background:#ffffffed}.navinner{min-height:74px}.links,.navinner>.btn{display:none}.hamburger{display:grid;place-items:center;margin-left:auto;width:44px;height:44px;border:1px solid #b8d4e2;border-radius:50%;background:white;color:#073654;font-size:22px}.mobilemenu{display:grid;gap:0;background:#ffffffed;padding:16px 24px 28px;max-height:calc(100dvh - 74px);overflow:auto}.mobilemenu>a:not(.btn){display:flex;justify-content:space-between;padding:16px 0;border-bottom:1px solid #dce7ed;font-size:20px}.mobilemenu .btn{margin-top:22px}.hero{display:block;min-height:735px}.herobody{padding:115px 0 330px}.heromedia{inset:auto 0 0;height:345px}.herowash{background:linear-gradient(180deg,#f8fafb 0%,#f8fafb 37%,#f8fafbf0 51%,#f8fafb88 68%,transparent 84%)}.split,.split.reverse{grid-template-columns:1fr}.split.reverse>.copy,.split.reverse>.visual{order:initial}.fold,.section{min-height:0;padding:77px 0}.mosaic{height:390px}.features,.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.footgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:550px){.container{width:calc(100% - 36px)}.brand img{width:45px;height:45px}.brand strong{font-size:13px}.brand small{font-size:8px}h1{font-size:clamp(43px,10.1vw,57px)}h2{font-size:clamp(38px,9vw,49px)}.eyebrow{font-size:10px;letter-spacing:.13em}.herobody{padding:110px 0 310px}.heromedia{height:305px}.hero p{font-size:15px}.btn{min-height:49px;padding:6px 6px 6px 13px;font-size:12px;gap:9px}.btnarrow{width:31px;height:31px}.fold,.section{padding:65px 0}.mosaic{height:315px;gap:6px}.features,.cards,.timeline{grid-template-columns:1fr}.doctors{gap:10px}.doctor{height:335px}.doctorinfo{padding:12px}.doctorinfo h3{font-size:16px}.doctorinfo small,.doctorinfo span{font-size:10px}.instagrid{grid-template-columns:repeat(2,minmax(0,1fr))}.instagrid img{height:180px}.closeinner{align-items:start;flex-direction:column}.footgrid{grid-template-columns:1fr}.darklinks{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Jornada clínica e perguntas específicas por página */
+.care-journey{min-height:auto;padding:100px 0;background:linear-gradient(155deg,#f7fbfd,#fff 65%)}
+.care-intro{max-width:670px;font-size:17px}
+.care-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:42px}
+.care-step{position:relative;min-height:330px;padding:36px 30px;overflow:hidden;border-radius:17px;border:1px solid #d6e8f1;background:linear-gradient(135deg,#fff,#eff7fb);box-shadow:0 20px 48px #082d4710;transition:transform .35s,border-color .35s}
+.care-step:hover{transform:translateY(-7px);border-color:#7cc5e1}
+.care-step:after{position:absolute;content:"";width:230px;height:230px;border:1px solid #7dbbd428;border-radius:50%;right:-115px;top:-95px;box-shadow:0 0 0 35px #7dbbd411,0 0 0 72px #7dbbd407}
+.care-number{display:inline-grid;place-items:center;width:51px;height:51px;background:#062d4c;color:#a6e9ff;font-size:13px;border-radius:50%;margin-bottom:46px;letter-spacing:.09em}
+.care-step h3{font-size:clamp(28px,2.8vw,39px);letter-spacing:-.05em}
+.care-step p{font-size:15px;margin-top:14px;color:#55738b}
+.care-disclaimer{font-size:12px;max-width:900px;margin-top:25px}
+.page-faq{min-height:auto;padding:100px 0;background:#f8fbfd}
+.faq-layout{display:grid;grid-template-columns:minmax(280px,.8fr) minmax(0,1.2fr);gap:clamp(35px,7vw,100px);align-items:start}
+.faq-heading{position:sticky;top:110px}
+.faq-heading h2{font-size:clamp(38px,3.7vw,58px)}
+.page-faq .faq{gap:13px}
+.page-faq .faq details{padding:0;border-radius:13px;border-color:#dbe9f0;overflow:hidden}
+.page-faq .faq summary{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px;font-size:16px;line-height:1.45;list-style:none}
+.page-faq .faq summary::-webkit-details-marker{display:none}
+.page-faq .faq summary span{font-size:23px;color:#0588b8;transition:transform .25s}
+.page-faq .faq details[open] summary span{transform:rotate(45deg)}
+.page-faq .faq details[open]{border-color:#9dcee3;box-shadow:0 14px 40px #062c4812}
+.page-faq .faq details p{margin:0;padding:0 24px 25px;font-size:15px}
+@media(max-width:870px){.care-grid,.faq-layout{grid-template-columns:1fr}.care-grid{gap:13px}.care-step{min-height:245px;padding:26px}.care-number{margin-bottom:30px}.faq-heading{position:static}.page-faq,.care-journey{padding:70px 0}.page-faq .faq summary{padding:20px;font-size:15px}.page-faq .faq details p{padding:0 20px 22px}}
+@media(prefers-reduced-motion:reduce){.care-step{transition:none}}

@@ -408,3 +408,21 @@
 .oa3 .at-intro-physicians>a>b{justify-self:center;font-size:16px}
 @media(max-width:1200px){.oa3 .at-intro-physicians{display:none!important}}
 @media(prefers-reduced-transparency:reduce){.oa3 .at-intro-physicians>a{background:rgba(242,249,252,.95)!important}}
+
+/* Equipe: títulos alinhados, tipografia mínima de 14px, sem bloco de reputação */
+.oa3 .at-people-grid{align-items:stretch}
+.oa3 .at-people-card{display:flex;flex-direction:column;min-width:0}
+.oa3 .at-people-card .at-people-info{display:grid!important;grid-template-columns:minmax(0,1fr);align-content:start;gap:14px;flex:1;margin-top:24px}
+.oa3 .at-people-info>div{max-width:none;min-width:0}
+.oa3 .at-people-info small{font-size:14px!important;line-height:1.45!important;letter-spacing:.075em!important;margin-bottom:12px}
+.oa3 .at-people-info h3{font-size:clamp(29px,2.5vw,39px)!important;line-height:1.12!important;letter-spacing:-.06em;min-height:2.25em;max-width:100%;overflow-wrap:normal}
+.oa3 .at-people-info p{font-size:16px!important;line-height:1.55!important;margin:8px 0 0}
+.oa3 .at-people-info>a{justify-self:start;align-self:end;font-size:14px!important;line-height:1.5!important;white-space:normal;margin-top:auto;padding:10px 0}
+.oa3 .at-people .at-photo-count{font-size:14px!important}
+.oa3 .at-people .at-photo-action{font-size:23px!important}
+.oa3 .at-people .oa-reputation-strip{display:none!important}
+@media(max-width:600px){
+ .oa3 .at-people-info h3{font-size:clamp(28px,7.5vw,35px)!important;min-height:0}
+ .oa3 .at-people-card .at-people-info{gap:10px}
+ .oa3 .at-people-info p{font-size:15px!important}
+}

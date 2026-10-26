@@ -18,7 +18,7 @@ function Button({children,href,light=false,quiet=false}){
 }
 function Intro({img,wa,docs}){
  return <section className="at-intro" aria-labelledby="at-intro-head">
-   <div className="at-intro-photo"><img src={img('clinica-sala.webp')} fetchPriority="high" decoding="async" alt="Ambiente real de atendimento Ortho Alpha, em Alphaville"/><div className="at-intro-wash"/></div>
+   <div className="at-intro-photo"><img src={img('lifestyle-corrida.webp')} fetchPriority="high" decoding="async" alt="Pessoa praticando corrida ao ar livre, imagem ilustrativa de estilo de vida ativo"/><div className="at-intro-wash"/></div>
    <div className="wrap at-intro-inner">
     <Reveal className="at-intro-copy">
       <Tag number="01 / 10">ORTOPEDIA ESPECIALIZADA EM JOELHO</Tag>
@@ -67,7 +67,7 @@ function Procedures({treatments,img}){
  <div className="at-procedures-content">
   <div className="at-proc-list" role="group" aria-label="Selecione um tratamento">{treatments.map((it,i)=><button type="button" key={it.slug} className={'at-proc-row'+(active===i?' selected':'')} aria-pressed={active===i} onClick={()=>setActive(i)}><span className="at-proc-index">{String(i+1).padStart(2,'0')}</span><span className="at-proc-title">{it.name}</span><span className="at-proc-arrow">↗</span></button>)}</div>
   <article className="at-proc-stage" aria-live="polite" aria-atomic="true">
-   <img key={t.art} className="at-proc-image" src={img(t.art)} alt={'Ilustração da especialidade '+t.name} loading="lazy"/>
+   <img key={t.visual} className="at-proc-image" src={img(t.visual)} alt={'Imagem de estilo de vida relacionada a '+t.name} loading="lazy"/>
    <div className="at-proc-stage-body">
     <span>PROCEDIMENTO {String(active+1).padStart(2,'0')} / {String(treatments.length).padStart(2,'0')}</span>
     <h3>{t.name}</h3><p>{t.desc}</p>
@@ -79,7 +79,7 @@ function Procedures({treatments,img}){
 }
 function SecondOpinion({img,wa}){
  return <section className="at-opinion">
-  <div className="at-opinion-media"><img src={img('clinica-exame-premium.webp')} alt="Ambiente de avaliação clínica da Ortho Alpha" loading="lazy"/></div>
+  <div className="at-opinion-media"><img src={img('lifestyle-dor.webp')} alt="Pessoa com desconforto no joelho, fotografia ilustrativa" loading="lazy"/></div>
   <div className="wrap at-opinion-container"><Reveal>
    <Tag number="07 / 10">SEGUNDA OPINIÃO</Tag>
    <h2>Recebeu uma indicação cirúrgica? <em>Entenda suas opções.</em></h2>
@@ -110,7 +110,7 @@ function Journey({wa}){
 }
 function SignatureClose({img,wa}){
  return <section className="at-close">
-  <div className="at-close-photo"><img src={img('clinica-exame-segunda.webp')} alt="" loading="lazy"/></div>
+  <div className="at-close-photo"><img src={img('lifestyle-trilha.webp')} alt="" loading="lazy"/></div>
   <div className="wrap at-close-content"><Reveal>
     <Tag number="ORTHO ALPHA">SEU PRÓXIMO PASSO</Tag>
     <h2>O movimento continua. <em>Com o cuidado certo.</em></h2>
@@ -120,6 +120,21 @@ function SignatureClose({img,wa}){
    <div className="at-close-watermark" aria-hidden="true">α</div>
   </div>
  </section>;
+}
+export function RegenerativeSpotlight({img}){
+ return <section className="oa-regen" aria-labelledby="oa-regen-title">
+   <div className="oa-regen-photo"><img src={img('lifestyle-alongamento.webp')} loading="lazy" alt="Mulher adulta fazendo exercícios leves em ambiente claro, imagem ilustrativa"/></div>
+   <div className="oa-regen-wash"/>
+   <div className="wrap oa-regen-inner">
+    <Reveal className="oa-regen-copy">
+     <Tag number="MEDICINA REGENERATIVA">PRP · BMA · CUIDADO INDIVIDUAL</Tag>
+     <h2 id="oa-regen-title">A cirurgia não é sempre <em>o primeiro caminho.</em></h2>
+     <p>Conheça as possibilidades de tratamento não cirúrgico. O PRP e outras terapias são avaliados conforme o diagnóstico, as evidências disponíveis e os objetivos de cada pessoa.</p>
+     <div className="oa-regen-buttons"><Button href="#/especialidades/medicina-regenerativa">Medicina regenerativa</Button><Button href="#/especialidades/prp" quiet>Entenda o PRP</Button></div>
+     <small>Nem todo paciente tem indicação para PRP; os resultados variam. As terapias não garantem regeneração da cartilagem.</small>
+    </Reveal>
+   </div>
+ </section>
 }
 export default function AtelierHome({img,wa,docs,treatments,clinic}){
  return <div className="at-home">
@@ -131,6 +146,7 @@ export default function AtelierHome({img,wa,docs,treatments,clinic}){
   <Procedures treatments={treatments} img={img}/>
   <SecondOpinion img={img} wa={wa}/>
   <Spaces img={img} clinic={clinic}/>
+  <RegenerativeSpotlight img={img}/>
   <Journey wa={wa}/>
   <SignatureClose img={img} wa={wa}/>
  </div>;

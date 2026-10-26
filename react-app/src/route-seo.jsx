@@ -29,6 +29,12 @@ const SPECIAL={
  'bloqueios-infiltracoes':'Bloqueios e infiltrações',
  'prp':'PRP no joelho'
 };
+const ARTICLE_TITLES={
+ 'dor-no-joelho-quando-procurar':'Dor no joelho: quando procurar um especialista?',
+ 'lca-quando-definir-tratamento':'Lesão do LCA: como definir o tratamento?',
+ 'lesao-menisco-cirurgia':'Lesão de menisco: cirurgia é sempre necessária?',
+ 'protese-joelho-duvidas':'Prótese de joelho: principais dúvidas'
+};
 const ensure=(selector,tag,attributes)=>{
  let el=document.head.querySelector(selector);
  if(!el){el=document.createElement(tag);Object.entries(attributes).forEach(([k,v])=>el.setAttribute(k,v));document.head.appendChild(el);}
@@ -36,8 +42,8 @@ const ensure=(selector,tag,attributes)=>{
 };
 export default function RouteSeo({route}){
  useEffect(()=>{
-  let title=LABELS[route]||SPECIAL[route.split('/').pop()]||(/\/medicos\/gabriel/.test(route)?'Dr. Gabriel Lins Abib':/\/medicos\/ricardo/.test(route)?'Dr. Ricardo Queiroz':'Ortho Alpha');
-  let desc=DESCRIPTIONS[route]||'Atendimento especializado em ortopedia do joelho, diagnóstico e tratamentos individualizados em Alphaville.';
+  let title=LABELS[route]||ARTICLE_TITLES[route.split('/').pop()]||SPECIAL[route.split('/').pop()]||(/\/medicos\/gabriel/.test(route)?'Dr. Gabriel Lins Abib':/\/medicos\/ricardo/.test(route)?'Dr. Ricardo Queiroz':'Ortho Alpha');
+  let desc=DESCRIPTIONS[route]||(route.startsWith('/blog/')?'Conteúdo educativo sobre diagnóstico, tratamentos e saúde do joelho em Alphaville.':'Atendimento especializado em ortopedia do joelho, diagnóstico e tratamentos individualizados em Alphaville.');
   document.title=title+' | Ortho Alpha — Prévia React';
   document.documentElement.lang='pt-BR';
   ensure('meta[name="description"]','meta',{name:'description'}).setAttribute('content',desc);

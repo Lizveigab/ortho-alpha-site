@@ -357,3 +357,32 @@
 .oa3 .oa-mega-anchor.expanded>button .oa-chevron{
  transform:translateY(2px) rotate(225deg);
 }
+
+/* Navegação: ícone vetorial alinhado ao texto, sem glifo tipográfico. */
+.oa3 .oa-mega-anchor>button{gap:9px!important;justify-content:center;align-items:center}
+.oa3 .oa-mega-anchor>button .oa-chevron-icon{
+ display:block;width:14px;height:14px;flex:none;
+ color:inherit;transform:translateY(1px) rotate(0);
+ transition:transform .24s cubic-bezier(.22,1,.36,1);
+}
+.oa3 .oa-mega-anchor.expanded>button .oa-chevron-icon{transform:translateY(1px) rotate(180deg)}
+/* Glassmorphism de verdade nos cartões da equipe no hero. */
+.oa3 .at-intro-physicians>a{
+ background:rgba(245,250,254,.30)!important;
+ border:1px solid rgba(255,255,255,.66)!important;
+ -webkit-backdrop-filter:blur(19px) saturate(155%)!important;
+ backdrop-filter:blur(19px) saturate(155%)!important;
+ box-shadow:0 12px 34px rgba(4,25,43,.16),inset 0 1px rgba(255,255,255,.5)!important;
+ border-radius:14px!important;
+ transition:transform .28s,background .28s,border-color .28s!important;
+}
+.oa3 .at-intro-physicians>a:hover{
+ background:rgba(248,252,255,.48)!important;
+ border-color:rgba(255,255,255,.85)!important;
+ transform:translateX(-4px);
+}
+.oa3 .at-intro-physicians strong{color:#062a47!important;text-shadow:0 1px 8px rgba(255,255,255,.45)}
+.oa3 .at-intro-physicians img{border:1px solid rgba(255,255,255,.45);border-radius:9px}
+@media(prefers-reduced-transparency:reduce){
+ .oa3 .at-intro-physicians>a{background:rgba(250,253,255,.92)!important;backdrop-filter:none!important}
+}

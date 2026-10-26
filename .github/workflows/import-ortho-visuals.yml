@@ -26,13 +26,13 @@ jobs:
           import io, os, time, urllib.request
           from PIL import Image, ImageOps
           sources = {
-    "lifestyle-corrida.webp": "https://pikaso.cdnpk.net/private/production/5839132269/render.png?token=exp=1793404800~hmac=4beac545a683d2e0aac858c4c3871d4e81ea0caf44a779fb27cccc02a751bf71",
-    "lifestyle-trilha.webp": "https://pikaso.cdnpk.net/private/production/5839133161/render.png?token=exp=1793404800~hmac=b4c4657c23aae2917da11475e6e3494a22f9957ab1170415b70655798bb3fdad",
-    "lifestyle-tenis.webp": "https://pikaso.cdnpk.net/private/production/5839134066/render.png?token=exp=1793404800~hmac=c35a469f987d25ae82018ca8090f2527da024b27692119cd1d82d9fdb193bbb3",
-    "lifestyle-caminhada.webp": "https://pikaso.cdnpk.net/private/production/5839134005/render.png?token=exp=1793404800~hmac=5628bf985fe62bb81ea73cb5cb54b65f9e5bf6e4c6f0bbfb887282a8576c20a0",
-    "lifestyle-dor.webp": "https://pikaso.cdnpk.net/private/production/5839171363/render.png?token=exp=1793404800~hmac=e54b9404cb0c2425ee0116c2b78ea810b805ad3c4e35d6ef35b51daa0759b565",
-    "lifestyle-alongamento.webp": "https://pikaso.cdnpk.net/private/production/5839172041/render.png?token=exp=1793404800~hmac=8235c66801fadb61254c723a0a5604c54dd8705704598f4fba36bb565598b1c3",
-    "lifestyle-escadas.webp": "https://pikaso.cdnpk.net/private/production/5839172490/render.png?token=exp=1793404800~hmac=2f385deacd298a6317448dcb4830a0c031ad9a8be1be1dd4acfc447fcb634d1f",
+              "lifestyle-corrida.webp": "https://pikaso.cdnpk.net/private/production/5839132269/render.png?token=exp=1793404800~hmac=4beac545a683d2e0aac858c4c3871d4e81ea0caf44a779fb27cccc02a751bf71",
+              "lifestyle-trilha.webp": "https://pikaso.cdnpk.net/private/production/5839133161/render.png?token=exp=1793404800~hmac=b4c4657c23aae2917da11475e6e3494a22f9957ab1170415b70655798bb3fdad",
+              "lifestyle-tenis.webp": "https://pikaso.cdnpk.net/private/production/5839134066/render.png?token=exp=1793404800~hmac=c35a469f987d25ae82018ca8090f2527da024b27692119cd1d82d9fdb193bbb3",
+              "lifestyle-caminhada.webp": "https://pikaso.cdnpk.net/private/production/5839134005/render.png?token=exp=1793404800~hmac=5628bf985fe62bb81ea73cb5cb54b65f9e5bf6e4c6f0bbfb887282a8576c20a0",
+              "lifestyle-dor.webp": "https://pikaso.cdnpk.net/private/production/5839171363/render.png?token=exp=1793404800~hmac=e54b9404cb0c2425ee0116c2b78ea810b805ad3c4e35d6ef35b51daa0759b565",
+              "lifestyle-alongamento.webp": "https://pikaso.cdnpk.net/private/production/5839172041/render.png?token=exp=1793404800~hmac=8235c66801fadb61254c723a0a5604c54dd8705704598f4fba36bb565598b1c3",
+              "lifestyle-escadas.webp": "https://pikaso.cdnpk.net/private/production/5839172490/render.png?token=exp=1793404800~hmac=2f385deacd298a6317448dcb4830a0c031ad9a8be1be1dd4acfc447fcb634d1f",
           }
           os.makedirs('assets',exist_ok=True)
           for name, url in sources.items():

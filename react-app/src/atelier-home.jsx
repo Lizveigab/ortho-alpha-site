@@ -56,9 +56,9 @@ function People({docs,img}){
   <Reveal className="at-widehead"><Tag>QUEM ESTÁ AO SEU LADO</Tag><div className="at-widehead-row"><h2>Experiência que se traduz em <em>cuidado próximo.</em></h2><p>Duas trajetórias na cirurgia do joelho. Uma visão compartilhada: ouvir antes de decidir.</p></div></Reveal>
   <div className="at-people-grid">{docs.map((doc,i)=><Reveal className="at-people-card" key={doc.slug} delay={i*120}>
    <a href={'#/medicos/'+doc.slug} className="at-people-photo"><img src={img(doc.photo)} alt={'Retrato original de '+doc.name} loading="lazy"/><span className="at-photo-count">0{i+1} / EQUIPE</span><span className="at-photo-action">↗</span></a>
-   <div className="at-people-info"><div><small>ORTOPEDIA · CIRURGIA DO JOELHO</small><h3>{doc.name}</h3><p>{doc.slug==='gabriel-abib'?'Lesões ligamentares, menisco e prótese de joelho.':'Lesões ligamentares, menisco e prótese de joelho.'}</p></div><a href={'#/medicos/'+doc.slug}>Ver formação e atuação <span>↗</span></a></div>
+   <div className="at-people-info"><div><small>ORTOPEDIA · CIRURGIA DO JOELHO</small><h3>{doc.name}</h3><p>{'Lesões ligamentares, menisco e prótese de joelho.'}</p></div><a href={'#/medicos/'+doc.slug}>Ver formação e atuação <span>↗</span></a></div>
   </Reveal>)}</div>
-  <div className="oa-reputation-strip"><div><span>REPUTAÇÃO E TRANSPARÊNCIA</span><p>Conheça nossas avaliações públicas e as credenciais dos especialistas.</p></div><a href="https://www.google.com/maps/search/?api=1&query=Ortho+Alpha+Ortopedia+Av+Copacabana+112+Barueri" target="_blank" rel="noopener noreferrer">Conferir no Google ↗</a></div>
+  
   </div></section>
 }
 function Procedures({treatments,img}){

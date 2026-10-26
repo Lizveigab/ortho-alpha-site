@@ -311,3 +311,32 @@
 
 /* Keep the FAQ question index static when its answer opens; rotate only the plus icon. */
 .oa3 .at-faq .at-journey-faq details[open] summary .at-faq-index{transform:none!important}
+
+/* Refinamento de 26/10: cabeçalho integrado à capa, sem fixação nem faixa branca. */
+.oa3 .header,.oa3 .header.solid,.oa3 .header:not(.solid){
+ position:absolute!important;top:0;left:0;right:0;
+ background:transparent!important;backdrop-filter:none!important;
+ -webkit-backdrop-filter:none!important;box-shadow:none!important;
+ border-bottom:1px solid transparent!important;
+ transform:none!important;
+}
+.oa3 .header.hidden{transform:none!important}
+.oa3 .header .header-inner{background:transparent}
+.oa3 .at-intro-wash{
+ background:linear-gradient(90deg,
+ rgba(248,250,252,.97) 0%,
+ rgba(248,250,252,.91) 18%,
+ rgba(248,250,252,.68) 31%,
+ rgba(248,250,252,.31) 43%,
+ rgba(248,250,252,.06) 57%,
+ rgba(248,250,252,0) 68%)!important;
+}
+.oa3 .at-intro-photo img{object-position:72% 47%;filter:saturate(1.02) contrast(1.035)!important}
+@media(max-width:850px){
+ .oa3 .header,.oa3 .header.solid,.oa3 .header:not(.solid){background:transparent!important}
+ .oa3 .header:has(.mobile-nav){background:rgba(250,253,255,.98)!important}
+ .oa3 .at-intro-wash{
+  background:linear-gradient(180deg,rgba(248,250,252,.87) 0%,rgba(248,250,252,.78) 19%,rgba(248,250,252,.48) 40%,rgba(248,250,252,.06) 75%,transparent 100%)!important;
+ }
+ .oa3 .at-intro-photo img{object-position:62% center}
+}

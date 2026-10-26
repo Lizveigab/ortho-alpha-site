@@ -119,6 +119,9 @@ const common={
 '/blog':[
  ['Os artigos substituem uma consulta?','Não. O conteúdo é educativo e não substitui avaliação médica individual.'],
  ['Posso levar dúvidas de um artigo à consulta?','Sim. Discutir sintomas, exames e dúvidas ajuda a construir uma decisão informada.']],
+'/orientacoes':[
+ ['Essas orientações substituem as recomendações do meu médico?','Não. O preparo e a recuperação variam conforme a cirurgia e as condições de saúde do paciente.'],
+ ['Posso usar as orientações antes da minha consulta?','Sim, como informação geral. Em caso de dúvida, converse com a equipe antes de modificar cuidados ou medicamentos.'] ],
 '/contato':[
  ['Como posso agendar uma avaliação?','Entre em contato pelo WhatsApp para consultar disponibilidade e orientações.'],
  ['Quais exames devo levar?','Se possuir, leve exames anteriores, relatórios e sua lista de medicamentos.'],
@@ -150,7 +153,7 @@ export function TreatmentGuide({t,img}){
 }
 export function PageFaq({route}){
  if(route==='/')return null;
- const data=route.startsWith('/especialidades/')?getGuide(route.split('/').pop())?.faq:common[route];
+ const data=route.startsWith('/especialidades/')?getGuide(route.split('/').pop())?.faq:route.startsWith('/blog/')?common['/blog']:common[route];
  const questions=data||common['/especialidades'];
  return <section className="oa-page-faq" aria-labelledby="oa-faq-heading">
    <div className="wrap oa-page-faq-grid"><div className="oa-page-faq-intro"><span className="oa-eyebrow">PERGUNTAS FREQUENTES</span><h2 id="oa-faq-heading">Informação para decidir <em>com clareza.</em></h2><p>Respostas às dúvidas mais comuns. A avaliação individual continua sendo fundamental.</p><a className="oa-faq-cta" href="https://wa.me/5511922966734?text=Ol%C3%A1%2C%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o%20na%20Ortho%20Alpha." target="_blank" rel="noopener noreferrer">Conversar com a equipe <span aria-hidden="true">↗</span></a></div>

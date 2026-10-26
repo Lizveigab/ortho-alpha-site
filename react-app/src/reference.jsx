@@ -5,6 +5,7 @@ import './atelier-home.css';
 import './atelier-pages.css';
 import './premium-features.css';
 import './final-polish.css';
+import './site-relaunch.css';
 import RouteSeo from './route-seo.jsx';
 import {ProfileOpening,PhysicianCTA} from './premium-features.jsx';
 import AtelierHome from './atelier-home.jsx';
@@ -12,26 +13,58 @@ import MotionFX from './motion.jsx';
 const img=n=>import.meta.env.BASE_URL+'assets/'+n;
 const wa='https://wa.me/5511922966734?text='+encodeURIComponent('Olá, gostaria de agendar uma avaliação na Ortho Alpha.');
 const u=p=>'#'+p;
-const clinic=['clinica-estrutura-premium.webp','clinica-consultorio-premium.webp','clinica-detalhes-premium.webp','clinica-exame-premium.webp'];
+const clinic=['https://www.orthoalpha.com.br/assets/consultorio/IMG_1513.webp','https://www.orthoalpha.com.br/assets/consultorio/IMG_1516.webp','https://www.orthoalpha.com.br/assets/consultorio/IMG_1517.webp','https://www.orthoalpha.com.br/assets/consultorio/IMG_1528.webp'];
+const photo=n=>/^https?:/.test(n)?n:img(n);
 const docs=[
 {slug:'gabriel-abib',name:'Dr. Gabriel Lins Abib',short:'Dr. Gabriel Abib',photo:'dr-gabriel.webp',crm:'CRM-SP 208621 · RQE 112944',bio:'Médico ortopedista especializado em cirurgia do joelho, com atuação em lesões ligamentares, menisco, artroplastia e medicina regenerativa. Prioriza a avaliação detalhada e o planejamento individualizado.',formation:['Graduação em Medicina — UNICID (2019)','Residência em Ortopedia — Hospital Mário Gatti (2020–2023)','Fellowship em Artroscopia e Cirurgia do Joelho — Clínica Cidade Jardim (2023–2024)','Treinamento internacional em artroplastia do joelho — Eslovênia (2025)']},
 {slug:'ricardo-queiroz',name:'Dr. Ricardo Gomes da Silva Queiroz',short:'Dr. Ricardo Queiroz',photo:'dr-ricardo.webp',crm:'CRM-SP 196887',bio:'Ortopedista com atuação em reconstruções ligamentares complexas, cirurgia de menisco e prótese de joelho. Sua abordagem busca o diagnóstico cuidadoso e a menor intervenção capaz de atender cada paciente.',formation:['Graduação em Medicina — Centro Universitário São Camilo (2018)','Residência em Ortopedia e Traumatologia — Hospital Geral de Carapicuíba','Fellowship em Cirurgia do Joelho — Clínica Cidade Jardim']}];
 const treatments=[
-{slug:'protese-joelho',name:'Prótese de joelho',desc:'Uma possibilidade para casos selecionados de desgaste avançado.',art:'diagrama-protese-joelho.svg'},
-{slug:'reconstrucao-ligamentar',name:'Reconstrução do LCA',desc:'Abordagem para certas lesões ligamentares com instabilidade.',art:'diagrama-reconstrucao-ligamentar.svg'},
-{slug:'cirurgia-menisco',name:'Cirurgia de menisco',desc:'Tratamento de lesões meniscais com preservação quando indicada.',art:'diagrama-cirurgia-menisco.svg'},
-{slug:'artroscopia',name:'Artroscopia de joelho',desc:'Técnica minimamente invasiva para condições selecionadas.',art:'diagrama-artroscopia.svg'},
-{slug:'medicina-regenerativa',name:'Medicina regenerativa',desc:'Avaliação criteriosa de PRP e BMA e suas limitações.',art:'diagrama-medicina-regenerativa.svg'},
-{slug:'bloqueios-infiltracoes',name:'Bloqueios e infiltrações',desc:'Opções de controle da dor conforme avaliação médica.',art:'diagrama-bloqueios-infiltracoes.svg'}];
+{slug:'artroscopia',name:'Artroscopia do joelho',desc:'Investigação e tratamento de condições selecionadas com técnicas minimamente invasivas.',art:'diagrama-artroscopia.svg',visual:'lifestyle-caminhada.webp'},
+{slug:'reconstrucao-ligamentar',name:'Reconstrução do LCA',desc:'Avaliação de lesões ligamentares e possibilidades de retorno ao esporte.',art:'diagrama-reconstrucao-ligamentar.svg',visual:'lifestyle-tenis.webp'},
+{slug:'cirurgia-menisco',name:'Cirurgia de menisco',desc:'Opções de tratamento com atenção à preservação meniscal quando indicada.',art:'diagrama-cirurgia-menisco.svg',visual:'lifestyle-trilha.webp'},
+{slug:'protese-joelho',name:'Prótese de joelho',desc:'Planejamento individualizado para casos selecionados de desgaste avançado.',art:'diagrama-protese-joelho.svg',visual:'lifestyle-escadas.webp'},
+{slug:'medicina-regenerativa',name:'Medicina regenerativa',desc:'PRP e BMA: avaliação criteriosa de benefícios, limites e indicações.',art:'diagrama-medicina-regenerativa.svg',visual:'lifestyle-alongamento.webp'},
+{slug:'prp',name:'PRP no joelho',desc:'Plasma rico em plaquetas: indicação individualizada e discussão das evidências.',art:'diagrama-medicina-regenerativa.svg',visual:'lifestyle-corrida.webp'},
+{slug:'bloqueios-infiltracoes',name:'Bloqueios e infiltrações',desc:'Alternativas para manejo da dor, conforme diagnóstico e avaliação clínica.',art:'diagrama-bloqueios-infiltracoes.svg',visual:'lifestyle-dor.webp'}];
 const questions=[['Toda dor no joelho precisa de cirurgia?','Não. Muitas queixas têm tratamento conservador. A indicação depende do diagnóstico e do impacto dos sintomas.'],['Como funciona a avaliação cirúrgica?','O especialista conversa sobre seu histórico, realiza o exame físico e avalia exames quando necessários, explicando as opções.'],['Posso levar meus exames?','Sim, leve resultados anteriores, relatórios e informações relevantes sobre seus sintomas.'],['Quando buscar uma segunda opinião?','Quando houver dúvidas sobre diagnóstico, alternativas de tratamento ou indicação cirúrgica.']];
 function Reveal({children,className=''}){let ref=useRef();useEffect(()=>{if(!ref.current)return;if(matchMedia('(prefers-reduced-motion:reduce)').matches||!('IntersectionObserver'in window)){ref.current.classList.add('shown');return}let o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('shown');o.unobserve(e.target)}}),{threshold:.08});o.observe(ref.current);return()=>o.disconnect()},[]);return <div ref={ref} className={'reveal '+className}>{children}</div>}
 function Ey({children}){return <span className="ey">{children}</span>}
 function Btn({to=wa,children='Agendar avaliação',light=false}){return <a href={to} className={'btn'+(light?' white':'')} target={to.startsWith('#')?undefined:'_blank'} rel={to.startsWith('#')?undefined:'noopener noreferrer'}>{children}<b aria-hidden="true">↗</b></a>}
-function Header({route}){let [sc,setSc]=useState(false),[hidden,setHidden]=useState(false),[open,setOpen]=useState(false),last=useRef(0);useEffect(()=>{let raf=0;let fn=()=>{if(raf)return;raf=requestAnimationFrame(()=>{let y=scrollY;setSc(y>50);if(y<65)setHidden(false);else if(Math.abs(y-last.current)>8)setHidden(y>last.current&&y>160);last.current=y;raf=0})};addEventListener('scroll',fn,{passive:true});return()=>{removeEventListener('scroll',fn);cancelAnimationFrame(raf)}},[]);useEffect(()=>setOpen(false),[route]);let links=[['A clínica','/sobre'],['Especialidades','/especialidades'],['Cirurgias','/cirurgias'],['Blog','/blog'],['Contato','/contato']];return <header className={'header'+(sc||route!=='/'?' solid':'')+(hidden&&!open?' hidden':'')}><div className="wrap header-inner"><a href="#/" className="brand"><img src={img('logo-alpha-original.png')} alt=""/><span><strong>ORTHO <em>ALPHA</em></strong><small>ORTOPEDIA ESPECIALIZADA</small></span></a><nav className="desktop-nav">{links.map(([n,p])=><a className={route===p?'current':''} key={p} href={u(p)}>{n}</a>)}</nav><Btn>Agendar avaliação</Btn><button className="hamb" type="button" aria-expanded={open} aria-label={open?'Fechar menu':'Abrir menu'} onClick={()=>setOpen(!open)}>{open?'×':'☰'}</button></div>{open&&<nav className="mobile-nav">{links.map(([n,p])=><a href={u(p)} key={p}>{n}<span>↗</span></a>)}<Btn>Agendar consulta</Btn></nav>}</header>}
+function Header({route}){
+ const [sc,setSc]=useState(false),[hidden,setHidden]=useState(false),[open,setOpen]=useState(false),[mega,setMega]=useState(false),last=useRef(0),navRef=useRef(null);
+ useEffect(()=>{let raf=0;const onScroll=()=>{if(raf)return;raf=requestAnimationFrame(()=>{const y=scrollY;setSc(y>42);if(y<80)setHidden(false);else if(Math.abs(y-last.current)>9)setHidden(y>last.current&&y>165);last.current=y;raf=0})};addEventListener('scroll',onScroll,{passive:true});return()=>{removeEventListener('scroll',onScroll);cancelAnimationFrame(raf)}},[]);
+ useEffect(()=>{setOpen(false);setMega(false)},[route]);
+ useEffect(()=>{const key=e=>{if(e.key==='Escape'){setOpen(false);setMega(false)}};const away=e=>{if(navRef.current&&!navRef.current.contains(e.target))setMega(false)};addEventListener('keydown',key);addEventListener('pointerdown',away);return()=>{removeEventListener('keydown',key);removeEventListener('pointerdown',away)}},[]);
+ const menu=[['A clínica','/sobre'],['Cirurgias','/cirurgias'],['Blog','/blog'],['Contato','/contato']];
+ return <header className={'header oa-new-header'+(sc||route!=='/'?' solid':'')+(hidden&&!open&&!mega?' hidden':'')} ref={navRef}>
+   <div className="wrap header-inner">
+    <a href="#/" className="brand oa-brand" aria-label="Ortho Alpha — página inicial"><img src={img('logo-alpha-original.png')} alt=""/><span><strong>ORTHO <em>ALPHA</em></strong><small>ORTOPEDIA ESPECIALIZADA</small></span></a>
+    <nav className="desktop-nav" aria-label="Navegação principal">
+      <a className={route==='/sobre'?'current':''} href="#/sobre">A clínica</a>
+      <div className={'oa-mega-anchor'+(mega?' expanded':'')} onMouseEnter={()=>setMega(true)} onMouseLeave={()=>setMega(false)}>
+       <button className={route.startsWith('/especialidades')?'current':''} type="button" aria-haspopup="true" aria-expanded={mega} aria-controls="oa-specialty-menu" onClick={()=>setMega(v=>!v)}>Especialidades <span aria-hidden="true">⌄</span></button>
+       {mega&&<div className="oa-mega-panel" id="oa-specialty-menu">
+         <div className="oa-mega-intro"><span>ORTHO ALPHA / JOELHO</span><h3>Especialização para cada etapa.</h3><p>Conheça as opções de cuidado e descubra o que merece uma avaliação individualizada.</p><a href="#/especialidades" onClick={()=>setMega(false)}>Explorar todas as especialidades ↗</a></div>
+         <div className="oa-mega-grid">{treatments.map(t=><a key={t.slug} href={u('/especialidades/'+t.slug)} onClick={()=>setMega(false)}><img src={img(t.visual)} alt="" loading="lazy"/><span>{t.name}</span><b aria-hidden="true">↗</b></a>)}</div>
+       </div>}
+      </div>
+      {menu.slice(1).map(([name,to])=><a className={route===to?'current':''} key={to} href={u(to)}>{name}</a>)}
+    </nav>
+    <Btn>Agendar avaliação</Btn>
+    <button className="hamb" type="button" aria-label={open?'Fechar menu':'Abrir menu'} aria-expanded={open} aria-controls="oa-mobile-nav" onClick={()=>setOpen(v=>!v)}>{open?'×':'☰'}</button>
+   </div>
+   {open&&<nav className="mobile-nav oa-mobile-nav" id="oa-mobile-nav" aria-label="Navegação mobile">
+      <a href="#/sobre">A clínica <span>↗</span></a>
+      <details><summary>Especialidades <span>+</span></summary><div className="oa-mobile-specialties">{treatments.map(t=><a key={t.slug} href={u('/especialidades/'+t.slug)}><img src={img(t.visual)} alt="" loading="lazy"/>{t.name}<span>↗</span></a>)}</div><a href="#/especialidades">Ver todas as especialidades ↗</a></details>
+      {menu.slice(1).map(([name,to])=><a href={u(to)} key={to}>{name}<span>↗</span></a>)}
+      <Btn>Agendar avaliação</Btn>
+    </nav>}
+ </header>
+}
 function Doctors({compact=false}){return <div className={'doctors'+(compact?' compact':'')}>{docs.map(d=><a href={u('/medicos/'+d.slug)} key={d.slug} className="doctor"><img src={img(d.photo)} alt={'Foto real de '+d.name} loading="lazy"/><div><h3>{d.name}</h3><small>Cirurgia do joelho</small><span>Conhecer especialista ↗</span></div></a>)}</div>}
 function Gallery(){let [a,setA]=useState(0);return <div className="gallery"><button type="button" className="gallery-big" onClick={()=>setA((a+1)%clinic.length)} aria-label="Próxima foto"><img key={a} src={img(clinic[a])} alt="Ambiente real da clínica Ortho Alpha" loading="lazy"/><span>{String(a+1).padStart(2,'0')} / 04　↗</span></button><div className="gallery-smalls">{clinic.filter((_,i)=>i!==a).slice(0,2).map(f=><button key={f} onClick={()=>setA(clinic.indexOf(f))}><img src={img(f)} alt="Outros ambientes da clínica" loading="lazy"/></button>)}</div></div>}
-function Cards({all=false}){return <div className="treat-grid">{treatments.slice(0,all?6:3).map(t=><a className="treat-card" href={u('/especialidades/'+t.slug)} key={t.slug}><img src={img(t.art)} loading="lazy" alt={'Ilustração anatômica: '+t.name}/><span className="shade"/><span className="title">{t.name}<b>↗</b></span></a>)}</div>}
-function Explorer(){let [idx,setIdx]=useState(0),t=treatments[idx];return <div className="explorer"><div>{treatments.map((x,i)=><button aria-pressed={idx===i} className={idx===i?'active':''} onClick={()=>setIdx(i)} key={x.slug}><span>{String(i+1).padStart(2,'0')}</span>{x.name}<b>↗</b></button>)}</div><article className="explorer-image"><img src={img(t.art)} key={t.slug} alt={t.name}/><div><Ey>TRATAMENTO {idx+1} / 6</Ey><h3>{t.name}</h3><p>{t.desc}</p><Btn light to={u('/especialidades/'+t.slug)}>Conheça o tratamento</Btn></div></article></div>}
+function Cards({all=false}){return <div className="treat-grid">{treatments.slice(0,all?6:3).map(t=><a className="treat-card" href={u('/especialidades/'+t.slug)} key={t.slug}><img src={img(t.visual)} loading="lazy" alt={'Imagem ilustrativa de estilo de vida: '+t.name}/><span className="shade"/><span className="title">{t.name}<b>↗</b></span></a>)}</div>}
+function Explorer(){let [idx,setIdx]=useState(0),t=treatments[idx];return <div className="explorer"><div>{treatments.map((x,i)=><button aria-pressed={idx===i} className={idx===i?'active':''} onClick={()=>setIdx(i)} key={x.slug}><span>{String(i+1).padStart(2,'0')}</span>{x.name}<b>↗</b></button>)}</div><article className="explorer-image"><img src={img(t.visual)} key={t.slug} alt={t.name}/><div><Ey>TRATAMENTO {idx+1} / 6</Ey><h3>{t.name}</h3><p>{t.desc}</p><Btn light to={u('/especialidades/'+t.slug)}>Conheça o tratamento</Btn></div></article></div>}
 function Steps(){return <div className="steps">{[['01','Avaliação','Entendemos seu caso, exames e objetivos.'],['02','Planejamento','Discutimos as opções e a melhor estratégia.'],['03','Acompanhamento','Orientação antes e depois do tratamento.']].map(([n,t,d])=><article key={n}><div><b>{n}</b><i/></div><h3>{t}</h3><p>{d}</p></article>)}</div>}
 function Faq(){return <div className="faq">{questions.map(([q,a])=><details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div>}
 function Second(){return <section className="second dark"><div className="wrap second-grid"><Reveal><Ey>SEGUNDA OPINIÃO</Ey><h2>Recebeu indicação <em>de cirurgia?</em></h2><p>Converse sobre a indicação, as alternativas e suas dúvidas com nossa equipe.</p><Btn light>Agendar segunda opinião</Btn></Reveal><Reveal className="scan"><img src={img('knee-anatomy-premium.svg')} alt="Representação anatômica do joelho" loading="lazy"/></Reveal></div></section>}

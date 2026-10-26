@@ -258,3 +258,13 @@
  .oa3 .at-intro-wash{background:linear-gradient(180deg,#f8fbfd 0%,rgba(248,251,253,.96) 8%,rgba(248,251,253,.42) 39%,transparent 73%)!important}
  .oa3 .at-intro-bottom>.wrap{gap:13px}
 }
+
+/* Ajuste pontual do banner (26/10): preservar céu acima do rosto e liberar o menu.
+   Com object-fit:cover e imagem mais alta que o frame, menor Y mostra mais do TOPO
+   da fotografia e faz a pessoa aparecer mais abaixo. */
+@media (min-width:1351px) {
+ .oa3 .at-intro-photo img { object-position:74% 0% !important; }
+}
+@media (min-width:851px) and (max-width:1350px) {
+ .oa3 .at-intro-photo img { object-position:78% 0% !important; }
+}

@@ -1,5 +1,5 @@
 import React,{useEffect,useRef,useState} from 'react';
-import {KneeAtlas,TrustProof} from './premium-features.jsx';
+import {KneeAtlas} from './premium-features.jsx';
 
 function Reveal({children,className='',delay=0}){
  const ref=useRef(null);
@@ -58,6 +58,7 @@ function People({docs,img}){
    <a href={'#/medicos/'+doc.slug} className="at-people-photo"><img src={img(doc.photo)} alt={'Retrato original de '+doc.name} loading="lazy"/><span className="at-photo-count">0{i+1} / EQUIPE</span><span className="at-photo-action">↗</span></a>
    <div className="at-people-info"><div><small>ORTOPEDIA · CIRURGIA DO JOELHO</small><h3>{doc.name}</h3><p>{doc.slug==='gabriel-abib'?'Cirurgia do joelho, lesões ligamentares e artroplastia.':'Reconstruções ligamentares, menisco e prótese de joelho.'}</p></div><a href={'#/medicos/'+doc.slug}>Ver formação e atuação <span>↗</span></a></div>
   </Reveal>)}</div>
+  <div className="oa-reputation-strip"><div><span>REPUTAÇÃO E TRANSPARÊNCIA</span><p>Conheça nossas avaliações públicas e as credenciais dos especialistas.</p></div><a href="https://www.google.com/maps/search/?api=1&query=Ortho+Alpha+Ortopedia+Av+Copacabana+112+Barueri" target="_blank" rel="noopener noreferrer">Conferir no Google ↗</a></div>
   </div></section>
 }
 function Procedures({treatments,img}){
@@ -81,7 +82,7 @@ function SecondOpinion({img,wa}){
  return <section className="at-opinion">
   <div className="at-opinion-media"><img src={img('lifestyle-dor.webp')} alt="Pessoa com desconforto no joelho, fotografia ilustrativa" loading="lazy"/></div>
   <div className="wrap at-opinion-container"><Reveal>
-   <Tag number="07 / 10">SEGUNDA OPINIÃO</Tag>
+   <Tag number="05 / 10">SEGUNDA OPINIÃO</Tag>
    <h2>Recebeu uma indicação cirúrgica? <em>Entenda suas opções.</em></h2>
    <p>O diagnóstico, a indicação e as alternativas merecem uma conversa clara.</p><Button href={wa}>Agendar segunda opinião</Button>
   </Reveal></div>
@@ -112,7 +113,7 @@ function SignatureClose({img,wa}){
  return <section className="at-close">
   <div className="at-close-photo"><img src={img('lifestyle-trilha.webp')} alt="" loading="lazy"/></div>
   <div className="wrap at-close-content"><Reveal>
-    <Tag number="ORTHO ALPHA">SEU PRÓXIMO PASSO</Tag>
+    <Tag number="10 / 10">SEU PRÓXIMO PASSO</Tag>
     <h2>O movimento continua. <em>Com o cuidado certo.</em></h2>
     <p>Uma decisão mais tranquila começa com uma conversa.</p>
     <Button href={wa} light>Agendar minha avaliação</Button>
@@ -127,7 +128,7 @@ export function RegenerativeSpotlight({img}){
    <div className="oa-regen-wash"/>
    <div className="wrap oa-regen-inner">
     <Reveal className="oa-regen-copy">
-     <Tag number="MEDICINA REGENERATIVA">PRP · BMA · CUIDADO INDIVIDUAL</Tag>
+     <Tag number="07 / 10">MEDICINA REGENERATIVA · PRP</Tag>
      <h2 id="oa-regen-title">A cirurgia não é sempre <em>o primeiro caminho.</em></h2>
      <p>Conheça as possibilidades de tratamento não cirúrgico. O PRP e outras terapias são avaliados conforme o diagnóstico, as evidências disponíveis e os objetivos de cada pessoa.</p>
      <div className="oa-regen-buttons"><Button href="#/especialidades/medicina-regenerativa">Medicina regenerativa</Button><Button href="#/especialidades/prp" quiet>Entenda o PRP</Button></div>
@@ -142,11 +143,10 @@ export default function AtelierHome({img,wa,docs,treatments,clinic}){
   <Philosophy img={img} wa={wa}/>
   <People docs={docs} img={img}/>
   <KneeAtlas img={img}/>
-  <TrustProof docs={docs} img={img} wa={wa}/>
-  <Procedures treatments={treatments} img={img}/>
   <SecondOpinion img={img} wa={wa}/>
-  <Spaces img={img} clinic={clinic}/>
+  <Procedures treatments={treatments} img={img}/>
   <RegenerativeSpotlight img={img}/>
+  <Spaces img={img} clinic={clinic}/>
   <Journey wa={wa}/>
   <SignatureClose img={img} wa={wa}/>
  </div>;

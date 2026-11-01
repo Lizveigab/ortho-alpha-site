@@ -54,6 +54,18 @@
 
 **Contato `#/contato`:** telefone, endereço, horários e link para Google Maps estão presentes. Verificar os links, responsividade, legibilidade, real disponibilidade, esquema de medição de conversão. Evitar afirmar tempo de resposta garantido sem confirmação operacional.
 
+## 2.1. Evidência visual adicional — capturas automatizadas de 01/11/2026
+As capturas geradas pelo Playwright mostram as primeiras dobras de Home, Sobre, Equipe, Artroscopia, Blog, Contato e menu mobile em Chrome (desktop e viewport estilo iPhone). É uma evidência visual real da build React no navegador de testes, não apenas leitura de código.
+
+- **Menu mobile:** a versão atual está visualmente mais limpa que as capturas anteriores: fundo claro homogêneo, links legíveis e CTA separado. Manter esse conceito; melhorar foco para teclado e conferir na WebView do WhatsApp em iPhone real.
+- **Hero mobile:** primeira dobra tem título e CTAs claros, mas a imagem da corredora aparece só como figura pequena na base e com bastante névoa branca; o valor visual da fotografia se perde. Recomenda-se crop exclusivo ou versão de imagem mobile.
+- **Hero desktop:** a pessoa aparece abaixo da barra de navegação na captura automatizada; é melhora em relação ao conflito anterior. Conferir em outros tamanhos e preservar o headroom ao substituir por nova mídia.
+- **Artroscopia vs. Blog:** as duas capas exibem a mesma fotografia de pessoa caminhando no parque, não um visual específico do joelho ou de artroscopia. Trocar por imagens clínicas/educacionais distintivas, aprovadas.
+- **Sobre, Equipe e Contato:** imagens reais da clínica são adequadas e críveis; porém o uso de hero com estrutura e foto muito parecidas entre páginas reduz diferenciação. Definir uma foto protagonista distinta para cada rota.
+- **Imagens das páginas internas no celular:** o degradê branco da hero encobre grande parte da fotografia. Usar contraste mais controlado para não parecer imagem desbotada.
+- **Espaçamentos no mobile:** a primeira dobra das páginas internas coloca imagem abaixo do texto e CTA; avaliar altura para que parte mais significativa da foto apareça sem uma sensação de página vazia.
+- **Próxima verificação visual:** screenshots full-page e análise de Safari/WebView reais, principalmente FAQ, lista de especialidades, galeria e rodapé; capturas atuais são sobretudo da primeira tela.
+
 ## 3. Acessibilidade e design system
 - Plus Jakarta Sans; corpo 16–18 px, pequenos textos 14 px ou mais; H1 40–48 px mobile/64–72 px desktop como referência, não regra rígida.
 - Alvos interativos com área de pelo menos 44 × 44 px, foco visível, labels acessíveis e contraste adequado.

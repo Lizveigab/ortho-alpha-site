@@ -83,3 +83,25 @@ test('Menu mobile fecha pelo Escape',async({page},testInfo)=>{
  await page.keyboard.press('Escape');
  await expect(page.getByRole('navigation',{name:'Navegação mobile'})).not.toBeVisible();
 });
+
+test('Gerar capturas visuais para revisão do design',async({page},testInfo)=>{
+ test.setTimeout(90000);
+ const pages=[
+  ['/', 'home'],
+  ['/sobre','clinica'],
+  ['/medicos','equipe'],
+  ['/especialidades/artroscopia','tratamento-artroscopia'],
+  ['/blog','blog'],
+  ['/contato','contato']
+ ];
+ for(const [route,name] of pages){
+  await page.goto('./#'+route);
+  await expect(page.locator('main h1').first()).toBeAttached();
+  await page.screenshot({path:testInfo.outputPath('visual-'+testInfo.project.name+'-'+name+'.png'),animations:'disabled'});
+ }
+ if(testInfo.project.name==='mobile'){
+  await page.goto('./#/');
+  await page.getByRole('button',{name:'Abrir menu'}).click();
+  await page.screenshot({path:testInfo.outputPath('visual-mobile-menu-aberto.png'),animations:'disabled'});
+ }
+});

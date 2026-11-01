@@ -63,3 +63,38 @@ jobs:
             react-app/test-results/
           if-no-files-found: ignore
           retention-days: 14
+
+
+  lighthouse:
+    name: Lighthouse mobile (relatório informativo)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    continue-on-error: true
+    defaults:
+      run:
+        working-directory: react-app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar dependências e compilar
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          mkdir -p dist/assets
+          cp -R ../assets/. dist/assets/
+      - name: Instalar Lighthouse CI
+        run: npm install -g @lhci/cli@0.15.1
+      - name: Auditar desempenho, acessibilidade e práticas
+        run: lhci autorun --config=./lighthouserc.cjs
+      - name: Salvar relatórios Lighthouse
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ortho-alpha-lighthouse-${{ github.run_number }}
+          path: |
+            react-app/lighthouse-report/
+            react-app/.lighthouseci/
+          if-no-files-found: ignore
+          retention-days: 14

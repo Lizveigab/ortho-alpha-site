@@ -99,6 +99,8 @@
 - `.github/workflows/ortho-react-preview.yml` **já publica automaticamente** ao receber alterações em `react-app/**` na branch `main`, gerando `react/` e publicando a pasta.
 - `.github/workflows/import-ortho-visuals.yml` também pode gerar/publicar assets, quando executado manualmente ou quando sua definição é atualizada.
 - `.github/workflows/ortho-quality.yml` foi adicionado em 01/11/2026: faz build, copia assets e executa testes Playwright de rotas, FAQ, menu mobile, hero, overflow e blog. Roda em push/PR e manualmente, com permissão de leitura e relatórios anexados. **Não modifica a página oficial nem impede o deploy enquanto não for integrado como gate**.
+- O mesmo workflow possui um job **Lighthouse mobile (relatório informativo)** que coleta performance, acessibilidade e boas práticas, salva relatórios HTML/JSON em `lighthouse-report/` e usa alertas sem bloquear a prévia. SEO foi excluído da pontuação automática porque a prévia está, corretamente, com `noindex`.
+- A bateria Playwright também captura telas de Home, Sobre, Equipe, Artroscopia, Blog e Contato em desktop/mobile, e menu aberto no mobile. As capturas são anexadas aos relatórios e não constituem aprovação visual automática.
 - Para consultar os testes: repositório → aba **Actions** → **Ortho Alpha - UX e QA (desktop e mobile)** → selecionar execução → `Artifacts`.
 - Para rodar manualmente: **Actions** → selecionar workflow → **Run workflow**.
 - Não editar secrets manualmente sem necessidade. As verificações atuais não exigem chaves secretas.

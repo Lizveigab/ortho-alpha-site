@@ -106,7 +106,37 @@
 - Não editar secrets manualmente sem necessidade. As verificações atuais não exigem chaves secretas.
 - Fase posterior: se os testes estiverem estáveis, exigir status verde antes do deploy e unificar deploys, sem alterar a hospedagem oficial.
 
-## 8. Fontes de padrões e normas
+## 9. Resultados medidos: Lighthouse de laboratório (01/11/2026)
+**Fonte:** execução GitHub Actions `41343815986`, navegador Chrome headless, emulação mobile, build React servido localmente. São números de **simulação local**, não Core Web Vitals de usuários reais nem PageSpeed do domínio oficial.
+
+| Métrica | Resultado | Interpretação |
+| --- | --- | --- |
+| Performance | **77/100** | Abaixo do limite desejado de 85 |
+| Acessibilidade | **94/100** | Boa base, mas há falhas concretas |
+| Boas práticas | **96/100** | Boa base; há alerta de console |
+| SEO | **63/100** | Prévia bloqueada por `noindex` de propósito, portanto não usar a nota como avaliação do SEO final |
+| FCP | **1,7 s** | Inicial satisfatório no teste |
+| LCP | **3,8 s** | Acima da meta de 2,5 s |
+| TBT | **110 ms** | Bom resultado para bloqueio de thread principal |
+| CLS | **0,214** | Acima da meta de 0,1 |
+| Render blocking | Aproximadamente **450 ms** de economia potencial apontada | CSS e fontes atrasam a renderização |
+| Entrega de imagens | Aproximadamente **263 KiB** de economia potencial | Imagem hero e retratos com resoluções maiores do que o necessário |
+
+**Causas apontadas pelo Lighthouse:**
+- **CLS:** o carregamento de `Plus Jakarta Sans` desloca conteúdo da Home, gerando o deslocamento registrado. Usar fallback metricamente compatível, ajustar quebras do H1 e considerar distribuição de fontes de forma otimizada.
+- **LCP:** elemento principal é a imagem `lifestyle-corrida.webp`, com cerca de 3,8 s; a requisição não é descoberta diretamente no HTML inicial porque a imagem é criada pelo React. Incluir preload do recurso correto e versões responsivas, sem carregar imagem inutilmente.
+- **Imagens:** hero de 1300×1152 exibido em tamanho inferior no mobile, com economia potencial calculada em ~220 KiB no item específico; retratos de ambos os médicos também podem ser reduzidos.
+- **Contraste:** rótulo `ALPHAVILLE · BARUERI` foi medido em ~4,45:1 (mínimo 4,5:1); rótulo dos médicos em ~3,85:1; escurecer o ciano dos textos menores.
+- **Acessibilidade:** botões numéricos 01/02/03 do atlas têm nome acessível sem os números visíveis; ajustar `aria-label` para incluir o texto visível ou usar `aria-labelledby`.
+- **Hierarquia:** títulos do footer aparecem em `h4` após estruturas anteriores sem nível hierárquico adequado; corrigir sequência de headings.
+- **Console:** `/favicon.ico` retorna 404; adicionar favicon real e link no `index.html`.
+- **CSS:** Lighthouse estima ~11 KiB de CSS não utilizado na navegação analisada; remover regras legadas com atenção às páginas internas.
+
+Esses são **achados medidos**, mais confiáveis que suposições baseadas apenas no código, mas dependem do ambiente de testes.
+
+[Execução GitHub Actions e relatório Lighthouse](https://github.com/Lizveigab/ortho-alpha-site/actions/runs/41343815986)
+
+## 10. Fontes de padrões e normas
 - CFM 2.336/2023: https://publicidademedica.cfm.org.br/manual/
 - WCAG 2.2: https://www.w3.org/TR/WCAG22/
 - Web Vitals: https://web.dev/explore/learn-core-web-vitals

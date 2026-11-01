@@ -1,0 +1,19 @@
+module.exports={
+ ci:{
+  collect:{
+   url:['http://127.0.0.1:4173/ortho-alpha-site/react/#/'],
+   startServerCommand:'npm run preview -- --host 127.0.0.1 --port 4173 --strictPort',
+   startServerReadyPattern:'ready|Local:',
+   startServerReadyTimeout:60000,
+   numberOfRuns:1,
+   settings:{chromeFlags:'--no-sandbox'}
+  },
+  assert:{assertions:{
+   'categories:performance':['warn',{minScore:0.85}],
+   'categories:accessibility':['warn',{minScore:0.90}],
+   'categories:best-practices':['warn',{minScore:0.90}],
+   'categories:seo':'off'
+  }},
+  upload:{target:'filesystem',outputDir:'./lighthouse-report'}
+ }
+};

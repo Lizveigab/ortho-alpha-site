@@ -1,0 +1,65 @@
+name: Ortho Alpha - UX e QA (desktop e mobile)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'react-app/**'
+      - 'assets/**'
+      - '.github/workflows/ortho-quality.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'react-app/**'
+      - 'assets/**'
+      - '.github/workflows/ortho-quality.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ortho-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    name: Testar React no Chrome (desktop e mobile)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: react-app
+    steps:
+      - name: Buscar código
+        uses: actions/checkout@v4
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar dependências do projeto
+        run: npm install --no-audit --no-fund
+      - name: Gerar prévia de produção
+        run: npm run build
+      - name: Disponibilizar imagens na prévia local
+        run: |
+          mkdir -p dist/assets
+          cp -R ../assets/. dist/assets/
+      - name: Instalar Playwright para a auditoria (sem alterar dependências do projeto)
+        run: npm install --no-save --no-package-lock --no-audit --no-fund @playwright/test@1.56.1
+      - name: Instalar Chrome de testes
+        run: npx playwright install --with-deps chromium
+      - name: Verificar páginas, formulários, menu mobile e responsividade
+        run: npx playwright test --config=playwright.config.cjs
+        env:
+          CI: 'true'
+      - name: Guardar capturas e relatório quando houver problemas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ortho-alpha-qa-${{ github.run_number }}
+          path: |
+            react-app/playwright-report/
+            react-app/test-results/
+          if-no-files-found: ignore
+          retention-days: 14

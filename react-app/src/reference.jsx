@@ -120,18 +120,96 @@ const BLOG_POSTS=[
  {slug:'lesao-menisco-cirurgia',title:'Lesão de menisco: cirurgia é sempre necessária?',category:'Menisco',image:'lifestyle-trilha.webp',intro:'Muitas lesões meniscais não exigem cirurgia imediata.',sections:[['Função do menisco','Os meniscos ajudam a distribuir cargas e contribuem para o funcionamento da articulação.'],['Como escolher a conduta','Sintomas, travamentos, localização e padrão da lesão orientam a decisão. Em alguns casos, fisioterapia e medidas conservadoras são adequadas.'],['Quando há indicação cirúrgica','Dependendo da lesão, a equipe pode discutir reparo ou outra técnica, priorizando a preservação meniscal sempre que viável.']]},
  {slug:'protese-joelho-duvidas',title:'Prótese de joelho: principais dúvidas',category:'Cirurgias',image:'lifestyle-caminhada.webp',intro:'A artroplastia é uma possibilidade em casos selecionados de comprometimento articular importante.',sections:[['Quando considerar','Dor persistente e impacto nas atividades diárias, apesar de cuidados adequados, podem justificar a avaliação de uma prótese.'],['Tipos de prótese','Existem opções de substituição total e unicompartimental. A escolha depende da distribuição da doença e das condições clínicas.'],['Como é a recuperação','O planejamento inclui mobilização orientada, fisioterapia e acompanhamento. A evolução varia entre pacientes e não há resultados garantidos.']]}
 ];
+const estimatedReadingMinutes=post=>{
+ const words=(post.intro+' '+post.sections.map(section=>section.join(' ')).join(' ')).trim().split(/\s+/).length;
+ return Math.max(1,Math.ceil(words/180));
+};
+function ArticleReadingProgress(){
+ const[progress,setProgress]=useState(0);
+ useEffect(()=>{
+  let frame=0;
+  const update=()=>{if(frame)return;frame=requestAnimationFrame(()=>{
+   const element=document.querySelector('.oa-article-reading-body');
+   if(element){
+    const r=element.getBoundingClientRect();
+    const distance=Math.max(1,r.height-window.innerHeight*.3);
+    setProgress(Math.min(100,Math.max(0,Math.round((-r.top+window.innerHeight*.15)/distance*100))));
+   }
+   frame=0;
+  })};
+  window.addEventListener('scroll',update,{passive:true});update();
+  return()=>{window.removeEventListener('scroll',update);cancelAnimationFrame(frame)};
+ },[]);
+ return <div className="oa-reading-progress" role="progressbar" aria-label="Progresso de leitura" aria-valuemin="0" aria-valuemax="100" aria-valuenow={progress}><span style={{width:progress+'%'}}/></div>;
+}
+function ArticleFeedback({slug}){
+ const key='ortho-alpha-article-rating:'+slug;
+ const[rating,setRating]=useState(()=>{
+  try{return Math.max(0,Math.min(5,Number(window.localStorage.getItem(key))||0))}catch{return 0}
+ });
+ const[voted,setVoted]=useState(rating>0);
+ const save=stars=>{
+  setRating(stars);setVoted(true);
+  try{window.localStorage.setItem(key,String(stars))}catch{}
+  if(Array.isArray(window.dataLayer))window.dataLayer.push({event:'ortho_article_rating',article_slug:slug,rating:stars});
+ };
+ return <section className="oa-article-feedback" aria-label="Avaliar este artigo">
+  <div><span className="oa-feedback-eyebrow">SUA OPINIÃO IMPORTA</span><h2>Esse conteúdo foi útil?</h2><p>Avalie sua leitura de 1 a 5 estrelas.</p></div>
+  <div className="oa-article-stars" role="group" aria-label="Escolha uma nota de 1 a 5 estrelas">{[1,2,3,4,5].map(stars=><button key={stars} type="button" className={rating>=stars?'is-selected':''} aria-label={stars+' '+(stars===1?'estrela':'estrelas')} aria-pressed={rating===stars} onClick={()=>save(stars)}>★</button>)}</div>
+  <p className="oa-feedback-confirm" role="status">{voted?'Sua avaliação foi salva neste navegador. Obrigado!':'Sua avaliação é pessoal e não representa uma nota pública do artigo.'}</p>
+ </section>;
+}
+function ArticleInstagram(){
+ const url='https://www.instagram.com/orthoalpha.ortopedia/';
+ return <aside className="oa-article-instagram" aria-label="Instagram da Ortho Alpha">
+  <div className="oa-instagram-copy"><span className="oa-feedback-eyebrow">ACOMPANHE NOSSA CLÍNICA</span><h2>Mais perto do cuidado, <em>também no Instagram.</em></h2><p>Conheça nossa equipe, os ambientes da clínica e conteúdos sobre o movimento.</p><a href={url} target="_blank" rel="noopener noreferrer" className="oa-instagram-button">Ver @orthoalpha.ortopedia <span aria-hidden="true">↗</span></a></div>
+  <div className="oa-instagram-photos">{clinic.slice(0,3).map((photo,i)=><img key={photo} src={img(photo)} loading="lazy" alt={'Ambiente real da Ortho Alpha, imagem '+(i+1)}/>)}</div>
+  <small>Fotografias institucionais da clínica. Esta galeria não é sincronizada com o Instagram.</small>
+ </aside>;
+}
 function Blog(){
  const[q,setQ]=useState(''),[cat,setCat]=useState('Todos');
  const categories=['Todos',...new Set(BLOG_POSTS.map(p=>p.category))];
  const filtered=BLOG_POSTS.filter(p=>(cat==='Todos'||p.category===cat)&&p.title.toLocaleLowerCase('pt-BR').includes(q.toLocaleLowerCase('pt-BR')));
- return <><PageHero label="BLOG · CONTEÚDOS" title="Informação para" em="cuidar do movimento." desc="Artigos e orientações sobre ortopedia, joelho e tratamentos." image="lifestyle-caminhada.webp"/><section className="section"><div className="wrap"><Ey>CONHECIMENTO</Ey><h2>Para entender <em>o seu joelho.</em></h2><input className="search" value={q} onChange={e=>setQ(e.target.value)} placeholder="Buscar assuntos..." aria-label="Buscar assunto"/><div className="filters">{categories.map(c=><button className={c===cat?'active':''} aria-pressed={c===cat} onClick={()=>setCat(c)} key={c}>{c}</button>)}</div><div className="blogcards">{filtered.map(p=><article key={p.slug}><a href={u('/blog/'+p.slug)}><img src={img(p.image)} loading="lazy" alt={'Imagem ilustrativa: '+p.category}/><div><Ey>{p.category}</Ey><h3>{p.title}</h3><p>{p.intro}</p><span className="oa-blog-more">Ler artigo ↗</span></div></a></article>)}</div>{filtered.length===0&&<p role="status">Nenhum artigo encontrado para esta busca.</p>}</div></section><section className="section dark"><div className="wrap"><Ey>NO INSTAGRAM</Ey><h2>Mais perto do cuidado, <em>também no seu feed.</em></h2><div className="ig-grid">{[...clinic.slice(0,2),...docs.map(d=>d.photo)].map(x=><img key={x} src={img(x)} loading="lazy" alt="Foto institucional da Ortho Alpha"/>)}</div><a href="https://www.instagram.com/orthoalpha.ortopedia/" className="textlink" target="_blank" rel="noopener noreferrer">Acompanhar o Instagram ↗</a><p className="notice">Galeria com fotos institucionais; não é feed sincronizado.</p></div></section><PageFaq route="/blog"/><Final/></>;
+ return <><PageHero label="BLOG · CONTEÚDOS" title="Informação para" em="cuidar do movimento." desc="Artigos e orientações sobre ortopedia, joelho e tratamentos." image="lifestyle-caminhada.webp"/>
+ <section className="section oa-blog-section"><div className="wrap"><Ey>CONHECIMENTO</Ey><h2>Para entender <em>o seu joelho.</em></h2><p className="oa-blog-lead">Informações para ajudar você a conversar com a equipe sobre seu cuidado.</p>
+ <input className="search" value={q} onChange={e=>setQ(e.target.value)} placeholder="Buscar assuntos..." aria-label="Buscar assunto"/>
+ <div className="filters" role="group" aria-label="Filtrar artigos por assunto">{categories.map(c=><button className={c===cat?'active':''} aria-pressed={c===cat} onClick={()=>setCat(c)} key={c}>{c}</button>)}</div>
+ <div className="blogcards oa-blog-grid">{filtered.map(p=><article className="oa-blog-card" key={p.slug}><a href={u('/blog/'+p.slug)} aria-label={'Ler artigo: '+p.title}>
+ <div className="oa-blog-card-media"><img src={img(p.image)} loading="lazy" alt={'Imagem ilustrativa: '+p.category}/></div>
+ <div className="oa-blog-card-body"><div className="oa-blog-card-meta"><span>{p.category}</span><span>{estimatedReadingMinutes(p)} min de leitura</span></div>
+ <h3>{p.title}</h3><p>{p.intro}</p><span className="oa-blog-more">Ler artigo <span aria-hidden="true">↗</span></span></div></a></article>)}</div>
+ {filtered.length===0&&<p role="status">Nenhum artigo encontrado para esta busca.</p>}</div></section>
+ <section className="section dark"><div className="wrap"><Ey>NO INSTAGRAM</Ey><h2>Mais perto do cuidado, <em>também no seu feed.</em></h2><div className="ig-grid">{[...clinic.slice(0,2),...docs.map(d=>d.photo)].map(x=><img key={x} src={img(x)} loading="lazy" alt="Foto institucional da Ortho Alpha"/>)}</div><a href="https://www.instagram.com/orthoalpha.ortopedia/" className="textlink" target="_blank" rel="noopener noreferrer">Acompanhar o Instagram ↗</a><p className="notice">Galeria com fotos institucionais; não é feed sincronizado.</p></div></section><PageFaq route="/blog"/><Final/></>;
 }
 function Article({slug}){
  const post=BLOG_POSTS.find(p=>p.slug===slug);
+ useEffect(()=>{
+  if(!post)return;
+  if(Array.isArray(window.dataLayer))window.dataLayer.push({event:'ortho_article_view',article_slug:post.slug,article_category:post.category});
+ },[post?.slug]);
  if(!post)return <Blog/>;
- return <><PageHero label={'BLOG · '+post.category.toUpperCase()} title={post.title} desc={post.intro} image={post.image}/><article className="oa-article"><div className="wrap oa-article-wrap"><a className="oa-contact-map" href="#/blog">← Voltar ao blog</a>{post.sections.map(([title,paragraph])=><section key={title}><h2>{title}</h2><p>{paragraph}</p></section>)}<p className="oa-article-note">Conteúdo informativo, não substitui consulta ou orientação médica individual.</p><Btn>Agendar uma avaliação</Btn></div></article><PageFaq route={'/blog/'+slug}/><Final/></>;
+ const others=BLOG_POSTS.filter(p=>p.slug!==post.slug).slice(0,2);
+ return <><PageHero label={'BLOG · '+post.category.toUpperCase()} title={post.title} desc={post.intro} image={post.image}/>
+ <article className="oa-article"><ArticleReadingProgress/><div className="wrap oa-article-wrap">
+ <div className="oa-article-utility"><a href="#/blog" className="oa-article-back">← Voltar ao blog</a><span>{estimatedReadingMinutes(post)} min de leitura</span><span>Conteúdo educativo</span></div>
+ <div className="oa-article-reading-body"><p className="oa-article-introduction">{post.intro}</p>
+ {post.sections.map(([title,paragraph])=><section key={title}><h2>{title}</h2><p>{paragraph}</p></section>)}
+ <p className="oa-article-note">Conteúdo informativo, não substitui consulta ou orientação médica individual. Antes da publicação oficial, o conteúdo médico deverá passar por revisão clínica.</p></div>
+ <ArticleFeedback slug={post.slug}/>
+ <div className="oa-article-related"><span className="oa-feedback-eyebrow">CONTINUE SUA LEITURA</span><h2>Outros conteúdos <em>para você.</em></h2><div className="oa-related-grid">{others.map(p=><a key={p.slug} href={u('/blog/'+p.slug)}><img src={img(p.image)} loading="lazy" alt="Imagem ilustrativa do artigo"/><div><span>{p.category} · {estimatedReadingMinutes(p)} min</span><strong>{p.title}</strong><small>Ler artigo ↗</small></div></a>)}</div></div>
+ </div><div className="wrap"><ArticleInstagram/></div></article><PageFaq route={'/blog/'+slug}/><Final/></>;
 }
 function Orientations(){return <><PageHero label="ORIENTAÇÕES AO PACIENTE" title="Informação que acompanha" em="cada etapa." desc="Entenda cuidados gerais antes e depois da consulta ou do procedimento. As orientações individuais da equipe sempre prevalecem." image="clinic/IMG_1516.webp"/><section className="section"><div className="wrap"><Ey>PREPARO E ACOMPANHAMENTO</Ey><h2>O cuidado continua <em>além da consulta.</em></h2><div className="steps">{[['01','Antes da avaliação','Reúna exames anteriores, relatórios e uma lista dos medicamentos em uso. Anote suas dúvidas e descreva seus sintomas.'],['02','Antes de um procedimento','Siga apenas as instruções de preparo fornecidas pela equipe. Não suspenda medicamentos por conta própria.'],['03','Durante a recuperação','Respeite as orientações de mobilidade, curativos e fisioterapia. Sintomas preocupantes devem ser comunicados à equipe.']].map(([n,title,body])=><article key={n}><div><b>{n}</b><i/></div><h3>{title}</h3><p>{body}</p></article>)}</div><p>Este conteúdo é educativo e não substitui as recomendações do médico responsável.</p></div></section><Clinic/><PageFaq route="/orientacoes"/><Final/></>}
-function Contact(){return <><PageHero label="CONTATO · ALPHAVILLE" title="Seu cuidado começa" em="com uma conversa." desc="Fale com nossa equipe para obter informações e agendar sua avaliação."/><section className="section dark"><div className="wrap"><Ey>FALE COM A GENTE</Ey><h2>Estamos aqui <em>para orientar.</em></h2><div className="contactcards">{[['01','WhatsApp','(11) 92296-6734'],['02','Endereço','Av. Copacabana, 112, sala 1507 · Edifício Medic Life · Alphaville'],['03','Horário','Segunda a sexta, 8h às 20h']].map(x=><article key={x[0]}><b>{x[0]}</b><h3>{x[1]}</h3><p>{x[2]}</p></article>)}</div><Btn light>Falar pelo WhatsApp</Btn><a className="oa-contact-map" href="https://www.google.com/maps/search/?api=1&query=Av+Copacabana+112+Edificio+Medic+Life+Barueri" target="_blank" rel="noopener noreferrer">Ver localização no Google Maps ↗</a></div></section><Clinic/><PageFaq route="/contato"/><Final/></>}
+function Contact(){
+ const maps='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent('Ortho Alpha, Av. Copacabana, 112, Edifício Medic Life, Alphaville, Barueri, SP');
+ const embed='https://maps.google.com/maps?q='+encodeURIComponent('Ortho Alpha, Avenida Copacabana 112, Edifício Medic Life, Alphaville, Barueri SP')+'&z=16&output=embed';
+ return <><PageHero label="CONTATO · ALPHAVILLE" title="Seu cuidado começa" em="com uma conversa." desc="Fale com nossa equipe para obter informações e agendar sua avaliação."/>
+ <section className="section dark oa-contact-section"><div className="wrap"><Ey>FALE COM A GENTE</Ey><h2>Estamos aqui <em>para orientar.</em></h2>
+ <div className="contactcards">{[['01','WhatsApp','(11) 92296-6734'],['02','Endereço','Av. Copacabana, 112, sala 1507 · Edifício Medic Life · Alphaville'],['03','Horário','Segunda a sexta, 8h às 20h']].map(x=><article key={x[0]}><b>{x[0]}</b><h3>{x[1]}</h3><p>{x[2]}</p></article>)}</div>
+ <div className="oa-contact-actions"><a className="oa-contact-primary" href={wa} target="_blank" rel="noopener noreferrer">Falar pelo WhatsApp <span aria-hidden="true">↗</span></a><a className="oa-contact-secondary" href={maps} target="_blank" rel="noopener noreferrer">Abrir no Google Maps <span aria-hidden="true">↗</span></a></div>
+ <div className="oa-contact-map-panel"><div className="oa-contact-map-copy"><Ey>ONDE ESTAMOS</Ey><h3>Um espaço preparado para receber você.</h3><p>Edifício Medic Life · sala 1507<br/>Av. Copacabana, 112 · Alphaville, Barueri/SP</p><a href={maps} target="_blank" rel="noopener noreferrer">Traçar rota no Google Maps ↗</a></div><div className="oa-contact-map-frame"><iframe src={embed} title="Mapa da Ortho Alpha — Avenida Copacabana, 112, Alphaville" loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen></iframe></div></div>
+ </div></section><Clinic/><PageFaq route="/contato"/><Final/></>;
+}
 function App(){let[route,setRoute]=useState(decodeURI(location.hash.slice(1)||'/'));useEffect(()=>{let fn=()=>{const next=decodeURI(location.hash.slice(1)||'/');if(next==='/convenios'){location.replace('#/contato');return}setRoute(next);scrollTo({top:0,behavior:'instant'})};addEventListener('hashchange',fn);return()=>removeEventListener('hashchange',fn)},[]);let d=docs.find(x=>route==='/medicos/'+x.slug),t=treatments.find(x=>route==='/especialidades/'+x.slug);let page=route==='/'?<Home/>:route==='/sobre'?<About/>:route==='/medicos'?<Team/>:d?<Doctor d={d}/>:route==='/especialidades'||route==='/cirurgias'?<Specialties surgical={route==='/cirurgias'}/>:t?<Specialty t={t}/>:route==='/blog'?<Blog/>:route.startsWith('/blog/')?<Article slug={route.slice(6)}/>:route==='/orientacoes'?<Orientations/>:route==='/contato'?<Contact/>:<Home/>;return <div className="oa3"><Header route={route}/><RouteSeo route={route}/><MotionFX route={route}/><main key={route}>{page}</main><Footer/></div>}
 createRoot(document.getElementById('root')).render(<App/>);

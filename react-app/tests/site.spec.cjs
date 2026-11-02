@@ -108,7 +108,7 @@ test('Gerar capturas visuais para revisão do design',async({page},testInfo)=>{
 
 test('Contato tem mapa incorporado, identificação da clínica e CTA com contraste próprio',async({page})=>{
  await page.goto('./#/contato');
- const map=page.getByRole('iframe',{name:/Mapa da Ortho Alpha/});
+ const map=page.locator('iframe[title^="Mapa da Ortho Alpha"]');
  await expect(map).toBeVisible();
  await expect(map).toHaveAttribute('src',/maps\.google\.com\/maps\?q=/);
  const buttons=page.locator('.oa-contact-actions>a');

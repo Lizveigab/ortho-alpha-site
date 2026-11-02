@@ -105,3 +105,43 @@ test('Gerar capturas visuais para revisão do design',async({page},testInfo)=>{
   await page.screenshot({path:testInfo.outputPath('visual-mobile-menu-aberto.png'),animations:'disabled'});
  }
 });
+
+test('Contato tem mapa incorporado, identificação da clínica e CTA com contraste próprio',async({page})=>{
+ await page.goto('./#/contato');
+ const map=page.getByRole('iframe',{name:/Mapa da Ortho Alpha/});
+ await expect(map).toBeVisible();
+ await expect(map).toHaveAttribute('src',/maps\.google\.com\/maps\?q=/);
+ const buttons=page.locator('.oa-contact-actions>a');
+ await expect(buttons).toHaveCount(2);
+ await expect(buttons.nth(0)).toHaveAttribute('href',/^https:\/\/wa\.me\//);
+ await expect(buttons.nth(1)).toHaveAttribute('href',/google\.com\/maps\/search/);
+ const first=await buttons.nth(0).boundingBox(),second=await buttons.nth(1).boundingBox();
+ expect(first).toBeTruthy();expect(second).toBeTruthy();
+ const separated= first.y+first.height<=second.y-9 || second.x>=first.x+first.width+9;
+ expect(separated).toBeTruthy();
+});
+test('Blog apresenta cards com metadados, padding e Instagram',async({page})=>{
+ await page.goto('./#/blog');
+ const cards=page.locator('.oa-blog-card');
+ await expect(cards).toHaveCount(4);
+ const card=cards.first();
+ await expect(card.locator('.oa-blog-card-media img')).toBeVisible();
+ await expect(card.locator('.oa-blog-card-meta')).toContainText('min de leitura');
+ await expect(card.locator('.oa-blog-more')).toBeVisible();
+ await expect(page.getByRole('link',{name:/Acompanhar o Instagram/})).toHaveAttribute('href',/instagram\.com\/orthoalpha\.ortopedia/);
+ const pad=await card.locator('.oa-blog-card-body').evaluate(node=>getComputedStyle(node).paddingLeft);
+ expect(parseFloat(pad)).toBeGreaterThanOrEqual(20);
+});
+test('Leitor consegue avaliar artigo e encontrar Instagram da clínica',async({page})=>{
+ await page.goto('./#/blog/dor-no-joelho-quando-procurar');
+ await expect(page.getByRole('progressbar',{name:'Progresso de leitura'})).toBeVisible();
+ await expect(page.locator('.oa-article-utility')).toContainText('min de leitura');
+ const feedback=page.getByRole('region',{name:'Avaliar este artigo'});
+ await feedback.getByRole('button',{name:'4 estrelas'}).click();
+ await expect(feedback.getByRole('status')).toContainText('salva neste navegador');
+ await expect(feedback.getByRole('button',{name:'4 estrelas'})).toHaveAttribute('aria-pressed','true');
+ await page.reload();
+ await expect(page.getByRole('button',{name:'4 estrelas'})).toHaveAttribute('aria-pressed','true');
+ await expect(page.getByRole('link',{name:/Ver @orthoalpha.ortopedia/})).toHaveAttribute('href',/instagram\.com\/orthoalpha\.ortopedia/);
+ await expect(page.locator('.oa-instagram-photos img')).toHaveCount(3);
+});

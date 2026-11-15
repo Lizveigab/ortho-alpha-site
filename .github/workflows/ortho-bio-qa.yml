@@ -1,0 +1,44 @@
+name: Ortho Alpha Bio - QA visual
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'bio/**'
+      - '.github/workflows/ortho-bio-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ortho-bio-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright
+        run: npm install --no-save --no-package-lock --no-audit --no-fund @playwright/test@1.56.1
+      - run: npx playwright install --with-deps chromium
+      - name: Check full bio page desktop and iPhone
+        run: |
+          python3 -m http.server 4173 > /tmp/ortho-bio-http.log 2>&1 &
+          sleep 2
+          node bio/test-bio.cjs
+      - name: Upload real screen captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ortho-bio-screenshots-${{ github.run_number }}
+          path: |
+            bio/qa-iphone.png
+            bio/qa-desktop.png
+          if-no-files-found: ignore
+          retention-days: 14

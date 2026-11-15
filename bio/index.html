@@ -137,6 +137,13 @@ img{max-width:100%}
 .foot{margin-bottom:70px}
 @media(max-width:430px){.location-map{height:144px}.social-actions{gap:7px}.social-actions a{min-height:49px;gap:5px;font-size:14px}.social-actions svg{width:17px;height:17px}.location-section{margin-top:16px}}
 @media(prefers-reduced-motion:reduce){.whatsapp-floating{transition:none}.whatsapp-floating:hover{transform:none}}
+
+/* Ícone sempre visível, inclusive antes da imagem de terceiros terminar de carregar */
+.whatsapp-floating{overflow:hidden}
+.whatsapp-floating img{position:absolute;inset:0;display:block;transition:opacity .2s}
+.whatsapp-floating .whatsapp-fallback{height:40px;width:40px;position:absolute;inset:0;margin:auto;color:#fff;pointer-events:none}
+.whatsapp-floating:not(.is-loaded) img{opacity:0}
+.whatsapp-floating.is-loaded .whatsapp-fallback{display:none}
 </style>
 </head>
 <body>
@@ -202,7 +209,10 @@ img{max-width:100%}
     </footer>
   </div>
 </main>
-<a class="whatsapp-floating booking-link" data-booking="floating" href="https://wa.me/5511922966734?text=Ol%C3%A1!%20Vim%20pelo%20Instagram%20da%20Ortho%20Alpha%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Falar com a equipe da Ortho Alpha pelo WhatsApp"><img src="https://lizveigab.github.io/ortho-alpha-site/bio/assets/whatsapp-original.webp" alt="" width="54" height="54"></a>
+<a class="whatsapp-floating booking-link" data-booking="floating" href="https://wa.me/5511922966734?text=Ol%C3%A1!%20Vim%20pelo%20Instagram%20da%20Ortho%20Alpha%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener noreferrer" aria-label="Falar com a equipe da Ortho Alpha pelo WhatsApp">
+<img src="https://lizveigab.github.io/ortho-alpha-site/bio/assets/whatsapp-original.webp" alt="" width="54" height="54" fetchpriority="high" onload="this.parentElement.classList.add('is-loaded')" onerror="this.style.display='none'">
+<svg class="whatsapp-fallback" viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.8A12.2 12.2 0 0 0 5.4 22L3.9 28l6.2-1.7a12.2 12.2 0 1 0 5.9-22.5Z"/><path d="M11.1 10.6c-.3.4-.6.8-.6 1.4 0 2.3 4.2 6.7 7 7 .6 0 1.2-.5 1.8-1.1l-2.8-2-1.3 1.1c-1.5-.8-2.7-2-3.4-3.5l1.1-1.1-1.8-1.8Z"/></svg>
+</a>
 <script>
 (function(){
  const loader=document.querySelector('.oa-loader');

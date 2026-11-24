@@ -56,3 +56,5 @@ const js=document.createElement("script");
 js.src=prefix+"assets/oa-interactions-v5.js?v=6";js.async=false;
 document.body.appendChild(js);
 })();
+/* Shared conversion tracker; resolve from this script for nested pages. */
+(function(){var source=document.currentScript;if(!source)return;var tag=document.createElement('script');tag.src=new URL('oa-tracking.js?v=20261124',source.src).href;tag.async=true;document.head.appendChild(tag);}());

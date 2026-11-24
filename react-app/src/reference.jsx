@@ -1,3 +1,4 @@
+import '../../assets/oa-tracking.js';
 import React,{useState,useEffect,useRef} from 'react';
 import{createRoot}from'react-dom/client';
 import './reference.css';

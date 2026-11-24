@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'react-app/**'
+      - 'assets/oa-tracking.js'
       - '.github/workflows/ortho-react-preview.yml'
   workflow_dispatch:
 permissions:

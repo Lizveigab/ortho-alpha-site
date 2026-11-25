@@ -1,7 +1,7 @@
 const {test,expect}=require('@playwright/test');
 
 const routes=[
- ['/',/Clínica Ortopédica especializada/i],
+ ['/',/Especialistas em joelho em Alphaville/i],
  ['/sobre',/ambiente também faz parte/i],
  ['/medicos',/Experiência técnica/i],
  ['/medicos/gabriel-abib',/Gabriel Lins Abib/i],

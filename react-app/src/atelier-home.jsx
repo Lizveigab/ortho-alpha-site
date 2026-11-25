@@ -27,7 +27,7 @@ function Intro({img,wa,docs}){
       <div className="at-actions"><Button href={wa}>Agendar avaliação</Button><Button href="#/sobre" quiet>Conhecer a clínica</Button></div>
     </Reveal>
     <div className="at-intro-brandmark" aria-hidden="true"><img src={img("logo-alpha-mark.svg")} alt=""/></div>
-    <div className="at-intro-physicians"><span>CONHEÇA NOSSA EQUIPE</span>{docs.map(d=><a key={d.slug} href={"#/medicos/"+d.slug}><img src={img(d.thumb||d.photo)} alt={d.short} width="80" height="80" decoding="async"/><div className="at-physician-copy"><strong>{d.short}</strong><span className="at-physician-crm">{d.crm}</span><span className="at-physician-area">{d.focus}</span></div><b aria-hidden="true">↗</b></a>)}</div>
+    <div className="at-intro-physicians"><span>CONHEÇA NOSSA EQUIPE</span>{docs.map(d=><a key={d.slug} href={"#/medicos/"+d.slug}><img src={img(d.thumb||d.photo)} alt={d.short} width="80" height="80" decoding="async" style={d.pos?{objectPosition:d.pos}:undefined}/><div className="at-physician-copy"><strong>{d.short}</strong><span className="at-physician-crm">{d.crm}</span><span className="at-physician-area">{d.focus}</span></div><b aria-hidden="true">↗</b></a>)}</div>
    </div>
    <div className="at-intro-bottom"><div className="wrap">
      <span><b>01</b> Cirurgiões dedicados ao joelho</span><span><b>02</b> Retorno no mesmo dia útil pelo WhatsApp</span><span><b>03</b> Particular com reembolso pelo seu plano</span>
@@ -55,7 +55,7 @@ function People({docs,img}){
  return <section className="at-people"><div className="wrap">
   <Reveal className="at-widehead"><Tag>QUEM ESTÁ AO SEU LADO</Tag><div className="at-widehead-row"><h2>Experiência que se traduz em <em>cuidado próximo.</em></h2><p>Duas trajetórias na cirurgia do joelho. Uma visão compartilhada: ouvir antes de decidir.</p></div></Reveal>
   <div className="at-people-grid">{docs.map((doc,i)=><Reveal className="at-people-card" key={doc.slug} delay={i*120}>
-   <a href={'#/medicos/'+doc.slug} className="at-people-photo"><img src={img(doc.photo)} alt={'Retrato original de '+doc.name} loading="lazy"/><span className="at-photo-count">0{i+1} / EQUIPE</span><span className="at-photo-action">↗</span></a>
+   <a href={'#/medicos/'+doc.slug} className="at-people-photo"><img src={img(doc.photo)} alt={'Retrato original de '+doc.name} loading="lazy" style={doc.pos?{objectPosition:doc.pos}:undefined}/><span className="at-photo-count">0{i+1} / EQUIPE</span><span className="at-photo-action">↗</span></a>
    <div className="at-people-info"><div><small>ORTOPEDIA · CIRURGIA DO JOELHO</small><h3>{doc.name}</h3><p>{doc.home}</p></div><a href={'#/medicos/'+doc.slug}>Ver formação e atuação <span>↗</span></a></div>
   </Reveal>)}</div>
   

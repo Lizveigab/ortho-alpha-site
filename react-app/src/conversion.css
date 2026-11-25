@@ -42,7 +42,7 @@
 @keyframes oaShine{0%,55%{background-position:150% 0}100%{background-position:-60% 0}}
 @keyframes oaWaBounce{0%,82%,100%{transform:translateY(0)}86%{transform:translateY(-9px)}90%{transform:translateY(0)}94%{transform:translateY(-4px)}}
 .oa-sticky-wa:hover{animation-play-state:paused}
-@media(prefers-reduced-motion:reduce){.oa-sticky-wa,.oa-sticky-wa:before,.oa-sticky-wa:after,.oa3 .header .btn:after{animation:none}}
+@media(prefers-reduced-motion:reduce){.oa-sticky-wa{animation:none}}
 
 /* 6. Seção "Reconhece algum desses sinais?" */
 .oa3 .oa-symptoms{background:#f4f8fb;padding:clamp(70px,8vw,112px) 0}

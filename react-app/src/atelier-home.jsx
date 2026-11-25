@@ -12,9 +12,9 @@ function Reveal({children,className='',delay=0}){
  return <div ref={ref} className={'at-reveal '+className} style={{'--at-delay':delay+'ms'}}>{children}</div>
 }
 const Tag=({children})=><div className="at-tag"><i/>{children}</div>;
-function Button({children,href,light=false,quiet=false}){
+function Button({children,href,light=false,quiet=false,extra}){
  const external=/^https?:/.test(href);
- return <a href={href} className={'at-button'+(light?' at-button-light':'')+(quiet?' at-button-quiet':'')} target={external?'_blank':undefined} rel={external?'noopener noreferrer':undefined}>{children}<span aria-hidden="true">↗</span></a>
+ return <a href={href} data-wa-extra={extra} className={'at-button'+(light?' at-button-light':'')+(quiet?' at-button-quiet':'')} target={external?'_blank':undefined} rel={external?'noopener noreferrer':undefined}>{children}<span aria-hidden="true">↗</span></a>
 }
 function Intro({img,wa,docs}){
  return <section className="at-intro" aria-labelledby="at-intro-head">
@@ -22,15 +22,15 @@ function Intro({img,wa,docs}){
    <div className="wrap at-intro-inner">
     <Reveal className="at-intro-copy">
       <Tag>ALPHAVILLE · BARUERI</Tag>
-      <h1 id="at-intro-head">Clínica Ortopédica especializada, <em>com a técnica e o cuidado que você merece.</em></h1>
-      <p>Atendimento especializado em joelho, com avaliação individualizada, precisão técnica e cuidado em cada etapa do tratamento.</p>
+      <h1 id="at-intro-head">Especialistas em joelho em Alphaville, <em>com a técnica e o cuidado que você merece.</em></h1>
+      <p>Dor, lesão no esporte, menisco, LCA ou artrose: cirurgiões dedicados ao joelho avaliam o seu caso com tempo e indicam o tratamento menos invasivo capaz de resolvê-lo.</p>
       <div className="at-actions"><Button href={wa}>Agendar avaliação</Button><Button href="#/sobre" quiet>Conhecer a clínica</Button></div>
     </Reveal>
-    <div className="at-intro-brandmark" aria-hidden="true"><img src={img("logo-alpha-original.png")} alt=""/></div>
-    <div className="at-intro-physicians"><span>CONHEÇA NOSSA EQUIPE</span>{docs.map(d=><a key={d.slug} href={"#/medicos/"+d.slug}><img src={img(d.photo)} alt={d.short} loading="eager"/><div className="at-physician-copy"><strong>{d.short}</strong><span className="at-physician-crm">{d.slug==="gabriel-abib"?"CRM-SP 208621 · RQE 112944":"CRM-SP 196887"}</span><span className="at-physician-area">{d.slug==="gabriel-abib"?"Cirurgia do joelho":"Reconstruções ligamentares e prótese de joelho"}</span></div><b aria-hidden="true">↗</b></a>)}</div>
+    <div className="at-intro-brandmark" aria-hidden="true"><img src={img("logo-alpha-mark.svg")} alt=""/></div>
+    <div className="at-intro-physicians"><span>CONHEÇA NOSSA EQUIPE</span>{docs.map(d=><a key={d.slug} href={"#/medicos/"+d.slug}><img src={img(d.thumb||d.photo)} alt={d.short} width="80" height="80" decoding="async"/><div className="at-physician-copy"><strong>{d.short}</strong><span className="at-physician-crm">{d.crm}</span><span className="at-physician-area">{d.focus}</span></div><b aria-hidden="true">↗</b></a>)}</div>
    </div>
    <div className="at-intro-bottom"><div className="wrap">
-     <span><b>01</b> Especialistas em joelho</span><span><b>02</b> Avaliação individualizada</span><span><b>03</b> Alphaville · Barueri</span>
+     <span><b>01</b> Cirurgiões dedicados ao joelho</span><span><b>02</b> Retorno no mesmo dia útil pelo WhatsApp</span><span><b>03</b> Particular com reembolso pelo seu plano</span>
      <a href="#at-filosofia" onClick={e=>{e.preventDefault();document.querySelector('#at-filosofia')?.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}} aria-label="Explorar nossa abordagem">↓</a>
    </div></div>
  </section>
@@ -56,7 +56,7 @@ function People({docs,img}){
   <Reveal className="at-widehead"><Tag>QUEM ESTÁ AO SEU LADO</Tag><div className="at-widehead-row"><h2>Experiência que se traduz em <em>cuidado próximo.</em></h2><p>Duas trajetórias na cirurgia do joelho. Uma visão compartilhada: ouvir antes de decidir.</p></div></Reveal>
   <div className="at-people-grid">{docs.map((doc,i)=><Reveal className="at-people-card" key={doc.slug} delay={i*120}>
    <a href={'#/medicos/'+doc.slug} className="at-people-photo"><img src={img(doc.photo)} alt={'Retrato original de '+doc.name} loading="lazy"/><span className="at-photo-count">0{i+1} / EQUIPE</span><span className="at-photo-action">↗</span></a>
-   <div className="at-people-info"><div><small>ORTOPEDIA · CIRURGIA DO JOELHO</small><h3>{doc.name}</h3><p>{'Lesões ligamentares, menisco e prótese de joelho.'}</p></div><a href={'#/medicos/'+doc.slug}>Ver formação e atuação <span>↗</span></a></div>
+   <div className="at-people-info"><div><small>ORTOPEDIA · CIRURGIA DO JOELHO</small><h3>{doc.name}</h3><p>{doc.home}</p></div><a href={'#/medicos/'+doc.slug}>Ver formação e atuação <span>↗</span></a></div>
   </Reveal>)}</div>
   
   </div></section>
@@ -78,13 +78,34 @@ function Procedures({treatments,img}){
  </div><div className="at-proc-bottom"><span>Cirurgia · Tratamento conservador · Controle da dor</span><a href="#/especialidades">Todas as especialidades ↗</a></div>
  </div></section>
 }
+function Symptoms({treatments}){
+ const items=[
+  ['Dor ao subir ou descer escadas','protese-joelho'],
+  ['Joelho que “falseia” ou fica instável','reconstrucao-ligamentar'],
+  ['Travamento ou estalos com dor','cirurgia-menisco'],
+  ['Inchaço depois do esporte','artroscopia'],
+  ['Artrose que limita a rotina','medicina-regenerativa'],
+  ['Dor que não melhora com o tempo','bloqueios-infiltracoes']
+ ];
+ return <section className="oa-symptoms" aria-labelledby="oa-symptoms-title"><div className="wrap">
+  <Reveal className="at-widehead"><Tag>O QUE VOCÊ ESTÁ SENTINDO?</Tag><div className="at-widehead-row"><h2 id="oa-symptoms-title">Reconhece algum <em>desses sinais?</em></h2><p>Escolha o que mais se parece com a sua queixa e veja como avaliamos e tratamos cada caso.</p></div></Reveal>
+  <div className="oa-symptoms-grid">{items.map(([label,slug],i)=>{const t=treatments.find(x=>x.slug===slug);return <Reveal key={label} delay={i*60} className="oa-symptom"><a href={'#/especialidades/'+slug}><span className="oa-symptom-no">{String(i+1).padStart(2,'0')}</span><strong>{label}</strong><small>{t?t.name:''} ↗</small></a></Reveal>})}</div>
+ </div></section>
+}
+function Reimbursement({wa}){
+ const steps=[['Consulta particular','Você agenda pelo WhatsApp e é atendido com tempo, sem pressa.'],['Documentação completa','A equipe emite nota fiscal e relatório para o pedido de reembolso.'],['Reembolso pelo seu plano','Você solicita à operadora o reembolso integral ou parcial, conforme o seu contrato.']];
+ return <section className="oa-reimb" aria-labelledby="oa-reimb-title"><div className="wrap oa-reimb-grid">
+  <Reveal><Tag>PLANOS DE SAÚDE</Tag><h2 id="oa-reimb-title">Atendimento particular <em>com reembolso.</em></h2><p>Atendemos no modelo particular e ajudamos você com toda a documentação para pedir reembolso a planos como Bradesco Saúde, SulAmérica, Amil, Porto Saúde, Omint, Allianz e Care Plus.</p><Button href={wa} extra="dúvida sobre reembolso do plano">Tirar dúvidas sobre reembolso</Button><small>O valor reembolsado depende do contrato de cada plano. Consulte sua operadora.</small></Reveal>
+  <ol className="oa-reimb-steps">{steps.map(([t,d],i)=><Reveal key={t} delay={i*80}><li><b>{String(i+1).padStart(2,'0')}</b><div><h3>{t}</h3><p>{d}</p></div></li></Reveal>)}</ol>
+ </div></section>
+}
 function SecondOpinion({img,wa}){
  return <section className="at-opinion">
   <div className="at-opinion-media"><img src={img('lifestyle-dor.webp')} alt="Pessoa com desconforto no joelho, fotografia ilustrativa" loading="lazy"/></div>
   <div className="wrap at-opinion-container"><Reveal>
    <Tag>SEGUNDA OPINIÃO</Tag>
    <h2>Recebeu uma indicação cirúrgica? <em>Entenda suas opções.</em></h2>
-   <p>O diagnóstico, a indicação e as alternativas merecem uma conversa clara.</p><Button href={wa}>Agendar segunda opinião</Button>
+   <p>Antes de decidir, entenda o diagnóstico, o porquê da indicação e se existem alternativas para o seu caso. Traga seus exames: a conversa é clara e sem pressa.</p><Button href={wa} extra="segunda opinião sobre indicação de cirurgia">Agendar segunda opinião</Button>
   </Reveal></div>
   <div className="at-opinion-aside"><span>UMA DECISÃO MAIS CONSCIENTE</span><b>↗</b></div>
  </section>
@@ -124,6 +145,8 @@ function Journey(){
 function FrequentlyAsked({wa}){
  const questions=[
   ['Toda dor no joelho precisa de cirurgia?','Não. Diversas condições podem ser tratadas sem cirurgia. A escolha depende do diagnóstico, da intensidade dos sintomas e de cada paciente.'],
+  ['A clínica atende convênio?','O atendimento é particular, com reembolso pelo seu plano de saúde. A equipe emite nota fiscal e relatório para você solicitar o reembolso à operadora, conforme o seu contrato.'],
+  ['Em quanto tempo consigo uma consulta?','A equipe responde pelo WhatsApp no mesmo dia útil para confirmar horário, orientar sobre exames e tirar dúvidas. O atendimento é de segunda a sexta, das 8h às 20h.'],
   ['Posso levar meus exames?','Sim. Exames anteriores, relatórios e informações sobre os seus sintomas podem ajudar na avaliação.'],
   ['Quando buscar uma segunda opinião?','Quando houver dúvidas sobre o diagnóstico, a indicação de cirurgia ou as alternativas disponíveis.'],
   ['Medicina regenerativa e PRP servem para todos?','Não. As indicações são específicas, as evidências variam conforme a condição e não há garantia de regeneração da cartilagem. A avaliação médica é fundamental.']
@@ -172,6 +195,7 @@ export function RegenerativeSpotlight({img}){
 export default function AtelierHome({img,wa,docs,treatments,clinic}){
  return <div className="at-home">
   <Intro img={img} wa={wa} docs={docs}/>
+  <Symptoms treatments={treatments}/>
   <Philosophy img={img} wa={wa}/>
   <People docs={docs} img={img}/>
   <KneeAtlas img={img}/>
@@ -180,6 +204,7 @@ export default function AtelierHome({img,wa,docs,treatments,clinic}){
   <RegenerativeSpotlight img={img}/>
   <Spaces img={img} clinic={clinic}/>
   <Journey/>
+  <Reimbursement wa={wa}/>
   <FrequentlyAsked wa={wa}/>
   <SignatureClose img={img} wa={wa}/>
  </div>;
